@@ -2,13 +2,12 @@
 #include <assert.h>
 
 #define BUCKET_SIZE 4 // numero de registros por bucket pagina
+
 typedef struct {
     int local_depth;
     int record_count;
-    Record records[BUCKET_SIZE];
-} HashBucket;
+} HashBucketHeader;
 
-// contexto do hash file
 struct HashFile {
     char dir_filename[256];
     char data_filename[256];
@@ -16,11 +15,26 @@ struct HashFile {
     FILE* data_file;
     int global_depth;
     int dir_size;
-    long* directory; // diretorio em memoria
+    long* directory; 
+    int record_size;
+    int key_offset;
 };
 
-bool hash_create(const char* filename_prefix) {
-    assert(filename_prefix != NULL && "filename_prefix is NULL");
+static inline size_t get_bucket_disk_size(HashFile* hf) {
+    return sizeof(HashBucketHeader) + (BUCKET_SIZE * hf->record_size);
+}
+
+static inline void* get_record_ptr(void* bucket_buf, int index, HashFile* hf) {
+    char* records_area = (char*)bucket_buf + sizeof(HashBucketHeader);
+    return records_area + (index * hf->record_size);
+}
+
+static inline int get_key(void* record_ptr, HashFile* hf) {
+    return *(int*)((char*)record_ptr + hf->key_offset);
+}
+
+bool hash_create(const char* filename_prefix, int record_size, int key_offset) {
+    if (!filename_prefix) return false;
     char dir_filename[256];
     char data_filename[256];
     snprintf(dir_filename, sizeof(dir_filename), "%s.dir", filename_prefix);
@@ -36,22 +50,35 @@ bool hash_create(const char* filename_prefix) {
 
     int global_depth = 0;
     fwrite(&global_depth, sizeof(int), 1, d_file);
+    fwrite(&record_size, sizeof(int), 1, d_file);
+    fwrite(&key_offset, sizeof(int), 1, d_file);
     
     long offset = 0;
     fwrite(&offset, sizeof(long), 1, d_file); // dir_size = 1 for global_depth = 0
     
-    HashBucket b;
-    b.local_depth = 0;
-    b.record_count = 0;
-    fwrite(&b, sizeof(HashBucket), 1, dat_file);
+    HashBucketHeader b_header;
+    b_header.local_depth = 0;
+    b_header.record_count = 0;
     
+    size_t bucket_full_size = sizeof(HashBucketHeader) + (BUCKET_SIZE * record_size);
+    void* zero_bucket = calloc(1, bucket_full_size);
+    if (!zero_bucket) {
+        fclose(d_file);
+        fclose(dat_file);
+        return false;
+    }
+    memcpy(zero_bucket, &b_header, sizeof(HashBucketHeader));
+    
+    fwrite(zero_bucket, bucket_full_size, 1, dat_file);
+    
+    free(zero_bucket);
     fclose(d_file);
     fclose(dat_file);
     return true;
 }
 
 HashFile* hash_open(const char* filename_prefix) {
-    assert(filename_prefix != NULL && "filename_prefix is NULL");
+    if (!filename_prefix) return NULL;
     HashFile* hf = malloc(sizeof(HashFile));
     if (!hf) return NULL;
     
@@ -69,6 +96,9 @@ HashFile* hash_open(const char* filename_prefix) {
     }
 
     fread(&hf->global_depth, sizeof(int), 1, hf->dir_file);
+    fread(&hf->record_size, sizeof(int), 1, hf->dir_file);
+    fread(&hf->key_offset, sizeof(int), 1, hf->dir_file);
+    
     hf->dir_size = 1 << hf->global_depth;
     hf->directory = malloc(hf->dir_size * sizeof(long));
     if (!hf->directory) {
@@ -83,10 +113,11 @@ HashFile* hash_open(const char* filename_prefix) {
 }
 
 void hash_close(HashFile* hf) {
-    assert(hf != NULL && "hf is NULL");
     if (!hf) return;
     fseek(hf->dir_file, 0, SEEK_SET);
     fwrite(&hf->global_depth, sizeof(int), 1, hf->dir_file);
+    fwrite(&hf->record_size, sizeof(int), 1, hf->dir_file);
+    fwrite(&hf->key_offset, sizeof(int), 1, hf->dir_file);
     fwrite(hf->directory, sizeof(long), hf->dir_size, hf->dir_file);
     fclose(hf->dir_file);
     fclose(hf->data_file);
@@ -95,51 +126,81 @@ void hash_close(HashFile* hf) {
 }
 
 // insercao recursiva interna
-static bool hash_insert_internal(HashFile* hf, Record rec) {
-    assert(hf != NULL && "hf is NULL");
-    int h = rec.id & ((1 << hf->global_depth) - 1);
+static bool hash_insert_internal(HashFile* hf, void* reg) {
+    int key = get_key(reg, hf);
+    int h = key & ((1 << hf->global_depth) - 1);
     long offset = hf->directory[h];
     
-    HashBucket b;
+    size_t full_bucket_size = get_bucket_disk_size(hf);
+    void* bucket_buf = malloc(full_bucket_size);
+    if (!bucket_buf) return false;
+    
     fseek(hf->data_file, offset, SEEK_SET);
-    fread(&b, sizeof(HashBucket), 1, hf->data_file);
+    fread(bucket_buf, full_bucket_size, 1, hf->data_file);
+    
+    HashBucketHeader* header = (HashBucketHeader*)bucket_buf;
 
-    for (int i = 0; i < b.record_count; i++) {
-        if (b.records[i].id == rec.id) return false; // chave ja existe
+    for (int i = 0; i < header->record_count; i++) {
+        int existing_key = get_key(get_record_ptr(bucket_buf, i, hf), hf);
+        if (existing_key == key) {
+            free(bucket_buf);
+            return false; // chave ja existe
+        }
     }
 
-    if (b.record_count < BUCKET_SIZE) {
-        b.records[b.record_count++] = rec;
+    if (header->record_count < BUCKET_SIZE) {
+        void* dest = get_record_ptr(bucket_buf, header->record_count, hf);
+        memcpy(dest, reg, hf->record_size);
+        header->record_count++;
+        
         fseek(hf->data_file, offset, SEEK_SET);
-        fwrite(&b, sizeof(HashBucket), 1, hf->data_file);
+        fwrite(bucket_buf, full_bucket_size, 1, hf->data_file);
+        free(bucket_buf);
         return true;
     }
 
-    if (b.local_depth == hf->global_depth) {
+    if (header->local_depth == hf->global_depth) {
         int old_size = hf->dir_size;
         hf->global_depth++;
         hf->dir_size = 1 << hf->global_depth;
         hf->directory = realloc(hf->directory, hf->dir_size * sizeof(long));
-        if (!hf->directory) return false; // erro de memoria
+        if (!hf->directory) {
+            free(bucket_buf);
+            return false; 
+        }
         
         for (int i = 0; i < old_size; i++) {
             hf->directory[i + old_size] = hf->directory[i];
         }
     }
 
-    b.local_depth++;
-    HashBucket new_b;
-    new_b.local_depth = b.local_depth;
-    new_b.record_count = 0;
+    header->local_depth++;
+    
+    void* new_bucket_buf = malloc(full_bucket_size);
+    if (!new_bucket_buf) {
+        free(bucket_buf);
+        return false;
+    }
+    
+    HashBucketHeader* new_header = (HashBucketHeader*)new_bucket_buf;
+    new_header->local_depth = header->local_depth;
+    new_header->record_count = 0;
 
     fseek(hf->data_file, 0, SEEK_END);
     long new_b_offset = ftell(hf->data_file);
 
-    Record temp[BUCKET_SIZE];
-    memcpy(temp, b.records, sizeof(Record) * BUCKET_SIZE);
-    b.record_count = 0;
+    // copy old records to temp
+    void* temp_records = malloc(BUCKET_SIZE * hf->record_size);
+    if (!temp_records) {
+        free(bucket_buf);
+        free(new_bucket_buf);
+        return false;
+    }
+    memcpy(temp_records, (char*)bucket_buf + sizeof(HashBucketHeader), BUCKET_SIZE * hf->record_size);
+    
+    header->record_count = 0;
 
-    int bit = 1 << (b.local_depth - 1);
+    int bit = 1 << (header->local_depth - 1);
 
     for (int i = 0; i < hf->dir_size; i++) {
         if (hf->directory[i] == offset) {
@@ -150,66 +211,90 @@ static bool hash_insert_internal(HashFile* hf, Record rec) {
     }
 
     for (int i = 0; i < BUCKET_SIZE; i++) {
-        int hash_val = temp[i].id;
-        if ((hash_val & bit) != 0) {
-            new_b.records[new_b.record_count++] = temp[i];
+        void* rec_ptr = (char*)temp_records + (i * hf->record_size);
+        int cur_hash = get_key(rec_ptr, hf);
+        if ((cur_hash & bit) != 0) {
+            void* dest = get_record_ptr(new_bucket_buf, new_header->record_count, hf);
+            memcpy(dest, rec_ptr, hf->record_size);
+            new_header->record_count++;
         } else {
-            b.records[b.record_count++] = temp[i];
+            void* dest = get_record_ptr(bucket_buf, header->record_count, hf);
+            memcpy(dest, rec_ptr, hf->record_size);
+            header->record_count++;
         }
     }
 
     fseek(hf->data_file, offset, SEEK_SET);
-    fwrite(&b, sizeof(HashBucket), 1, hf->data_file);
+    fwrite(bucket_buf, full_bucket_size, 1, hf->data_file);
     fseek(hf->data_file, new_b_offset, SEEK_SET);
-    fwrite(&new_b, sizeof(HashBucket), 1, hf->data_file);
+    fwrite(new_bucket_buf, full_bucket_size, 1, hf->data_file);
 
-    return hash_insert_internal(hf, rec); // tenta inserir novamente
+    free(temp_records);
+    free(bucket_buf);
+    free(new_bucket_buf);
+
+    return hash_insert_internal(hf, reg); 
 }
 
-bool hash_insert(HashFile* hf, Record rec) {
-    assert(hf != NULL && "hf is NULL");
-    if (!hf) return false;
-    return hash_insert_internal(hf, rec);
+bool hash_insert(HashFile* hf, void* reg) {
+    if (!hf || !reg) return false;
+    return hash_insert_internal(hf, reg);
 }
 
-bool hash_search(HashFile* hf, int key, Record* out_rec) {
-    assert(hf != NULL && "hf is NULL");
-    assert(out_rec != NULL && "out_rec is NULL");
-    if (!hf) return false;
+bool hash_search(HashFile* hf, int key, void* out_reg) {
+    if (!hf || !out_reg) return false;
     int h = key & ((1 << hf->global_depth) - 1);
     long offset = hf->directory[h];
     
-    HashBucket b;
+    size_t full_bucket_size = get_bucket_disk_size(hf);
+    void* bucket_buf = malloc(full_bucket_size);
+    if(!bucket_buf) return false;
+    
     fseek(hf->data_file, offset, SEEK_SET);
-    fread(&b, sizeof(HashBucket), 1, hf->data_file);
+    fread(bucket_buf, full_bucket_size, 1, hf->data_file);
 
-    for (int i = 0; i < b.record_count; i++) {
-        if (b.records[i].id == key) {
-            if (out_rec) *out_rec = b.records[i];
+    HashBucketHeader* header = (HashBucketHeader*)bucket_buf;
+
+    for (int i = 0; i < header->record_count; i++) {
+        void* rec_ptr = get_record_ptr(bucket_buf, i, hf);
+        if (get_key(rec_ptr, hf) == key) {
+            memcpy(out_reg, rec_ptr, hf->record_size);
+            free(bucket_buf);
             return true;
         }
     }
+    free(bucket_buf);
     return false;
 }
 
 bool hash_delete(HashFile* hf, int key) {
-    assert(hf != NULL && "hf is NULL");
     if (!hf) return false;
     int h = key & ((1 << hf->global_depth) - 1);
     long offset = hf->directory[h];
     
-    HashBucket b;
+    size_t full_bucket_size = get_bucket_disk_size(hf);
+    void* bucket_buf = malloc(full_bucket_size);
+    if (!bucket_buf) return false;
+    
     fseek(hf->data_file, offset, SEEK_SET);
-    fread(&b, sizeof(HashBucket), 1, hf->data_file);
+    fread(bucket_buf, full_bucket_size, 1, hf->data_file);
+    
+    HashBucketHeader* header = (HashBucketHeader*)bucket_buf;
 
-    for (int i = 0; i < b.record_count; i++) {
-        if (b.records[i].id == key) {
-            b.records[i] = b.records[b.record_count - 1];
-            b.record_count--;
+    for (int i = 0; i < header->record_count; i++) {
+        void* rec_ptr = get_record_ptr(bucket_buf, i, hf);
+        if (get_key(rec_ptr, hf) == key) {
+            if (i < header->record_count - 1) {
+                void* last_rec = get_record_ptr(bucket_buf, header->record_count - 1, hf);
+                memcpy(rec_ptr, last_rec, hf->record_size);
+            }
+            header->record_count--;
             fseek(hf->data_file, offset, SEEK_SET);
-            fwrite(&b, sizeof(HashBucket), 1, hf->data_file);
+            fwrite(bucket_buf, full_bucket_size, 1, hf->data_file);
+            free(bucket_buf);
             return true;
         }
     }
+    free(bucket_buf);
     return false;
 }
