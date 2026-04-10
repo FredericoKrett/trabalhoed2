@@ -1,0 +1,129 @@
+<!DOCTYPE html"><HTML>
+<HEAD>
+
+<style> 
+        /* Estilos basicos para as imagens */
+        img {
+            display: block;  
+            margin-left: 5px;  
+            margin-right: auto;  
+            max-width: 100%;
+            border: 2px solid #ccc;
+            width: 100%; 
+            height: auto; 
+        }
+
+        /* Classe para esconder a imagem */
+        .hidden {
+            opacity: 0; /* Torna a imagem transparente */
+            visibility: hidden; /* Garante que a imagem nao ocupe espaco e nao seja interativa */
+            pointer-events: none; /* Desativa eventos de mouse quando invisivel */
+        }
+
+        h2 {
+            cursor: pointer; 
+            color: #0056b3;
+            transition: color 0.3s ease;
+        }
+
+        h2:hover {
+            color: #007bff;
+        }
+
+        /* Classe para esconder elementos */
+        .esconder {
+            display: none; /* Remove o elemento do fluxo do documento */
+        }
+
+      @media print {img {page-break-after: always;}} 
+    </style>
+</HEAD>
+<BODY>
+<h1>ATENCAO:</h1> esta pagina nao prove as respostas dos testes, mas ilustra as consultas a fim de facilitar o entedimento da saida esperada.Esta pagina nao prove as respostas dos testes, mas ilustra as consultas a fim de facilitar o entedimento da saida esperada.<H1 id="h-1">[1] c1</H1>
+<IMG id="i-1" SRC=".\c1.svg" NAME="c1" />
+<H2 id="h-2">{2}(1) .\c1\mudanca-todos-moradores-com-verif.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Todos os moradores de uma quadra mudam-se para outro endereco. Esperado: populacao origem zerado, populacao quadra destino incrementado de acordo
+ <BR/>
+</P>
+<P id="p-2" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+pq b03.9
+ <BR/>
+pq b04.3
+ <BR/>
+mud 000.002.091-55 b04.3 Face.W 72 1o_Andar
+ <BR/>
+mud 000.005.401-10 b04.3 Face.W 72 2o_Andar
+ <BR/>
+mud 000.005.341-45 b04.3 Face.W 72 3o_Andar
+ <BR/>
+mud 000.003.931-42 b04.3 Face.W 72 4o_Andar
+ <BR/>
+pq b03.9
+ <BR/>
+pq b04.3
+ <BR/>
+</P>
+<IMG id="i-2" SRC=".\c1-mudanca-todos-moradores-com-verif.svg" NAME="c1-mudanca-todos-moradores-com-verif" />
+<H2 id="h-3">{3}(2) .\c1\mudanca-todos-moradores.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Todos os moradores de uma quadra mudam-se para outro endereco. Esperado: populacao origem zerado, populacao quadra destino incrementado de acordo
+ <BR/>
+</P>
+<P id="p-3" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+pq b03.5
+ <BR/>
+pq b03.10
+ <BR/>
+mud 000.002.151-20 b03.10 Face.L 30 1o_Andar
+ <BR/>
+mud 000.003.271-90 b03.10 Face.L 30 2o_Andar
+ <BR/>
+mud 000.003.471-16 b03.10 Face.L 30 3o_Andar
+ <BR/>
+pq b03.5
+ <BR/>
+pq b03.10
+ <BR/>
+</P>
+<IMG id="i-3" SRC=".\c1-mudanca-todos-moradores.svg" NAME="c1-mudanca-todos-moradores" />
+
+<script>
+// Esta funcao sera' chamada ao clicar em um titulo
+function toggleVisibilidade(tituloId) {
+    // Extrai o numero do ID (ex: "30" de "titulo-imagem-30")
+    const numeroId = tituloId.replace('h-', '');
+
+    // Constroi os IDs do paragrafo e da imagem correspondentes
+    const paragrafoId = 'p-' + numeroId;
+    const imagemId = 'i-' + numeroId;
+
+    // Seleciona os elementos
+    const paragrafo = document.getElementById(paragrafoId);
+    const imagem = document.getElementById(imagemId);
+
+    // Alterna a classe 'esconder' nos elementos, se existirem
+    if (paragrafo) {
+        paragrafo.classList.toggle('esconder');
+    }
+    if (imagem) {
+        imagem.classList.toggle('esconder');
+    }
+}
+
+// Adiciona um ouvinte de evento de clique a todos os titulos
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona todos os H2 que comecam com "titulo-imagem-"
+    const titulos = document.querySelectorAll('h2[id^="h-"]');
+
+    titulos.forEach(function(titulo) {
+        titulo.addEventListener('click', function() {
+            // Chama a funcao passando o ID do titulo clicado
+            toggleVisibilidade(this.id);
+        });
+    });
+});
+</script> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg:svg xmlns:svg="http://www.w3.org/2000/svg" viewBox="-136.0 -150.0 1576.0 1190.0">
+   <svg:g id="fig">
+   <svg:rect id="b01.1" x="95.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.1</svg:text>
+   <svg:rect id="b01.2" x="230.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.2</svg:text>
+   <svg:rect id="b01.3" x="365.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.3</svg:text>
+   <svg:rect id="b01.4" x="500.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.4</svg:text>
+   <svg:rect id="b01.5" x="635.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.5</svg:text>
+   <svg:rect id="b01.6" x="770.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.6</svg:text>
+   <svg:rect id="b01.7" x="905.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.7</svg:text>
+   <svg:rect id="b01.8" x="1040.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.8</svg:text>
+   <svg:rect id="b01.9" x="1175.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.9</svg:text>
+   <svg:rect id="b01.10" x="1310.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="104.000000" fill="MediumAquamarine" stroke="black" font-size="12">b01.10</svg:text>
+   <svg:rect id="b02.1" x="95.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.1</svg:text>
+   <svg:rect id="b02.2" x="230.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.2</svg:text>
+   <svg:rect id="b02.3" x="365.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.3</svg:text>
+   <svg:rect id="b02.4" x="500.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.4</svg:text>
+   <svg:rect id="b02.5" x="635.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.5</svg:text>
+   <svg:rect id="b02.6" x="770.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.6</svg:text>
+   <svg:rect id="b02.7" x="905.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.7</svg:text>
+   <svg:rect id="b02.8" x="1040.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.8</svg:text>
+   <svg:rect id="b02.9" x="1175.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.9</svg:text>
+   <svg:rect id="b02.10" x="1310.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="199.000000" fill="MediumAquamarine" stroke="black" font-size="12">b02.10</svg:text>
+   <svg:rect id="b03.1" x="95.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.1</svg:text>
+   <svg:rect id="b03.2" x="230.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.2</svg:text>
+   <svg:rect id="b03.3" x="365.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.3</svg:text>
+   <svg:rect id="b03.4" x="500.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.4</svg:text>
+   <svg:rect id="b03.5" x="635.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.5</svg:text>
+   <svg:rect id="b03.6" x="770.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.6</svg:text>
+   <svg:rect id="b03.7" x="905.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.7</svg:text>
+   <svg:rect id="b03.8" x="1040.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.8</svg:text>
+   <svg:rect id="b03.9" x="1175.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.9</svg:text>
+   <svg:rect id="b03.10" x="1310.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="294.000000" fill="MediumAquamarine" stroke="black" font-size="12">b03.10</svg:text>
+   <svg:rect id="b04.1" x="95.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.1</svg:text>
+   <svg:rect id="b04.2" x="230.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.2</svg:text>
+   <svg:rect id="b04.3" x="365.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.3</svg:text>
+   <svg:rect id="b04.4" x="500.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.4</svg:text>
+   <svg:rect id="b04.5" x="635.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.5</svg:text>
+   <svg:rect id="b04.6" x="770.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.6</svg:text>
+   <svg:rect id="b04.7" x="905.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.7</svg:text>
+   <svg:rect id="b04.8" x="1040.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.8</svg:text>
+   <svg:rect id="b04.9" x="1175.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.9</svg:text>
+   <svg:rect id="b04.10" x="1310.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="389.000000" fill="MediumAquamarine" stroke="black" font-size="12">b04.10</svg:text>
+   <svg:rect id="b05.1" x="95.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.1</svg:text>
+   <svg:rect id="b05.2" x="230.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.2</svg:text>
+   <svg:rect id="b05.3" x="365.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.3</svg:text>
+   <svg:rect id="b05.4" x="500.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.4</svg:text>
+   <svg:rect id="b05.5" x="635.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.5</svg:text>
+   <svg:rect id="b05.6" x="770.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.6</svg:text>
+   <svg:rect id="b05.7" x="905.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.7</svg:text>
+   <svg:rect id="b05.8" x="1040.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.8</svg:text>
+   <svg:rect id="b05.9" x="1175.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.9</svg:text>
+   <svg:rect id="b05.10" x="1310.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="484.000000" fill="MediumAquamarine" stroke="black" font-size="12">b05.10</svg:text>
+   <svg:rect id="b06.1" x="95.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.1</svg:text>
+   <svg:rect id="b06.2" x="230.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.2</svg:text>
+   <svg:rect id="b06.3" x="365.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.3</svg:text>
+   <svg:rect id="b06.4" x="500.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.4</svg:text>
+   <svg:rect id="b06.5" x="635.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.5</svg:text>
+   <svg:rect id="b06.6" x="770.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.6</svg:text>
+   <svg:rect id="b06.7" x="905.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.7</svg:text>
+   <svg:rect id="b06.8" x="1040.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.8</svg:text>
+   <svg:rect id="b06.9" x="1175.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.9</svg:text>
+   <svg:rect id="b06.10" x="1310.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="579.000000" fill="MediumAquamarine" stroke="black" font-size="12">b06.10</svg:text>
+   <svg:rect id="b07.1" x="95.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.1</svg:text>
+   <svg:rect id="b07.2" x="230.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.2</svg:text>
+   <svg:rect id="b07.3" x="365.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.3</svg:text>
+   <svg:rect id="b07.4" x="500.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.4</svg:text>
+   <svg:rect id="b07.5" x="635.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.5</svg:text>
+   <svg:rect id="b07.6" x="770.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.6</svg:text>
+   <svg:rect id="b07.7" x="905.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.7</svg:text>
+   <svg:rect id="b07.8" x="1040.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.8</svg:text>
+   <svg:rect id="b07.9" x="1175.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.9</svg:text>
+   <svg:rect id="b07.10" x="1310.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="674.000000" fill="MediumAquamarine" stroke="black" font-size="12">b07.10</svg:text>
+   <svg:rect id="b08.1" x="95.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.1</svg:text>
+   <svg:rect id="b08.2" x="230.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.2</svg:text>
+   <svg:rect id="b08.3" x="365.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.3</svg:text>
+   <svg:rect id="b08.4" x="500.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.4</svg:text>
+   <svg:rect id="b08.5" x="635.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.5</svg:text>
+   <svg:rect id="b08.6" x="770.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.6</svg:text>
+   <svg:rect id="b08.7" x="905.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.7</svg:text>
+   <svg:rect id="b08.8" x="1040.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.8</svg:text>
+   <svg:rect id="b08.9" x="1175.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.9</svg:text>
+   <svg:rect id="b08.10" x="1310.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="769.000000" fill="MediumAquamarine" stroke="black" font-size="12">b08.10</svg:text>
+   <svg:rect id="b09.1" x="95.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.1</svg:text>
+   <svg:rect id="b09.2" x="230.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.2</svg:text>
+   <svg:rect id="b09.3" x="365.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.3</svg:text>
+   <svg:rect id="b09.4" x="500.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.4</svg:text>
+   <svg:rect id="b09.5" x="635.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.5</svg:text>
+   <svg:rect id="b09.6" x="770.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.6</svg:text>
+   <svg:rect id="b09.7" x="905.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.7</svg:text>
+   <svg:rect id="b09.8" x="1040.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.8</svg:text>
+   <svg:rect id="b09.9" x="1175.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.9</svg:text>
+   <svg:rect id="b09.10" x="1310.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="864.000000" fill="MediumAquamarine" stroke="black" font-size="12">b09.10</svg:text>
+   <svg:rect id="b010.1" x="95.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="100.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.1</svg:text>
+   <svg:rect id="b010.2" x="230.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="235.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.2</svg:text>
+   <svg:rect id="b010.3" x="365.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="370.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.3</svg:text>
+   <svg:rect id="b010.4" x="500.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="505.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.4</svg:text>
+   <svg:rect id="b010.5" x="635.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="640.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.5</svg:text>
+   <svg:rect id="b010.6" x="770.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="775.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.6</svg:text>
+   <svg:rect id="b010.7" x="905.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="910.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.7</svg:text>
+   <svg:rect id="b010.8" x="1040.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1045.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.8</svg:text>
+   <svg:rect id="b010.9" x="1175.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1180.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.9</svg:text>
+   <svg:rect id="b010.10" x="1310.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px" />
+
+   <svg:text x="1315.000000" y="959.000000" fill="MediumAquamarine" stroke="black" font-size="12">b010.10</svg:text>
+</svg:g><svg:rect width="10.000000" height="10.000000" x="1177.000000" y="320.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="1283.000000" y="320.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="1230.000000" y="287.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="1230.000000" y="353.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="15.000000" height="15.000000" x="1227.500000" y="317.500000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="367.000000" y="415.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="473.000000" y="415.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="420.000000" y="382.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="420.000000" y="448.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="15.000000" height="15.000000" x="417.500000" y="412.500000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="2.500000" stroke-opacity="0.5" fill="none" stroke="red" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="5.000000" stroke-opacity="0.5" fill="none" stroke="yellow" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="7.500000" stroke-opacity="0.5" fill="none" stroke="magenta" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="10.000000" stroke-opacity="0.5" fill="none" stroke="red" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="12.500000" stroke-opacity="0.5" fill="none" stroke="yellow" stroke-width="2" />
+
+   <svg:text x="-131.000000" y="452.000000" fill="red" stroke="black" font-size="10">000.002.091-55</svg:text>
+   <svg:line x1="485.000000" y1="452.000000" x2="-131.000000" y2="452.000000" stroke="red" stroke-width="2" stroke-opacity="1.000000" stroke-dasharray="5,5" />
+   <svg:circle cx="485.000000" cy="452.000000" r="2.500000" stroke-opacity="0.5" fill="none" stroke="red" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="5.000000" stroke-opacity="0.5" fill="none" stroke="yellow" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="7.500000" stroke-opacity="0.5" fill="none" stroke="magenta" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="10.000000" stroke-opacity="0.5" fill="none" stroke="red" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="12.500000" stroke-opacity="0.5" fill="none" stroke="yellow" stroke-width="2" />
+
+   <svg:text x="485.000000" y="-25.000000" fill="red" stroke="black" font-size="10">000.005.401-10</svg:text>
+   <svg:line x1="485.000000" y1="452.000000" x2="485.000000" y2="-25.000000" stroke="red" stroke-width="2" stroke-opacity="1.000000" stroke-dasharray="5,5" />
+   <svg:circle cx="485.000000" cy="452.000000" r="2.500000" stroke-opacity="0.5" fill="none" stroke="red" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="5.000000" stroke-opacity="0.5" fill="none" stroke="yellow" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="7.500000" stroke-opacity="0.5" fill="none" stroke="magenta" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="10.000000" stroke-opacity="0.5" fill="none" stroke="red" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="12.500000" stroke-opacity="0.5" fill="none" stroke="yellow" stroke-width="2" />
+
+   <svg:text x="485.000000" y="-145.000000" fill="red" stroke="black" font-size="10">000.005.341-45</svg:text>
+   <svg:line x1="485.000000" y1="452.000000" x2="485.000000" y2="-145.000000" stroke="red" stroke-width="2" stroke-opacity="1.000000" stroke-dasharray="5,5" />
+   <svg:circle cx="485.000000" cy="452.000000" r="2.500000" stroke-opacity="0.5" fill="none" stroke="red" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="5.000000" stroke-opacity="0.5" fill="none" stroke="yellow" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="7.500000" stroke-opacity="0.5" fill="none" stroke="magenta" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="10.000000" stroke-opacity="0.5" fill="none" stroke="red" stroke-width="2" />
+
+   <svg:circle cx="485.000000" cy="452.000000" r="12.500000" stroke-opacity="0.5" fill="none" stroke="yellow" stroke-width="2" />
+
+   <svg:text x="-50.000000" y="452.000000" fill="red" stroke="black" font-size="10">000.003.931-42</svg:text>
+   <svg:line x1="485.000000" y1="452.000000" x2="-50.000000" y2="452.000000" stroke="red" stroke-width="2" stroke-opacity="1.000000" stroke-dasharray="5,5" />
+   <svg:rect width="10.000000" height="10.000000" x="1177.000000" y="320.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="1283.000000" y="320.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="1230.000000" y="287.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="1230.000000" y="353.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="15.000000" height="15.000000" x="1227.500000" y="317.500000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="367.000000" y="415.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="473.000000" y="415.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="420.000000" y="382.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="10.000000" height="10.000000" x="420.000000" y="448.000000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+   <svg:rect width="15.000000" height="15.000000" x="417.500000" y="412.500000" fill="red" stroke="red" stroke-width="1" fill-opacity="0.300000" stroke-dasharray="1, 1" />
+
+</svg:svg>

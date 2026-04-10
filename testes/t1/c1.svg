@@ -1,0 +1,304 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" >
+<g id="fig">
+   <rect id="b01.1"  x="95.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.1</text>
+   <rect id="b01.2"  x="230.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.2</text>
+   <rect id="b01.3"  x="365.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.3</text>
+   <rect id="b01.4"  x="500.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.4</text>
+   <rect id="b01.5"  x="635.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.5</text>
+   <rect id="b01.6"  x="770.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.6</text>
+   <rect id="b01.7"  x="905.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.7</text>
+   <rect id="b01.8"  x="1040.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.8</text>
+   <rect id="b01.9"  x="1175.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.9</text>
+   <rect id="b01.10"  x="1310.000000" y="95.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="104.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b01.10</text>
+   <rect id="b02.1"  x="95.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.1</text>
+   <rect id="b02.2"  x="230.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.2</text>
+   <rect id="b02.3"  x="365.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.3</text>
+   <rect id="b02.4"  x="500.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.4</text>
+   <rect id="b02.5"  x="635.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.5</text>
+   <rect id="b02.6"  x="770.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.6</text>
+   <rect id="b02.7"  x="905.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.7</text>
+   <rect id="b02.8"  x="1040.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.8</text>
+   <rect id="b02.9"  x="1175.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.9</text>
+   <rect id="b02.10"  x="1310.000000" y="190.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="199.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b02.10</text>
+   <rect id="b03.1"  x="95.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.1</text>
+   <rect id="b03.2"  x="230.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.2</text>
+   <rect id="b03.3"  x="365.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.3</text>
+   <rect id="b03.4"  x="500.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.4</text>
+   <rect id="b03.5"  x="635.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.5</text>
+   <rect id="b03.6"  x="770.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.6</text>
+   <rect id="b03.7"  x="905.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.7</text>
+   <rect id="b03.8"  x="1040.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.8</text>
+   <rect id="b03.9"  x="1175.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.9</text>
+   <rect id="b03.10"  x="1310.000000" y="285.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="294.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b03.10</text>
+   <rect id="b04.1"  x="95.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.1</text>
+   <rect id="b04.2"  x="230.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.2</text>
+   <rect id="b04.3"  x="365.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.3</text>
+   <rect id="b04.4"  x="500.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.4</text>
+   <rect id="b04.5"  x="635.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.5</text>
+   <rect id="b04.6"  x="770.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.6</text>
+   <rect id="b04.7"  x="905.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.7</text>
+   <rect id="b04.8"  x="1040.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.8</text>
+   <rect id="b04.9"  x="1175.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.9</text>
+   <rect id="b04.10"  x="1310.000000" y="380.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="389.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b04.10</text>
+   <rect id="b05.1"  x="95.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.1</text>
+   <rect id="b05.2"  x="230.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.2</text>
+   <rect id="b05.3"  x="365.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.3</text>
+   <rect id="b05.4"  x="500.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.4</text>
+   <rect id="b05.5"  x="635.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.5</text>
+   <rect id="b05.6"  x="770.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.6</text>
+   <rect id="b05.7"  x="905.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.7</text>
+   <rect id="b05.8"  x="1040.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.8</text>
+   <rect id="b05.9"  x="1175.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.9</text>
+   <rect id="b05.10"  x="1310.000000" y="475.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="484.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b05.10</text>
+   <rect id="b06.1"  x="95.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.1</text>
+   <rect id="b06.2"  x="230.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.2</text>
+   <rect id="b06.3"  x="365.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.3</text>
+   <rect id="b06.4"  x="500.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.4</text>
+   <rect id="b06.5"  x="635.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.5</text>
+   <rect id="b06.6"  x="770.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.6</text>
+   <rect id="b06.7"  x="905.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.7</text>
+   <rect id="b06.8"  x="1040.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.8</text>
+   <rect id="b06.9"  x="1175.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.9</text>
+   <rect id="b06.10"  x="1310.000000" y="570.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="579.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b06.10</text>
+   <rect id="b07.1"  x="95.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.1</text>
+   <rect id="b07.2"  x="230.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.2</text>
+   <rect id="b07.3"  x="365.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.3</text>
+   <rect id="b07.4"  x="500.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.4</text>
+   <rect id="b07.5"  x="635.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.5</text>
+   <rect id="b07.6"  x="770.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.6</text>
+   <rect id="b07.7"  x="905.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.7</text>
+   <rect id="b07.8"  x="1040.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.8</text>
+   <rect id="b07.9"  x="1175.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.9</text>
+   <rect id="b07.10"  x="1310.000000" y="665.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="674.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b07.10</text>
+   <rect id="b08.1"  x="95.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.1</text>
+   <rect id="b08.2"  x="230.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.2</text>
+   <rect id="b08.3"  x="365.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.3</text>
+   <rect id="b08.4"  x="500.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.4</text>
+   <rect id="b08.5"  x="635.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.5</text>
+   <rect id="b08.6"  x="770.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.6</text>
+   <rect id="b08.7"  x="905.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.7</text>
+   <rect id="b08.8"  x="1040.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.8</text>
+   <rect id="b08.9"  x="1175.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.9</text>
+   <rect id="b08.10"  x="1310.000000" y="760.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="769.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b08.10</text>
+   <rect id="b09.1"  x="95.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.1</text>
+   <rect id="b09.2"  x="230.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.2</text>
+   <rect id="b09.3"  x="365.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.3</text>
+   <rect id="b09.4"  x="500.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.4</text>
+   <rect id="b09.5"  x="635.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.5</text>
+   <rect id="b09.6"  x="770.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.6</text>
+   <rect id="b09.7"  x="905.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.7</text>
+   <rect id="b09.8"  x="1040.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.8</text>
+   <rect id="b09.9"  x="1175.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.9</text>
+   <rect id="b09.10"  x="1310.000000" y="855.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="864.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b09.10</text>
+   <rect id="b010.1"  x="95.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="100.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.1</text>
+   <rect id="b010.2"  x="230.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="235.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.2</text>
+   <rect id="b010.3"  x="365.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="370.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.3</text>
+   <rect id="b010.4"  x="500.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="505.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.4</text>
+   <rect id="b010.5"  x="635.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="640.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.5</text>
+   <rect id="b010.6"  x="770.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="775.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.6</text>
+   <rect id="b010.7"  x="905.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="910.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.7</text>
+   <rect id="b010.8"  x="1040.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1045.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.8</text>
+   <rect id="b010.9"  x="1175.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1180.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.9</text>
+   <rect id="b010.10"  x="1310.000000" y="950.000000" width="120.000000" height="80.000000" fill="gold" stroke="MediumAquamarine" fill-opacity="0.8" stroke-width="1.0px"/>
+
+   <text  x="1315.000000"  y="959.000000"   fill="MediumAquamarine"  stroke="black"  font-size="12"  >b010.10</text>
+</g>
+</svg>

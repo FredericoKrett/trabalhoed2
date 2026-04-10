@@ -1,0 +1,2366 @@
+<!DOCTYPE html"><HTML>
+<HEAD>
+
+<style> 
+        /* Estilos basicos para as imagens */
+        img {
+            display: block;  
+            margin-left: 5px;  
+            margin-right: auto;  
+            max-width: 100%;
+            border: 2px solid #ccc;
+            width: 100%; 
+            height: auto; 
+        }
+
+        /* Classe para esconder a imagem */
+        .hidden {
+            opacity: 0; /* Torna a imagem transparente */
+            visibility: hidden; /* Garante que a imagem nao ocupe espaco e nao seja interativa */
+            pointer-events: none; /* Desativa eventos de mouse quando invisivel */
+        }
+
+        h2 {
+            cursor: pointer; 
+            color: #0056b3;
+            transition: color 0.3s ease;
+        }
+
+        h2:hover {
+            color: #007bff;
+        }
+
+        /* Classe para esconder elementos */
+        .esconder {
+            display: none; /* Remove o elemento do fluxo do documento */
+        }
+
+      @media print {img {page-break-after: always;}} 
+    </style>
+</HEAD>
+<BODY>
+<h1>ATENCAO:</h1> esta pagina nao prove as respostas dos testes, mas ilustra as consultas a fim de facilitar o entedimento da saida esperada.Esta pagina nao prove as respostas dos testes, mas ilustra as consultas a fim de facilitar o entedimento da saida esperada.<H1 id="h-1">[1] c1</H1>
+<IMG id="i-1" SRC=".\c1.svg" NAME="c1" />
+<H2 id="h-2">{2}(1) .\c1\censo.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Censo da cidade.
+ <BR/>
+</P>
+<P id="p-2" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+censo
+ <BR/>
+</P>
+<IMG id="i-2" SRC=".\c1-censo.svg" NAME="c1-censo" />
+<H2 id="h-3">{3}(2) .\c1\despj-001-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 1 morador com verificacao de habitante.
+ <BR/>
+</P>
+<P id="p-3" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.000.671-80
+ <BR/>
+h? 000.000.671-80
+ <BR/>
+</P>
+<IMG id="i-3" SRC=".\c1-despj-001-hab.svg" NAME="c1-despj-001-hab" />
+<H2 id="h-4">{4}(3) .\c1\despj-001.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 1 morador.
+ <BR/>
+</P>
+<P id="p-4" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.000.671-80
+ <BR/>
+</P>
+<IMG id="i-4" SRC=".\c1-despj-001.svg" NAME="c1-despj-001" />
+<H2 id="h-5">{5}(4) .\c1\despj-010.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 10 moradores.
+ <BR/>
+</P>
+<P id="p-5" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.000.301-80
+ <BR/>
+dspj 000.005.221-39
+ <BR/>
+dspj 000.005.781-93
+ <BR/>
+dspj 000.001.501-69
+ <BR/>
+dspj 000.002.781-22
+ <BR/>
+dspj 000.005.611-18
+ <BR/>
+dspj 000.002.021-42
+ <BR/>
+dspj 000.005.781-93
+ <BR/>
+dspj 000.001.531-84
+ <BR/>
+dspj 000.003.611-00
+ <BR/>
+</P>
+<IMG id="i-5" SRC=".\c1-despj-010.svg" NAME="c1-despj-010" />
+<H2 id="h-6">{6}(5) .\c1\despj-100-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 100 moradores com consultas a habitantes.
+ <BR/>
+</P>
+<P id="p-6" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.006.631-15
+ <BR/>
+dspj 000.006.271-51
+ <BR/>
+dspj 000.006.381-96
+ <BR/>
+dspj 000.002.631-09
+ <BR/>
+dspj 000.007.441-15
+ <BR/>
+dspj 000.005.881-56
+ <BR/>
+dspj 000.005.921-88
+ <BR/>
+dspj 000.003.241-75
+ <BR/>
+dspj 000.002.231-40
+ <BR/>
+dspj 000.007.051-36
+ <BR/>
+dspj 000.004.821-61
+ <BR/>
+dspj 000.003.581-50
+ <BR/>
+dspj 000.005.651-05
+ <BR/>
+dspj 000.004.931-04
+ <BR/>
+dspj 000.003.581-50
+ <BR/>
+dspj 000.002.981-58
+ <BR/>
+dspj 000.002.641-72
+ <BR/>
+dspj 000.006.841-12
+ <BR/>
+dspj 000.004.391-50
+ <BR/>
+dspj 000.003.941-14
+ <BR/>
+dspj 000.004.551-99
+ <BR/>
+dspj 000.004.171-81
+ <BR/>
+dspj 000.007.441-15
+ <BR/>
+dspj 000.004.871-20
+ <BR/>
+dspj 000.006.551-04
+ <BR/>
+...Listagem parcial ...<BR/>
+dspj 000.000.781-15
+ <BR/>
+dspj 000.004.881-00
+ <BR/>
+dspj 000.000.231-32
+ <BR/>
+dspj 000.000.051-50
+ <BR/>
+dspj 000.005.611-18
+ <BR/>
+h? 000.000.121-06
+ <BR/>
+h? 000.006.951-57
+ <BR/>
+h? 000.002.981-58
+ <BR/>
+h? 000.001.551-28
+ <BR/>
+h? 000.005.881-56
+ <BR/>
+</P>
+<IMG id="i-6" SRC=".\c1-despj-100-hab.svg" NAME="c1-despj-100-hab" />
+<H2 id="h-7">{7}(6) .\c1\despj-100.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 100 moradores.
+ <BR/>
+</P>
+<P id="p-7" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.006.631-15
+ <BR/>
+dspj 000.006.271-51
+ <BR/>
+dspj 000.006.381-96
+ <BR/>
+dspj 000.002.631-09
+ <BR/>
+dspj 000.007.441-15
+ <BR/>
+dspj 000.005.881-56
+ <BR/>
+dspj 000.005.921-88
+ <BR/>
+dspj 000.003.241-75
+ <BR/>
+dspj 000.002.231-40
+ <BR/>
+dspj 000.007.051-36
+ <BR/>
+dspj 000.004.821-61
+ <BR/>
+dspj 000.003.581-50
+ <BR/>
+dspj 000.005.651-05
+ <BR/>
+dspj 000.004.931-04
+ <BR/>
+dspj 000.003.581-50
+ <BR/>
+dspj 000.002.981-58
+ <BR/>
+dspj 000.002.641-72
+ <BR/>
+dspj 000.006.841-12
+ <BR/>
+dspj 000.004.391-50
+ <BR/>
+dspj 000.003.941-14
+ <BR/>
+dspj 000.004.551-99
+ <BR/>
+dspj 000.004.171-81
+ <BR/>
+dspj 000.007.441-15
+ <BR/>
+dspj 000.004.871-20
+ <BR/>
+dspj 000.006.551-04
+ <BR/>
+...Listagem parcial ...<BR/>
+dspj 000.000.961-05
+ <BR/>
+dspj 000.000.121-06
+ <BR/>
+dspj 000.002.781-22
+ <BR/>
+dspj 000.005.871-84
+ <BR/>
+dspj 000.001.551-28
+ <BR/>
+dspj 000.000.781-15
+ <BR/>
+dspj 000.004.881-00
+ <BR/>
+dspj 000.000.231-32
+ <BR/>
+dspj 000.000.051-50
+ <BR/>
+dspj 000.005.611-18
+ <BR/>
+</P>
+<IMG id="i-7" SRC=".\c1-despj-100.svg" NAME="c1-despj-100" />
+<H2 id="h-8">{8}(7) .\c1\falecimento-unico-morador.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Um morador falece na cidade.
+ <BR/>
+</P>
+<P id="p-8" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.001.331-59
+ <BR/>
+</P>
+<IMG id="i-8" SRC=".\c1-falecimento-unico-morador.svg" NAME="c1-falecimento-unico-morador" />
+<H2 id="h-9">{9}(8) .\c1\falecimento-unico-st.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Um sem-teto falece na cidade.
+ <BR/>
+</P>
+<P id="p-9" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.003.951-96
+ <BR/>
+</P>
+<IMG id="i-9" SRC=".\c1-falecimento-unico-st.svg" NAME="c1-falecimento-unico-st" />
+<H2 id="h-10">{10}(9) .\c1\falecimentos-30-espalhados-moradores.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios moradores falecem na cidade.
+ <BR/>
+</P>
+<P id="p-10" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.000.571-18
+ <BR/>
+rip 000.002.581-05
+ <BR/>
+rip 000.004.581-04
+ <BR/>
+rip 000.004.721-07
+ <BR/>
+rip 000.001.501-69
+ <BR/>
+rip 000.004.341-91
+ <BR/>
+rip 000.005.511-55
+ <BR/>
+rip 000.000.171-67
+ <BR/>
+rip 000.003.611-00
+ <BR/>
+rip 000.004.721-07
+ <BR/>
+rip 000.004.791-01
+ <BR/>
+rip 000.007.321-09
+ <BR/>
+rip 000.002.761-89
+ <BR/>
+rip 000.002.021-42
+ <BR/>
+rip 000.005.161-63
+ <BR/>
+rip 000.000.671-80
+ <BR/>
+rip 000.000.671-80
+ <BR/>
+rip 000.001.371-46
+ <BR/>
+rip 000.006.381-96
+ <BR/>
+rip 000.005.841-69
+ <BR/>
+rip 000.001.331-59
+ <BR/>
+rip 000.001.731-00
+ <BR/>
+rip 000.003.561-07
+ <BR/>
+rip 000.004.651-51
+ <BR/>
+rip 000.001.731-00
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.002.981-58
+ <BR/>
+rip 000.002.261-65
+ <BR/>
+rip 000.004.971-93
+ <BR/>
+rip 000.005.351-17
+ <BR/>
+rip 000.005.221-39
+ <BR/>
+</P>
+<IMG id="i-10" SRC=".\c1-falecimentos-30-espalhados-moradores.svg" NAME="c1-falecimentos-30-espalhados-moradores" />
+<H2 id="h-11">{11}(10) .\c1\falecimentos-30-espalhados-st-censo.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios sem-tetos falecem na cidade. Censos antes e depois dos falecimentos.
+ <BR/>
+</P>
+<P id="p-11" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+censo
+ <BR/>
+rip 000.007.201-00
+ <BR/>
+rip 000.002.931-99
+ <BR/>
+rip 000.006.851-94
+ <BR/>
+rip 000.004.861-59
+ <BR/>
+rip 000.001.861-98
+ <BR/>
+rip 000.004.441-54
+ <BR/>
+rip 000.004.891-74
+ <BR/>
+rip 000.005.541-70
+ <BR/>
+rip 000.002.031-14
+ <BR/>
+rip 000.004.211-03
+ <BR/>
+rip 000.003.761-32
+ <BR/>
+rip 000.004.301-02
+ <BR/>
+rip 000.005.591-30
+ <BR/>
+rip 000.001.931-35
+ <BR/>
+rip 000.005.021-03
+ <BR/>
+rip 000.003.671-41
+ <BR/>
+rip 000.006.141-73
+ <BR/>
+rip 000.003.361-81
+ <BR/>
+rip 000.000.991-12
+ <BR/>
+rip 000.005.941-21
+ <BR/>
+rip 000.004.331-10
+ <BR/>
+rip 000.001.321-87
+ <BR/>
+rip 000.004.151-38
+ <BR/>
+rip 000.000.151-13
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.006.651-69
+ <BR/>
+rip 000.006.431-90
+ <BR/>
+rip 000.002.871-13
+ <BR/>
+rip 000.003.751-60
+ <BR/>
+rip 000.004.991-37
+ <BR/>
+rip 000.004.011-88
+ <BR/>
+censo
+ <BR/>
+</P>
+<IMG id="i-11" SRC=".\c1-falecimentos-30-espalhados-st-censo.svg" NAME="c1-falecimentos-30-espalhados-st-censo" />
+<H2 id="h-12">{12}(11) .\c1\falecimentos-30-espalhados-st.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios sem-tetos falecem na cidade.
+ <BR/>
+</P>
+<P id="p-12" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.007.201-00
+ <BR/>
+rip 000.002.931-99
+ <BR/>
+rip 000.006.851-94
+ <BR/>
+rip 000.004.861-59
+ <BR/>
+rip 000.001.861-98
+ <BR/>
+rip 000.004.441-54
+ <BR/>
+rip 000.004.891-74
+ <BR/>
+rip 000.005.541-70
+ <BR/>
+rip 000.002.031-14
+ <BR/>
+rip 000.004.211-03
+ <BR/>
+rip 000.003.761-32
+ <BR/>
+rip 000.004.301-02
+ <BR/>
+rip 000.005.591-30
+ <BR/>
+rip 000.001.931-35
+ <BR/>
+rip 000.005.021-03
+ <BR/>
+rip 000.003.671-41
+ <BR/>
+rip 000.006.141-73
+ <BR/>
+rip 000.003.361-81
+ <BR/>
+rip 000.000.991-12
+ <BR/>
+rip 000.005.941-21
+ <BR/>
+rip 000.004.331-10
+ <BR/>
+rip 000.001.321-87
+ <BR/>
+rip 000.004.151-38
+ <BR/>
+rip 000.000.151-13
+ <BR/>
+rip 000.006.651-69
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.006.431-90
+ <BR/>
+rip 000.002.871-13
+ <BR/>
+rip 000.003.751-60
+ <BR/>
+rip 000.004.991-37
+ <BR/>
+rip 000.004.011-88
+ <BR/>
+</P>
+<IMG id="i-12" SRC=".\c1-falecimentos-30-espalhados-st.svg" NAME="c1-falecimentos-30-espalhados-st" />
+<H2 id="h-13">{13}(12) .\c1\mudanca-todos-moradores-com-verif.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Todos os moradores de uma quadra mudam-se para outro endereco. Esperado: populacao origem zerado, populacao quadra destino incrementado de acordo
+ <BR/>
+</P>
+<P id="p-13" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+pq b04.7
+ <BR/>
+pq b010.10
+ <BR/>
+mud 000.003.041-40 b010.10 Face.L 1 1o_Andar
+ <BR/>
+mud 000.005.881-56 b010.10 Face.L 1 2o_Andar
+ <BR/>
+pq b04.7
+ <BR/>
+pq b010.10
+ <BR/>
+</P>
+<IMG id="i-13" SRC=".\c1-mudanca-todos-moradores-com-verif.svg" NAME="c1-mudanca-todos-moradores-com-verif" />
+<H2 id="h-14">{14}(13) .\c1\nasc-001-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 1 pessoa com verificacao de habitante.
+ <BR/>
+</P>
+<P id="p-14" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Luiz_Felipe_Paulo Abadzhiew_Kabacchiew M 16/05/1998
+ <BR/>
+h? 100.000.000-19
+ <BR/>
+</P>
+<IMG id="i-14" SRC=".\c1-nasc-001-hab.svg" NAME="c1-nasc-001-hab" />
+<H2 id="h-15">{15}(14) .\c1\nasc-001.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 1 pessoa.
+ <BR/>
+</P>
+<P id="p-15" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Luiz_Felipe_Paulo Abadzhiew_Kabacchiew M 16/05/1998
+ <BR/>
+</P>
+<IMG id="i-15" SRC=".\c1-nasc-001.svg" NAME="c1-nasc-001" />
+<H2 id="h-16">{16}(15) .\c1\nasc-010.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 10 pessoas.
+ <BR/>
+</P>
+<P id="p-16" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Berta_Luzia Dabcheva_Pellegrino F 04/09/2013
+ <BR/>
+nasc 100.000.003-61 Kas_Miguel Daaliev_Costa M 19/10/1988
+ <BR/>
+nasc 100.000.006-04 Taisa_Clara Vacadinski_Dabcheff F 27/03/1980
+ <BR/>
+nasc 100.000.009-57 Karina_Evelijn Benedetti_Caruso F 24/06/2006
+ <BR/>
+nasc 100.000.012-52 Maria_Debora Giordano_Ferrari F 07/01/2009
+ <BR/>
+nasc 100.000.015-03 Ernestina_Luzia Mawlov_Basile F 01/09/2003
+ <BR/>
+nasc 100.000.018-48 Mia_Sara Montanari_Rizzo F 06/11/1984
+ <BR/>
+nasc 100.000.021-43 Laura_Isabella Kabacchiewa_Kabackchieff F 24/10/2021
+ <BR/>
+nasc 100.000.024-96 Heleen_Ursula Martini_Kabackchiev F 19/02/2021
+ <BR/>
+nasc 100.000.027-39 Valdir_Gabriel Mawieva_Vacadinova M 10/05/1994
+ <BR/>
+</P>
+<IMG id="i-16" SRC=".\c1-nasc-010.svg" NAME="c1-nasc-010" />
+<H2 id="h-17">{17}(16) .\c1\nasc-100-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 100 pessoas com consultas a habitantes.
+ <BR/>
+</P>
+<P id="p-17" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Mariana_Maria Mawiyan_Bellini F 03/10/2008
+ <BR/>
+nasc 100.000.003-61 Rutger_Martijn Daaliiscki_Bernardi M 24/07/2003
+ <BR/>
+nasc 100.000.006-04 Emmelieke_Heleen De_Santis_Vacadinowa F 11/11/1961
+ <BR/>
+nasc 100.000.009-57 Evelijn_Micaela Vacadinscki_Daalieff F 12/10/2023
+ <BR/>
+nasc 100.000.012-52 Hajo_Maas Mawikova_Giuliano M 20/06/1995
+ <BR/>
+nasc 100.000.015-03 Clara_Debora Abadzhimarinoff_Abadzhiew F 26/07/2010
+ <BR/>
+nasc 100.000.018-48 Florens_Gabriela Kabacchijsca_Sala F 18/01/2004
+ <BR/>
+nasc 100.000.021-43 Mert_Pedro Bianco_Kabacchieff M 27/09/1998
+ <BR/>
+nasc 100.000.024-96 Bruno_Maas Vaasilew_Kabacchiw M 12/11/1988
+ <BR/>
+nasc 100.000.027-39 Micaela_Laura Dabcheff_Rizzo F 08/02/1960
+ <BR/>
+nasc 100.000.030-34 Melissa_Laura Costa_Abadzhijsca F 17/11/1964
+ <BR/>
+nasc 100.000.033-87 Tiago_Luiz_Felipe Daalijski_Riva M 21/07/1972
+ <BR/>
+nasc 100.000.036-20 Eduardo_Albertjan Mawiev_Vabrachca M 10/07/1978
+ <BR/>
+nasc 100.000.039-72 Heleen_Amanda Vacadinowa_Vacavliev F 03/02/2020
+ <BR/>
+nasc 100.000.042-78 Pedro_Joao Coppola_Abadzhiisca M 10/10/1991
+ <BR/>
+nasc 100.000.045-10 Hanneke_Florens Barbieri_Vacavlieff F 05/03/1970
+ <BR/>
+nasc 100.000.048-63 Iara_Gisela Abadzhidu_Kabacchi F 22/03/1984
+ <BR/>
+nasc 100.000.051-69 Paulo_Olavo Bruno_Pagano M 20/09/2009
+ <BR/>
+nasc 100.000.054-01 Tiago_Luuk Mawlova_Tudor M 19/03/1965
+ <BR/>
+nasc 100.000.057-54 Miguel_Luiz_Felipe Dabckova_Dabcheff M 14/07/2019
+ <BR/>
+nasc 100.000.060-50 Maria_Mariana Silvestri_Sorrentino F 25/02/1966
+ <BR/>
+nasc 100.000.063-00 Ana_Hanneke Palumbo_De_Rosa F 27/08/1994
+ <BR/>
+nasc 100.000.066-45 Flavio_Kas Dabckova_Russo M 19/08/1987
+ <BR/>
+nasc 100.000.069-98 Larissa_Berta Goncalves_Mawiev F 05/03/2007
+ <BR/>
+nasc 100.000.072-93 Debora_Josefa Sala_Parisi F 06/04/1969
+ <BR/>
+...Listagem parcial ...<BR/>
+nasc 100.000.285-33 Maartje_Valdir Kabackchi_Kabacchijsci M 05/12/1963
+ <BR/>
+nasc 100.000.288-86 Maria_Rita Milani_Kabacchieff F 27/05/1966
+ <BR/>
+nasc 100.000.291-81 Enzo_Antonio Kabacchiiscka_Vacadinscki M 25/04/1977
+ <BR/>
+nasc 100.000.294-24 Rafael_Pedro Rinaldi_Greco M 03/02/1993
+ <BR/>
+nasc 100.000.297-77 Eduardo_Bernardo Guerra_Daalijscki M 08/11/1999
+ <BR/>
+h? 100.000.102-43
+ <BR/>
+h? 100.000.009-57
+ <BR/>
+h? 100.000.105-96
+ <BR/>
+h? 100.000.234-93
+ <BR/>
+h? 100.000.078-89
+ <BR/>
+</P>
+<IMG id="i-17" SRC=".\c1-nasc-100-hab.svg" NAME="c1-nasc-100-hab" />
+<H2 id="h-18">{18}(17) .\c1\nasc-100.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 100 pessoas.
+ <BR/>
+</P>
+<P id="p-18" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Mariana_Maria Mawiyan_Bellini F 03/10/2008
+ <BR/>
+nasc 100.000.003-61 Rutger_Martijn Daaliiscki_Bernardi M 24/07/2003
+ <BR/>
+nasc 100.000.006-04 Emmelieke_Heleen De_Santis_Vacadinowa F 11/11/1961
+ <BR/>
+nasc 100.000.009-57 Evelijn_Micaela Vacadinscki_Daalieff F 12/10/2023
+ <BR/>
+nasc 100.000.012-52 Hajo_Maas Mawikova_Giuliano M 20/06/1995
+ <BR/>
+nasc 100.000.015-03 Clara_Debora Abadzhimarinoff_Abadzhiew F 26/07/2010
+ <BR/>
+nasc 100.000.018-48 Florens_Gabriela Kabacchijsca_Sala F 18/01/2004
+ <BR/>
+nasc 100.000.021-43 Mert_Pedro Bianco_Kabacchieff M 27/09/1998
+ <BR/>
+nasc 100.000.024-96 Bruno_Maas Vaasilew_Kabacchiw M 12/11/1988
+ <BR/>
+nasc 100.000.027-39 Micaela_Laura Dabcheff_Rizzo F 08/02/1960
+ <BR/>
+nasc 100.000.030-34 Melissa_Laura Costa_Abadzhijsca F 17/11/1964
+ <BR/>
+nasc 100.000.033-87 Tiago_Luiz_Felipe Daalijski_Riva M 21/07/1972
+ <BR/>
+nasc 100.000.036-20 Eduardo_Albertjan Mawiev_Vabrachca M 10/07/1978
+ <BR/>
+nasc 100.000.039-72 Heleen_Amanda Vacadinowa_Vacavliev F 03/02/2020
+ <BR/>
+nasc 100.000.042-78 Pedro_Joao Coppola_Abadzhiisca M 10/10/1991
+ <BR/>
+nasc 100.000.045-10 Hanneke_Florens Barbieri_Vacavlieff F 05/03/1970
+ <BR/>
+nasc 100.000.048-63 Iara_Gisela Abadzhidu_Kabacchi F 22/03/1984
+ <BR/>
+nasc 100.000.051-69 Paulo_Olavo Bruno_Pagano M 20/09/2009
+ <BR/>
+nasc 100.000.054-01 Tiago_Luuk Mawlova_Tudor M 19/03/1965
+ <BR/>
+nasc 100.000.057-54 Miguel_Luiz_Felipe Dabckova_Dabcheff M 14/07/2019
+ <BR/>
+nasc 100.000.060-50 Maria_Mariana Silvestri_Sorrentino F 25/02/1966
+ <BR/>
+nasc 100.000.063-00 Ana_Hanneke Palumbo_De_Rosa F 27/08/1994
+ <BR/>
+nasc 100.000.066-45 Flavio_Kas Dabckova_Russo M 19/08/1987
+ <BR/>
+nasc 100.000.069-98 Larissa_Berta Goncalves_Mawiev F 05/03/2007
+ <BR/>
+nasc 100.000.072-93 Debora_Josefa Sala_Parisi F 06/04/1969
+ <BR/>
+...Listagem parcial ...<BR/>
+nasc 100.000.270-57 Pedro_Caio Abadzhimarinov_Daaliisci M 09/10/1997
+ <BR/>
+nasc 100.000.273-08 Miguel_Leonel Daaliewa_Palmieri M 14/06/1980
+ <BR/>
+nasc 100.000.276-42 Albertjan_Antonio Mawradinow_Carbone M 15/12/1980
+ <BR/>
+nasc 100.000.279-95 Gabriel_Luuk Vacadinski_Kabackchieff M 19/02/2000
+ <BR/>
+nasc 100.000.282-90 Kas_Pedro Daaliewa_Rizzo M 05/08/1992
+ <BR/>
+nasc 100.000.285-33 Maartje_Valdir Kabackchi_Kabacchijsci M 05/12/1963
+ <BR/>
+nasc 100.000.288-86 Maria_Rita Milani_Kabacchieff F 27/05/1966
+ <BR/>
+nasc 100.000.291-81 Enzo_Antonio Kabacchiiscka_Vacadinscki M 25/04/1977
+ <BR/>
+nasc 100.000.294-24 Rafael_Pedro Rinaldi_Greco M 03/02/1993
+ <BR/>
+nasc 100.000.297-77 Eduardo_Bernardo Guerra_Daalijscki M 08/11/1999
+ <BR/>
+</P>
+<IMG id="i-18" SRC=".\c1-nasc-100.svg" NAME="c1-nasc-100" />
+<H2 id="h-19">{19}(18) .\c1\remocao-1-quadra-com-morad.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Remocao de 5 quadras com moradores.
+ <BR/>
+</P>
+<P id="p-19" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rq b04.6
+ <BR/>
+rq b07.8
+ <BR/>
+rq b06.8
+ <BR/>
+rq b06.4
+ <BR/>
+rq b03.4
+ <BR/>
+</P>
+<IMG id="i-19" SRC=".\c1-remocao-1-quadra-com-morad.svg" NAME="c1-remocao-1-quadra-com-morad" />
+<H2 id="h-20">{20}(19) .\c1\remocao-centro.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Remove quadras no centro da cidade.
+ <BR/>
+</P>
+<P id="p-20" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rq b04.4
+ <BR/>
+rq b04.5
+ <BR/>
+rq b04.6
+ <BR/>
+rq b04.7
+ <BR/>
+rq b05.4
+ <BR/>
+rq b05.5
+ <BR/>
+rq b05.6
+ <BR/>
+rq b05.7
+ <BR/>
+rq b06.4
+ <BR/>
+rq b06.5
+ <BR/>
+rq b06.6
+ <BR/>
+rq b06.7
+ <BR/>
+rq b07.4
+ <BR/>
+rq b07.5
+ <BR/>
+rq b07.6
+ <BR/>
+rq b07.7
+ <BR/>
+</P>
+<IMG id="i-20" SRC=".\c1-remocao-centro.svg" NAME="c1-remocao-centro" />
+<H1 id="h-21">[2] c2</H1>
+<IMG id="i-21" SRC=".\c2.svg" NAME="c2" />
+<H2 id="h-22">{22}(1) .\c2\censo.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Censo da cidade.
+ <BR/>
+</P>
+<P id="p-22" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+censo
+ <BR/>
+</P>
+<IMG id="i-22" SRC=".\c2-censo.svg" NAME="c2-censo" />
+<H2 id="h-23">{23}(2) .\c2\despj-001-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 1 morador com verificacao de habitante.
+ <BR/>
+</P>
+<P id="p-23" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.007.251-61
+ <BR/>
+h? 000.007.251-61
+ <BR/>
+</P>
+<IMG id="i-23" SRC=".\c2-despj-001-hab.svg" NAME="c2-despj-001-hab" />
+<H2 id="h-24">{24}(3) .\c2\despj-001.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 1 morador.
+ <BR/>
+</P>
+<P id="p-24" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.007.251-61
+ <BR/>
+</P>
+<IMG id="i-24" SRC=".\c2-despj-001.svg" NAME="c2-despj-001" />
+<H2 id="h-25">{25}(4) .\c2\despj-010.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 10 moradores.
+ <BR/>
+</P>
+<P id="p-25" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.011.901-64
+ <BR/>
+dspj 000.013.071-00
+ <BR/>
+dspj 000.002.101-61
+ <BR/>
+dspj 000.005.351-17
+ <BR/>
+dspj 000.014.751-69
+ <BR/>
+dspj 000.001.951-89
+ <BR/>
+dspj 000.005.541-70
+ <BR/>
+dspj 000.003.261-19
+ <BR/>
+dspj 000.005.711-80
+ <BR/>
+dspj 000.000.121-06
+ <BR/>
+</P>
+<IMG id="i-25" SRC=".\c2-despj-010.svg" NAME="c2-despj-010" />
+<H2 id="h-26">{26}(5) .\c2\despj-100-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 100 moradores com consultas a habitantes.
+ <BR/>
+</P>
+<P id="p-26" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.002.641-72
+ <BR/>
+dspj 000.002.701-48
+ <BR/>
+dspj 000.012.601-20
+ <BR/>
+dspj 000.009.511-70
+ <BR/>
+dspj 000.014.861-01
+ <BR/>
+dspj 000.014.931-40
+ <BR/>
+dspj 000.007.971-54
+ <BR/>
+dspj 000.010.531-75
+ <BR/>
+dspj 000.004.921-24
+ <BR/>
+dspj 000.004.921-24
+ <BR/>
+dspj 000.002.701-48
+ <BR/>
+dspj 000.005.351-17
+ <BR/>
+dspj 000.011.101-52
+ <BR/>
+dspj 000.009.511-70
+ <BR/>
+dspj 000.011.851-60
+ <BR/>
+dspj 000.009.111-19
+ <BR/>
+dspj 000.000.081-76
+ <BR/>
+dspj 000.005.541-70
+ <BR/>
+dspj 000.007.891-35
+ <BR/>
+dspj 000.002.541-00
+ <BR/>
+dspj 000.001.271-83
+ <BR/>
+dspj 000.007.891-35
+ <BR/>
+dspj 000.001.571-71
+ <BR/>
+dspj 000.004.591-86
+ <BR/>
+dspj 000.002.701-48
+ <BR/>
+...Listagem parcial ...<BR/>
+dspj 000.009.381-57
+ <BR/>
+dspj 000.011.911-36
+ <BR/>
+dspj 000.014.651-04
+ <BR/>
+dspj 000.003.691-95
+ <BR/>
+dspj 000.002.541-00
+ <BR/>
+h? 000.007.891-35
+ <BR/>
+h? 000.002.701-48
+ <BR/>
+h? 000.007.891-35
+ <BR/>
+h? 000.005.711-80
+ <BR/>
+h? 000.005.901-34
+ <BR/>
+</P>
+<IMG id="i-26" SRC=".\c2-despj-100-hab.svg" NAME="c2-despj-100-hab" />
+<H2 id="h-27">{27}(6) .\c2\despj-100.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 100 moradores.
+ <BR/>
+</P>
+<P id="p-27" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.002.641-72
+ <BR/>
+dspj 000.002.701-48
+ <BR/>
+dspj 000.012.601-20
+ <BR/>
+dspj 000.009.511-70
+ <BR/>
+dspj 000.014.861-01
+ <BR/>
+dspj 000.014.931-40
+ <BR/>
+dspj 000.007.971-54
+ <BR/>
+dspj 000.010.531-75
+ <BR/>
+dspj 000.004.921-24
+ <BR/>
+dspj 000.004.921-24
+ <BR/>
+dspj 000.002.701-48
+ <BR/>
+dspj 000.005.351-17
+ <BR/>
+dspj 000.011.101-52
+ <BR/>
+dspj 000.009.511-70
+ <BR/>
+dspj 000.011.851-60
+ <BR/>
+dspj 000.009.111-19
+ <BR/>
+dspj 000.000.081-76
+ <BR/>
+dspj 000.005.541-70
+ <BR/>
+dspj 000.007.891-35
+ <BR/>
+dspj 000.002.541-00
+ <BR/>
+dspj 000.001.271-83
+ <BR/>
+dspj 000.007.891-35
+ <BR/>
+dspj 000.001.571-71
+ <BR/>
+dspj 000.004.591-86
+ <BR/>
+dspj 000.002.701-48
+ <BR/>
+...Listagem parcial ...<BR/>
+dspj 000.007.541-88
+ <BR/>
+dspj 000.005.351-17
+ <BR/>
+dspj 000.012.321-85
+ <BR/>
+dspj 000.004.921-24
+ <BR/>
+dspj 000.007.541-88
+ <BR/>
+dspj 000.009.381-57
+ <BR/>
+dspj 000.011.911-36
+ <BR/>
+dspj 000.014.651-04
+ <BR/>
+dspj 000.003.691-95
+ <BR/>
+dspj 000.002.541-00
+ <BR/>
+</P>
+<IMG id="i-27" SRC=".\c2-despj-100.svg" NAME="c2-despj-100" />
+<H2 id="h-28">{28}(7) .\c2\falecimento-unico-morador.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Um morador falece na cidade.
+ <BR/>
+</P>
+<P id="p-28" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.003.691-95
+ <BR/>
+</P>
+<IMG id="i-28" SRC=".\c2-falecimento-unico-morador.svg" NAME="c2-falecimento-unico-morador" />
+<H2 id="h-29">{29}(8) .\c2\falecimento-unico-st.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Um sem-teto falece na cidade.
+ <BR/>
+</P>
+<P id="p-29" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.014.401-01
+ <BR/>
+</P>
+<IMG id="i-29" SRC=".\c2-falecimento-unico-st.svg" NAME="c2-falecimento-unico-st" />
+<H2 id="h-30">{30}(9) .\c2\falecimentos-30-espalhados-moradores.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios moradores falecem na cidade.
+ <BR/>
+</P>
+<P id="p-30" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.005.451-80
+ <BR/>
+rip 000.004.931-04
+ <BR/>
+rip 000.005.541-70
+ <BR/>
+rip 000.011.871-04
+ <BR/>
+rip 000.007.251-61
+ <BR/>
+rip 000.011.101-52
+ <BR/>
+rip 000.014.491-68
+ <BR/>
+rip 000.004.921-24
+ <BR/>
+rip 000.007.891-35
+ <BR/>
+rip 000.013.691-30
+ <BR/>
+rip 000.011.901-64
+ <BR/>
+rip 000.005.351-17
+ <BR/>
+rip 000.000.121-06
+ <BR/>
+rip 000.004.921-24
+ <BR/>
+rip 000.014.751-69
+ <BR/>
+rip 000.012.811-27
+ <BR/>
+rip 000.001.271-83
+ <BR/>
+rip 000.008.791-26
+ <BR/>
+rip 000.009.381-57
+ <BR/>
+rip 000.014.861-01
+ <BR/>
+rip 000.005.301-58
+ <BR/>
+rip 000.000.071-02
+ <BR/>
+rip 000.007.251-61
+ <BR/>
+rip 000.004.931-04
+ <BR/>
+rip 000.014.651-04
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.012.011-15
+ <BR/>
+rip 000.007.891-35
+ <BR/>
+rip 000.009.841-83
+ <BR/>
+rip 000.003.261-19
+ <BR/>
+rip 000.010.531-75
+ <BR/>
+</P>
+<IMG id="i-30" SRC=".\c2-falecimentos-30-espalhados-moradores.svg" NAME="c2-falecimentos-30-espalhados-moradores" />
+<H2 id="h-31">{31}(10) .\c2\falecimentos-30-espalhados-st-censo.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios sem-tetos falecem na cidade. Censos antes e depois dos falecimentos.
+ <BR/>
+</P>
+<P id="p-31" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+censo
+ <BR/>
+rip 000.003.901-27
+ <BR/>
+rip 000.013.991-28
+ <BR/>
+rip 000.003.411-85
+ <BR/>
+rip 000.007.041-64
+ <BR/>
+rip 000.013.221-76
+ <BR/>
+rip 000.005.841-69
+ <BR/>
+rip 000.010.581-34
+ <BR/>
+rip 000.002.581-05
+ <BR/>
+rip 000.013.681-68
+ <BR/>
+rip 000.002.221-78
+ <BR/>
+rip 000.011.021-33
+ <BR/>
+rip 000.003.111-97
+ <BR/>
+rip 000.002.121-05
+ <BR/>
+rip 000.002.881-95
+ <BR/>
+rip 000.013.671-96
+ <BR/>
+rip 000.008.891-99
+ <BR/>
+rip 000.001.031-60
+ <BR/>
+rip 000.000.011-63
+ <BR/>
+rip 000.007.421-71
+ <BR/>
+rip 000.014.621-80
+ <BR/>
+rip 000.001.371-46
+ <BR/>
+rip 000.014.481-96
+ <BR/>
+rip 000.001.291-27
+ <BR/>
+rip 000.003.141-02
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.012.761-23
+ <BR/>
+rip 000.001.761-25
+ <BR/>
+rip 000.007.731-31
+ <BR/>
+rip 000.004.981-65
+ <BR/>
+rip 000.012.621-73
+ <BR/>
+rip 000.014.811-34
+ <BR/>
+censo
+ <BR/>
+</P>
+<IMG id="i-31" SRC=".\c2-falecimentos-30-espalhados-st-censo.svg" NAME="c2-falecimentos-30-espalhados-st-censo" />
+<H2 id="h-32">{32}(11) .\c2\falecimentos-30-espalhados-st.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios sem-tetos falecem na cidade.
+ <BR/>
+</P>
+<P id="p-32" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.003.901-27
+ <BR/>
+rip 000.013.991-28
+ <BR/>
+rip 000.003.411-85
+ <BR/>
+rip 000.007.041-64
+ <BR/>
+rip 000.013.221-76
+ <BR/>
+rip 000.005.841-69
+ <BR/>
+rip 000.010.581-34
+ <BR/>
+rip 000.002.581-05
+ <BR/>
+rip 000.013.681-68
+ <BR/>
+rip 000.002.221-78
+ <BR/>
+rip 000.011.021-33
+ <BR/>
+rip 000.003.111-97
+ <BR/>
+rip 000.002.121-05
+ <BR/>
+rip 000.002.881-95
+ <BR/>
+rip 000.013.671-96
+ <BR/>
+rip 000.008.891-99
+ <BR/>
+rip 000.001.031-60
+ <BR/>
+rip 000.000.011-63
+ <BR/>
+rip 000.007.421-71
+ <BR/>
+rip 000.014.621-80
+ <BR/>
+rip 000.001.371-46
+ <BR/>
+rip 000.014.481-96
+ <BR/>
+rip 000.001.291-27
+ <BR/>
+rip 000.003.141-02
+ <BR/>
+rip 000.012.761-23
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.001.761-25
+ <BR/>
+rip 000.007.731-31
+ <BR/>
+rip 000.004.981-65
+ <BR/>
+rip 000.012.621-73
+ <BR/>
+rip 000.014.811-34
+ <BR/>
+</P>
+<IMG id="i-32" SRC=".\c2-falecimentos-30-espalhados-st.svg" NAME="c2-falecimentos-30-espalhados-st" />
+<H2 id="h-33">{33}(12) .\c2\mudanca-todos-moradores-com-verif.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Todos os moradores de uma quadra mudam-se para outro endereco. Esperado: populacao origem zerado, populacao quadra destino incrementado de acordo
+ <BR/>
+</P>
+<P id="p-33" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+pq B30-12.6
+ <BR/>
+pq B43-9.6
+ <BR/>
+mud 000.003.301-40 B43-9.6 Face.W 26 1o_Andar
+ <BR/>
+pq B30-12.6
+ <BR/>
+pq B43-9.6
+ <BR/>
+</P>
+<IMG id="i-33" SRC=".\c2-mudanca-todos-moradores-com-verif.svg" NAME="c2-mudanca-todos-moradores-com-verif" />
+<H2 id="h-34">{34}(13) .\c2\nasc-001-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 1 pessoa com verificacao de habitante.
+ <BR/>
+</P>
+<P id="p-34" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Gabriel_Niek Sobrenome_Dabchev M 24/10/1999
+ <BR/>
+h? 100.000.000-19
+ <BR/>
+</P>
+<IMG id="i-34" SRC=".\c2-nasc-001-hab.svg" NAME="c2-nasc-001-hab" />
+<H2 id="h-35">{35}(14) .\c2\nasc-001.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 1 pessoa.
+ <BR/>
+</P>
+<P id="p-35" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Gabriel_Niek Sobrenome_Dabchev M 24/10/1999
+ <BR/>
+</P>
+<IMG id="i-35" SRC=".\c2-nasc-001.svg" NAME="c2-nasc-001" />
+<H2 id="h-36">{36}(15) .\c2\nasc-010.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 10 pessoas.
+ <BR/>
+</P>
+<P id="p-36" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Karina_Josefa Mawicowa_Mawlowa F 22/04/2013
+ <BR/>
+nasc 100.000.003-61 Zelia_Marina Abadzhimarinow_Arruda F 21/06/1992
+ <BR/>
+nasc 100.000.006-04 Luuk_Kas Vacadinsci_Daaloff M 18/09/1994
+ <BR/>
+nasc 100.000.009-57 Joana_Gisela Mawlov_Vaasileva F 10/12/2021
+ <BR/>
+nasc 100.000.012-52 Leonel_Larz Serra_Montanari M 16/04/1960
+ <BR/>
+nasc 100.000.015-03 Miguel_Antonio Kabacchiewa_Vacadinowa M 08/08/1968
+ <BR/>
+nasc 100.000.018-48 Taisa_Rita Daalieva_Dabchewa F 11/08/1994
+ <BR/>
+nasc 100.000.021-43 Laura_Mia Lombardi_Kabacchijscki F 01/04/2024
+ <BR/>
+nasc 100.000.024-96 Mathies_Joren Rossetti_Mawikova M 12/06/1975
+ <BR/>
+nasc 100.000.027-39 Iara_Larissa Kabacchiiska_Abadzhiewa F 07/11/2023
+ <BR/>
+</P>
+<IMG id="i-36" SRC=".\c2-nasc-010.svg" NAME="c2-nasc-010" />
+<H2 id="h-37">{37}(16) .\c2\nasc-100-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 100 pessoas com consultas a habitantes.
+ <BR/>
+</P>
+<P id="p-37" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Mert_Jose Mantovani_Sobrenome M 08/10/1998
+ <BR/>
+nasc 100.000.003-61 Artur_Leonel Campos_Sala M 07/08/1965
+ <BR/>
+nasc 100.000.006-04 Josefa_Karina Abadzhiiska_Vacadinow F 06/03/1994
+ <BR/>
+nasc 100.000.009-57 Leonel_Bruno Grasso_Marini M 20/06/1973
+ <BR/>
+nasc 100.000.012-52 Karina_Catarina Farina_Campos F 15/11/1992
+ <BR/>
+nasc 100.000.015-03 Heleen_Clara Vacavchieva_Lombardo F 08/03/1975
+ <BR/>
+nasc 100.000.018-48 Niek_Larz Negri_Morelli M 06/08/2014
+ <BR/>
+nasc 100.000.021-43 Gabriel_Rafael De_Rosa_Mantovani M 25/07/2020
+ <BR/>
+nasc 100.000.024-96 Emmelieke_Maria Farina_Colombo F 20/07/2004
+ <BR/>
+nasc 100.000.027-39 Isabella_Zelia Testa_Daalijski F 11/07/1970
+ <BR/>
+nasc 100.000.030-34 Valdir_Pedro Goncalves_Abanasoff M 09/09/1999
+ <BR/>
+nasc 100.000.033-87 Isabella_Clara Mawlova_Abadzhiev F 17/07/1961
+ <BR/>
+nasc 100.000.036-20 Rafael_Joke Mawikow_Vitale M 07/12/2016
+ <BR/>
+nasc 100.000.039-72 Cornelio_Bernardo Grassi_Tudor M 02/10/2017
+ <BR/>
+nasc 100.000.042-78 Emmelieke_Catarina Mawramatov_Daaliiscki F 17/03/1991
+ <BR/>
+nasc 100.000.045-10 Micaela_Evelijn De_Luca_Daaliisci F 19/06/2023
+ <BR/>
+nasc 100.000.048-63 Taisa_Hanneke Vaasilew_Silvestri F 25/11/1993
+ <BR/>
+nasc 100.000.051-69 Kas_Albertjan De_Luca_Vitale M 14/08/2016
+ <BR/>
+nasc 100.000.054-01 Eduardo_Kees Abadzhijscka_Vabrachcka M 16/06/1988
+ <BR/>
+nasc 100.000.057-54 Micaela_Isabella Leone_DAmico_Orlando F 19/12/2012
+ <BR/>
+nasc 100.000.060-50 Henrique_Jose Kabacchijsci_Morelli M 02/09/2023
+ <BR/>
+nasc 100.000.063-00 Hans_Caio Abadzhieff_Caruso M 08/08/2017
+ <BR/>
+nasc 100.000.066-45 Ambrosius_Joppe Abanasov_Mantovani M 04/12/2025
+ <BR/>
+nasc 100.000.069-98 Mariana_Ana Moretti_Esposito F 09/02/2012
+ <BR/>
+nasc 100.000.072-93 Olavo_Silvio Kabackchieva_Kabacchiv M 18/02/2023
+ <BR/>
+...Listagem parcial ...<BR/>
+nasc 100.000.285-33 Maartje_Kees Daaliev_Vacavliew M 15/12/1992
+ <BR/>
+nasc 100.000.288-86 Rafael_Albertjan Abanasoff_Kabacchiv M 23/11/1978
+ <BR/>
+nasc 100.000.291-81 Evelijn_Agueda Kabackchieva_Bianco F 10/09/1961
+ <BR/>
+nasc 100.000.294-24 Hans_Joren Abadzhimarinow_Rossi M 08/03/1974
+ <BR/>
+nasc 100.000.297-77 Clara_Larissa Kabackchiev_Abadzhieff F 14/03/2014
+ <BR/>
+h? 100.000.087-70
+ <BR/>
+h? 100.000.012-52
+ <BR/>
+h? 100.000.297-77
+ <BR/>
+h? 100.000.051-69
+ <BR/>
+h? 100.000.177-60
+ <BR/>
+</P>
+<IMG id="i-37" SRC=".\c2-nasc-100-hab.svg" NAME="c2-nasc-100-hab" />
+<H2 id="h-38">{38}(17) .\c2\nasc-100.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 100 pessoas.
+ <BR/>
+</P>
+<P id="p-38" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Mert_Jose Mantovani_Sobrenome M 08/10/1998
+ <BR/>
+nasc 100.000.003-61 Artur_Leonel Campos_Sala M 07/08/1965
+ <BR/>
+nasc 100.000.006-04 Josefa_Karina Abadzhiiska_Vacadinow F 06/03/1994
+ <BR/>
+nasc 100.000.009-57 Leonel_Bruno Grasso_Marini M 20/06/1973
+ <BR/>
+nasc 100.000.012-52 Karina_Catarina Farina_Campos F 15/11/1992
+ <BR/>
+nasc 100.000.015-03 Heleen_Clara Vacavchieva_Lombardo F 08/03/1975
+ <BR/>
+nasc 100.000.018-48 Niek_Larz Negri_Morelli M 06/08/2014
+ <BR/>
+nasc 100.000.021-43 Gabriel_Rafael De_Rosa_Mantovani M 25/07/2020
+ <BR/>
+nasc 100.000.024-96 Emmelieke_Maria Farina_Colombo F 20/07/2004
+ <BR/>
+nasc 100.000.027-39 Isabella_Zelia Testa_Daalijski F 11/07/1970
+ <BR/>
+nasc 100.000.030-34 Valdir_Pedro Goncalves_Abanasoff M 09/09/1999
+ <BR/>
+nasc 100.000.033-87 Isabella_Clara Mawlova_Abadzhiev F 17/07/1961
+ <BR/>
+nasc 100.000.036-20 Rafael_Joke Mawikow_Vitale M 07/12/2016
+ <BR/>
+nasc 100.000.039-72 Cornelio_Bernardo Grassi_Tudor M 02/10/2017
+ <BR/>
+nasc 100.000.042-78 Emmelieke_Catarina Mawramatov_Daaliiscki F 17/03/1991
+ <BR/>
+nasc 100.000.045-10 Micaela_Evelijn De_Luca_Daaliisci F 19/06/2023
+ <BR/>
+nasc 100.000.048-63 Taisa_Hanneke Vaasilew_Silvestri F 25/11/1993
+ <BR/>
+nasc 100.000.051-69 Kas_Albertjan De_Luca_Vitale M 14/08/2016
+ <BR/>
+nasc 100.000.054-01 Eduardo_Kees Abadzhijscka_Vabrachcka M 16/06/1988
+ <BR/>
+nasc 100.000.057-54 Micaela_Isabella Leone_DAmico_Orlando F 19/12/2012
+ <BR/>
+nasc 100.000.060-50 Henrique_Jose Kabacchijsci_Morelli M 02/09/2023
+ <BR/>
+nasc 100.000.063-00 Hans_Caio Abadzhieff_Caruso M 08/08/2017
+ <BR/>
+nasc 100.000.066-45 Ambrosius_Joppe Abanasov_Mantovani M 04/12/2025
+ <BR/>
+nasc 100.000.069-98 Mariana_Ana Moretti_Esposito F 09/02/2012
+ <BR/>
+nasc 100.000.072-93 Olavo_Silvio Kabackchieva_Kabacchiv M 18/02/2023
+ <BR/>
+...Listagem parcial ...<BR/>
+nasc 100.000.270-57 Marcelino_Camiel Costantini_Mawikowa M 24/12/1963
+ <BR/>
+nasc 100.000.273-08 Maas_Artur Vacavliev_Mawiewa M 05/08/1975
+ <BR/>
+nasc 100.000.276-42 Miguel_Martijn Giuliano_Longo M 26/03/1969
+ <BR/>
+nasc 100.000.279-95 Clara_Amanda DAmico_Orlando_Daalieff F 02/08/1963
+ <BR/>
+nasc 100.000.282-90 Rafael_Tiago Vaasileff_Pacheco M 13/10/1961
+ <BR/>
+nasc 100.000.285-33 Maartje_Kees Daaliev_Vacavliew M 15/12/1992
+ <BR/>
+nasc 100.000.288-86 Rafael_Albertjan Abanasoff_Kabacchiv M 23/11/1978
+ <BR/>
+nasc 100.000.291-81 Evelijn_Agueda Kabackchieva_Bianco F 10/09/1961
+ <BR/>
+nasc 100.000.294-24 Hans_Joren Abadzhimarinow_Rossi M 08/03/1974
+ <BR/>
+nasc 100.000.297-77 Clara_Larissa Kabackchiev_Abadzhieff F 14/03/2014
+ <BR/>
+</P>
+<IMG id="i-38" SRC=".\c2-nasc-100.svg" NAME="c2-nasc-100" />
+<H2 id="h-39">{39}(18) .\c2\remocao-1-quadra-com-morad.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Remocao de 5 quadras com moradores.
+ <BR/>
+</P>
+<P id="p-39" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rq B43-10.9
+ <BR/>
+rq B40-2.9
+ <BR/>
+rq B44-10.9
+ <BR/>
+rq B31-10.7
+ <BR/>
+rq B42-5.3
+ <BR/>
+</P>
+<IMG id="i-39" SRC=".\c2-remocao-1-quadra-com-morad.svg" NAME="c2-remocao-1-quadra-com-morad" />
+<H2 id="h-40">{40}(19) .\c2\remocao-centro.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Remove quadras no centro da cidade.
+ <BR/>
+</P>
+<P id="p-40" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rq B31-12.11
+ <BR/>
+rq B31-12.12
+ <BR/>
+rq B31-12.13
+ <BR/>
+rq B31-12.14
+ <BR/>
+rq B31-12.15
+ <BR/>
+rq B31-12.16
+ <BR/>
+rq B31-13.11
+ <BR/>
+rq B31-13.12
+ <BR/>
+rq B31-13.13
+ <BR/>
+rq B31-13.14
+ <BR/>
+rq B31-13.15
+ <BR/>
+rq B31-13.16
+ <BR/>
+rq B31-14.11
+ <BR/>
+rq B31-14.12
+ <BR/>
+rq B31-14.13
+ <BR/>
+rq B31-14.14
+ <BR/>
+rq B31-14.15
+ <BR/>
+rq B31-14.16
+ <BR/>
+rq B31-15.11
+ <BR/>
+rq B31-15.12
+ <BR/>
+rq B31-15.13
+ <BR/>
+rq B31-15.14
+ <BR/>
+rq B31-15.15
+ <BR/>
+rq B31-15.16
+ <BR/>
+rq B31-16.11
+ <BR/>
+...Listagem parcial ...<BR/>
+rq B42-1.4
+ <BR/>
+rq B42-1.5
+ <BR/>
+rq B42-1.6
+ <BR/>
+rq B42-1.7
+ <BR/>
+rq B42-1.8
+ <BR/>
+rq B42-1.9
+ <BR/>
+rq B42-1.10
+ <BR/>
+rq B42-1.11
+ <BR/>
+rq B42-1.12
+ <BR/>
+rq B43-1.1
+ <BR/>
+</P>
+<IMG id="i-40" SRC=".\c2-remocao-centro.svg" NAME="c2-remocao-centro" />
+<H1 id="h-41">[3] c3</H1>
+<IMG id="i-41" SRC=".\c3.svg" NAME="c3" />
+<H2 id="h-42">{42}(1) .\c3\censo.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Censo da cidade.
+ <BR/>
+</P>
+<P id="p-42" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+censo
+ <BR/>
+</P>
+<IMG id="i-42" SRC=".\c3-censo.svg" NAME="c3-censo" />
+<H2 id="h-43">{43}(2) .\c3\despj-001-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 1 morador com verificacao de habitante.
+ <BR/>
+</P>
+<P id="p-43" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.009.851-55
+ <BR/>
+h? 000.009.851-55
+ <BR/>
+</P>
+<IMG id="i-43" SRC=".\c3-despj-001-hab.svg" NAME="c3-despj-001-hab" />
+<H2 id="h-44">{44}(3) .\c3\despj-001.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 1 morador.
+ <BR/>
+</P>
+<P id="p-44" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.009.851-55
+ <BR/>
+</P>
+<IMG id="i-44" SRC=".\c3-despj-001.svg" NAME="c3-despj-001" />
+<H2 id="h-45">{45}(4) .\c3\despj-010.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 10 moradores.
+ <BR/>
+</P>
+<P id="p-45" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.008.141-80
+ <BR/>
+dspj 000.010.871-50
+ <BR/>
+dspj 000.006.131-00
+ <BR/>
+dspj 000.004.871-20
+ <BR/>
+dspj 000.009.901-59
+ <BR/>
+dspj 000.011.321-21
+ <BR/>
+dspj 000.002.591-79
+ <BR/>
+dspj 000.006.041-00
+ <BR/>
+dspj 000.007.361-04
+ <BR/>
+dspj 000.014.901-25
+ <BR/>
+</P>
+<IMG id="i-45" SRC=".\c3-despj-010.svg" NAME="c3-despj-010" />
+<H2 id="h-46">{46}(5) .\c3\despj-100-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 100 moradores com consultas a habitantes.
+ <BR/>
+</P>
+<P id="p-46" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.009.851-55
+ <BR/>
+dspj 000.014.201-86
+ <BR/>
+dspj 000.014.131-39
+ <BR/>
+dspj 000.014.711-71
+ <BR/>
+dspj 000.009.371-85
+ <BR/>
+dspj 000.003.391-05
+ <BR/>
+dspj 000.001.781-79
+ <BR/>
+dspj 000.009.251-79
+ <BR/>
+dspj 000.012.481-89
+ <BR/>
+dspj 000.001.871-60
+ <BR/>
+dspj 000.014.711-71
+ <BR/>
+dspj 000.008.141-80
+ <BR/>
+dspj 000.006.421-18
+ <BR/>
+dspj 000.007.361-04
+ <BR/>
+dspj 000.006.581-11
+ <BR/>
+dspj 000.009.851-55
+ <BR/>
+dspj 000.011.271-28
+ <BR/>
+dspj 000.003.001-52
+ <BR/>
+dspj 000.004.381-89
+ <BR/>
+dspj 000.001.791-40
+ <BR/>
+dspj 000.005.851-30
+ <BR/>
+dspj 000.001.781-79
+ <BR/>
+dspj 000.008.701-70
+ <BR/>
+dspj 000.001.741-81
+ <BR/>
+dspj 000.009.201-00
+ <BR/>
+...Listagem parcial ...<BR/>
+dspj 000.012.351-09
+ <BR/>
+dspj 000.006.061-54
+ <BR/>
+dspj 000.009.371-85
+ <BR/>
+dspj 000.006.041-00
+ <BR/>
+dspj 000.012.011-15
+ <BR/>
+h? 000.001.491-52
+ <BR/>
+h? 000.005.881-56
+ <BR/>
+h? 000.006.041-00
+ <BR/>
+h? 000.007.361-04
+ <BR/>
+h? 000.013.771-59
+ <BR/>
+</P>
+<IMG id="i-46" SRC=".\c3-despj-100-hab.svg" NAME="c3-despj-100-hab" />
+<H2 id="h-47">{47}(6) .\c3\despj-100.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Despejo de 100 moradores.
+ <BR/>
+</P>
+<P id="p-47" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+dspj 000.009.851-55
+ <BR/>
+dspj 000.014.201-86
+ <BR/>
+dspj 000.014.131-39
+ <BR/>
+dspj 000.014.711-71
+ <BR/>
+dspj 000.009.371-85
+ <BR/>
+dspj 000.003.391-05
+ <BR/>
+dspj 000.001.781-79
+ <BR/>
+dspj 000.009.251-79
+ <BR/>
+dspj 000.012.481-89
+ <BR/>
+dspj 000.001.871-60
+ <BR/>
+dspj 000.014.711-71
+ <BR/>
+dspj 000.008.141-80
+ <BR/>
+dspj 000.006.421-18
+ <BR/>
+dspj 000.007.361-04
+ <BR/>
+dspj 000.006.581-11
+ <BR/>
+dspj 000.009.851-55
+ <BR/>
+dspj 000.011.271-28
+ <BR/>
+dspj 000.003.001-52
+ <BR/>
+dspj 000.004.381-89
+ <BR/>
+dspj 000.001.791-40
+ <BR/>
+dspj 000.005.851-30
+ <BR/>
+dspj 000.001.781-79
+ <BR/>
+dspj 000.008.701-70
+ <BR/>
+dspj 000.001.741-81
+ <BR/>
+dspj 000.009.201-00
+ <BR/>
+...Listagem parcial ...<BR/>
+dspj 000.012.351-09
+ <BR/>
+dspj 000.010.131-14
+ <BR/>
+dspj 000.000.521-59
+ <BR/>
+dspj 000.007.361-04
+ <BR/>
+dspj 000.005.851-30
+ <BR/>
+dspj 000.012.351-09
+ <BR/>
+dspj 000.006.061-54
+ <BR/>
+dspj 000.009.371-85
+ <BR/>
+dspj 000.006.041-00
+ <BR/>
+dspj 000.012.011-15
+ <BR/>
+</P>
+<IMG id="i-47" SRC=".\c3-despj-100.svg" NAME="c3-despj-100" />
+<H2 id="h-48">{48}(7) .\c3\falecimento-unico-morador.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Um morador falece na cidade.
+ <BR/>
+</P>
+<P id="p-48" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.002.431-75
+ <BR/>
+</P>
+<IMG id="i-48" SRC=".\c3-falecimento-unico-morador.svg" NAME="c3-falecimento-unico-morador" />
+<H2 id="h-49">{49}(8) .\c3\falecimento-unico-st.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Um sem-teto falece na cidade.
+ <BR/>
+</P>
+<P id="p-49" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.001.341-20
+ <BR/>
+</P>
+<IMG id="i-49" SRC=".\c3-falecimento-unico-st.svg" NAME="c3-falecimento-unico-st" />
+<H2 id="h-50">{50}(9) .\c3\falecimentos-30-espalhados-moradores.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios moradores falecem na cidade.
+ <BR/>
+</P>
+<P id="p-50" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.001.751-53
+ <BR/>
+rip 000.001.871-60
+ <BR/>
+rip 000.009.111-19
+ <BR/>
+rip 000.009.251-79
+ <BR/>
+rip 000.009.371-85
+ <BR/>
+rip 000.006.061-54
+ <BR/>
+rip 000.013.021-40
+ <BR/>
+rip 000.008.211-28
+ <BR/>
+rip 000.002.521-66
+ <BR/>
+rip 000.000.081-76
+ <BR/>
+rip 000.009.801-96
+ <BR/>
+rip 000.002.791-02
+ <BR/>
+rip 000.006.821-79
+ <BR/>
+rip 000.009.901-59
+ <BR/>
+rip 000.002.521-66
+ <BR/>
+rip 000.009.681-45
+ <BR/>
+rip 000.008.141-80
+ <BR/>
+rip 000.013.331-00
+ <BR/>
+rip 000.014.711-71
+ <BR/>
+rip 000.011.271-28
+ <BR/>
+rip 000.010.871-50
+ <BR/>
+rip 000.000.871-06
+ <BR/>
+rip 000.001.491-52
+ <BR/>
+rip 000.008.111-65
+ <BR/>
+rip 000.002.791-02
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.000.521-59
+ <BR/>
+rip 000.008.701-70
+ <BR/>
+rip 000.008.701-70
+ <BR/>
+rip 000.009.201-00
+ <BR/>
+rip 000.009.681-45
+ <BR/>
+</P>
+<IMG id="i-50" SRC=".\c3-falecimentos-30-espalhados-moradores.svg" NAME="c3-falecimentos-30-espalhados-moradores" />
+<H2 id="h-51">{51}(10) .\c3\falecimentos-30-espalhados-st-censo.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios sem-tetos falecem na cidade. Censos antes e depois dos falecimentos.
+ <BR/>
+</P>
+<P id="p-51" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+censo
+ <BR/>
+rip 000.000.641-65
+ <BR/>
+rip 000.007.551-50
+ <BR/>
+rip 000.002.391-43
+ <BR/>
+rip 000.005.451-80
+ <BR/>
+rip 000.001.271-83
+ <BR/>
+rip 000.013.321-39
+ <BR/>
+rip 000.014.441-07
+ <BR/>
+rip 000.004.061-47
+ <BR/>
+rip 000.012.401-02
+ <BR/>
+rip 000.010.051-03
+ <BR/>
+rip 000.007.821-22
+ <BR/>
+rip 000.012.581-41
+ <BR/>
+rip 000.009.451-02
+ <BR/>
+rip 000.003.501-76
+ <BR/>
+rip 000.009.311-44
+ <BR/>
+rip 000.006.651-69
+ <BR/>
+rip 000.012.671-32
+ <BR/>
+rip 000.005.691-00
+ <BR/>
+rip 000.002.081-83
+ <BR/>
+rip 000.003.441-09
+ <BR/>
+rip 000.012.421-48
+ <BR/>
+rip 000.013.601-83
+ <BR/>
+rip 000.001.081-20
+ <BR/>
+rip 000.013.011-79
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.008.751-39
+ <BR/>
+rip 000.007.631-79
+ <BR/>
+rip 000.007.681-38
+ <BR/>
+rip 000.012.221-12
+ <BR/>
+rip 000.000.671-80
+ <BR/>
+rip 000.008.121-37
+ <BR/>
+censo
+ <BR/>
+</P>
+<IMG id="i-51" SRC=".\c3-falecimentos-30-espalhados-st-censo.svg" NAME="c3-falecimentos-30-espalhados-st-censo" />
+<H2 id="h-52">{52}(11) .\c3\falecimentos-30-espalhados-st.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Varios sem-tetos falecem na cidade.
+ <BR/>
+</P>
+<P id="p-52" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rip 000.000.641-65
+ <BR/>
+rip 000.007.551-50
+ <BR/>
+rip 000.002.391-43
+ <BR/>
+rip 000.005.451-80
+ <BR/>
+rip 000.001.271-83
+ <BR/>
+rip 000.013.321-39
+ <BR/>
+rip 000.014.441-07
+ <BR/>
+rip 000.004.061-47
+ <BR/>
+rip 000.012.401-02
+ <BR/>
+rip 000.010.051-03
+ <BR/>
+rip 000.007.821-22
+ <BR/>
+rip 000.012.581-41
+ <BR/>
+rip 000.009.451-02
+ <BR/>
+rip 000.003.501-76
+ <BR/>
+rip 000.009.311-44
+ <BR/>
+rip 000.006.651-69
+ <BR/>
+rip 000.012.671-32
+ <BR/>
+rip 000.005.691-00
+ <BR/>
+rip 000.002.081-83
+ <BR/>
+rip 000.003.441-09
+ <BR/>
+rip 000.012.421-48
+ <BR/>
+rip 000.013.601-83
+ <BR/>
+rip 000.001.081-20
+ <BR/>
+rip 000.013.011-79
+ <BR/>
+rip 000.008.751-39
+ <BR/>
+...Listagem parcial ...<BR/>
+rip 000.007.631-79
+ <BR/>
+rip 000.007.681-38
+ <BR/>
+rip 000.012.221-12
+ <BR/>
+rip 000.000.671-80
+ <BR/>
+rip 000.008.121-37
+ <BR/>
+</P>
+<IMG id="i-52" SRC=".\c3-falecimentos-30-espalhados-st.svg" NAME="c3-falecimentos-30-espalhados-st" />
+<H2 id="h-53">{53}(12) .\c3\mudanca-todos-moradores-com-verif.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Todos os moradores de uma quadra mudam-se para outro endereco. Esperado: populacao origem zerado, populacao quadra destino incrementado de acordo
+ <BR/>
+</P>
+<P id="p-53" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+pq B32-25.24
+ <BR/>
+pq B30-18.16
+ <BR/>
+mud 000.013.021-40 B30-18.16 Face.S 68 1o_Andar
+ <BR/>
+pq B32-25.24
+ <BR/>
+pq B30-18.16
+ <BR/>
+</P>
+<IMG id="i-53" SRC=".\c3-mudanca-todos-moradores-com-verif.svg" NAME="c3-mudanca-todos-moradores-com-verif" />
+<H2 id="h-54">{54}(13) .\c3\nasc-001-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 1 pessoa com verificacao de habitante.
+ <BR/>
+</P>
+<P id="p-54" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Luzia_Ursula Mawikov_Abanasoff F 27/02/1978
+ <BR/>
+h? 100.000.000-19
+ <BR/>
+</P>
+<IMG id="i-54" SRC=".\c3-nasc-001-hab.svg" NAME="c3-nasc-001-hab" />
+<H2 id="h-55">{55}(14) .\c3\nasc-001.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 1 pessoa.
+ <BR/>
+</P>
+<P id="p-55" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Luzia_Ursula Mawikov_Abanasoff F 27/02/1978
+ <BR/>
+</P>
+<IMG id="i-55" SRC=".\c3-nasc-001.svg" NAME="c3-nasc-001" />
+<H2 id="h-56">{56}(15) .\c3\nasc-010.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 10 pessoas.
+ <BR/>
+</P>
+<P id="p-56" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Rita_Berta Daalov_Avila F 23/02/1982
+ <BR/>
+nasc 100.000.003-61 Mariana_Agueda Kabackchieva_Rinaldi F 09/03/1964
+ <BR/>
+nasc 100.000.006-04 Cornelio_Joke Romano_Esposito M 01/05/2024
+ <BR/>
+nasc 100.000.009-57 Ursula_Camila Abanasoff_Dabckow F 16/01/1978
+ <BR/>
+nasc 100.000.012-52 Luiz_Felipe_Luuk Daaliiscki_Ferraro M 22/10/2024
+ <BR/>
+nasc 100.000.015-03 Gabriel_Niek Vacavchieff_Abadzhijsca M 15/05/1985
+ <BR/>
+nasc 100.000.018-48 Pedro_Henrique_Hajo Dabckoff_Daalowa M 13/07/1996
+ <BR/>
+nasc 100.000.021-43 Tiago_Flavio Abadzhieva_Montanari M 14/07/1998
+ <BR/>
+nasc 100.000.024-96 Agueda_Gisela Carbone_Mawikow F 07/01/1974
+ <BR/>
+nasc 100.000.027-39 Taisa_Mariana Monti_Abadzhiev F 05/07/1975
+ <BR/>
+</P>
+<IMG id="i-56" SRC=".\c3-nasc-010.svg" NAME="c3-nasc-010" />
+<H2 id="h-57">{57}(16) .\c3\nasc-100-hab.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 100 pessoas com consultas a habitantes.
+ <BR/>
+</P>
+<P id="p-57" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Martijn_Antonio Abanasova_Abadzhiev M 28/07/1982
+ <BR/>
+nasc 100.000.003-61 Hanneke_Silena Abanasova_Abadzhijscka F 11/07/2002
+ <BR/>
+nasc 100.000.006-04 Olavo_Leonel Galli_Farina M 06/07/1994
+ <BR/>
+nasc 100.000.009-57 Karina_Josefa Vacadinova_Vaasileff F 26/05/2006
+ <BR/>
+nasc 100.000.012-52 Pedro_Martijn Kabacchiisci_Caruso M 01/01/2007
+ <BR/>
+nasc 100.000.015-03 Jose_Hans Abadzhijscka_Mawradinov M 08/10/1973
+ <BR/>
+nasc 100.000.018-48 Hajo_Rutger Abadzhimarinoff_Kabacchieva M 09/06/1974
+ <BR/>
+nasc 100.000.021-43 Ana_Melissa Vacadinoff_Abadzhiiscka F 05/08/1967
+ <BR/>
+nasc 100.000.024-96 Heleen_Gisela Abadzhiev_Milani F 26/06/1961
+ <BR/>
+nasc 100.000.027-39 Artur_Albertjan Martino_Ferretti M 20/01/1994
+ <BR/>
+nasc 100.000.030-34 Evelijn_Rita Vacavchiev_Rinaldi F 01/11/2005
+ <BR/>
+nasc 100.000.033-87 Bianca_Mia De_Luca_Abadghimarinowa F 16/07/1996
+ <BR/>
+nasc 100.000.036-20 Thiago_Hans Greco_Abanasov M 08/06/2012
+ <BR/>
+nasc 100.000.039-72 Karina_Hanneke Mawradinova_Bernardi F 01/03/2013
+ <BR/>
+nasc 100.000.042-78 Martijn_Eduardo Abadzhiiscka_Amato M 10/05/1985
+ <BR/>
+nasc 100.000.045-10 Catarina_Silena Daaliewa_Vacavliew F 23/03/1994
+ <BR/>
+nasc 100.000.048-63 Camiel_Helio Pacheco_Mawiew M 09/06/2006
+ <BR/>
+nasc 100.000.051-69 Thiago_Aad Abanasova_Daalow M 09/09/1984
+ <BR/>
+nasc 100.000.054-01 Aad_Artur Longo_Vitali M 20/06/2011
+ <BR/>
+nasc 100.000.057-54 Florens_Ernestina Pacheco_Mawradinoff F 15/02/2018
+ <BR/>
+nasc 100.000.060-50 Mateus_Pedro Vacadinov_Vaasilew M 21/12/1968
+ <BR/>
+nasc 100.000.063-00 Paulo_Aad Testa_Daalijski M 20/02/1965
+ <BR/>
+nasc 100.000.066-45 Mateus_Larz Guerra_Daalow M 24/08/2006
+ <BR/>
+nasc 100.000.069-98 Fernanda_Maria Kabacchiisci_Kabackchi F 05/07/2002
+ <BR/>
+nasc 100.000.072-93 Olavo_Rutger Marchetti_Dabckow M 17/11/1968
+ <BR/>
+...Listagem parcial ...<BR/>
+nasc 100.000.285-33 Joao_Joren Abanasoff_Kabacchiva M 01/07/1998
+ <BR/>
+nasc 100.000.288-86 Flavio_Pedro Vacadinova_Kabacchieva M 26/04/2004
+ <BR/>
+nasc 100.000.291-81 Kas_Tiago Benedetti_Kabacchiv M 22/08/2020
+ <BR/>
+nasc 100.000.294-24 Miguel_Pedro Esposito_De_Rosa M 22/10/1990
+ <BR/>
+nasc 100.000.297-77 Josefa_Iara Ricci_Abadzhiewa F 01/05/1985
+ <BR/>
+h? 100.000.237-36
+ <BR/>
+h? 100.000.216-01
+ <BR/>
+h? 100.000.252-75
+ <BR/>
+h? 100.000.135-01
+ <BR/>
+h? 100.000.117-20
+ <BR/>
+</P>
+<IMG id="i-57" SRC=".\c3-nasc-100-hab.svg" NAME="c3-nasc-100-hab" />
+<H2 id="h-58">{58}(17) .\c3\nasc-100.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Nascimento de 100 pessoas.
+ <BR/>
+</P>
+<P id="p-58" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+nasc 100.000.000-19 Martijn_Antonio Abanasova_Abadzhiev M 28/07/1982
+ <BR/>
+nasc 100.000.003-61 Hanneke_Silena Abanasova_Abadzhijscka F 11/07/2002
+ <BR/>
+nasc 100.000.006-04 Olavo_Leonel Galli_Farina M 06/07/1994
+ <BR/>
+nasc 100.000.009-57 Karina_Josefa Vacadinova_Vaasileff F 26/05/2006
+ <BR/>
+nasc 100.000.012-52 Pedro_Martijn Kabacchiisci_Caruso M 01/01/2007
+ <BR/>
+nasc 100.000.015-03 Jose_Hans Abadzhijscka_Mawradinov M 08/10/1973
+ <BR/>
+nasc 100.000.018-48 Hajo_Rutger Abadzhimarinoff_Kabacchieva M 09/06/1974
+ <BR/>
+nasc 100.000.021-43 Ana_Melissa Vacadinoff_Abadzhiiscka F 05/08/1967
+ <BR/>
+nasc 100.000.024-96 Heleen_Gisela Abadzhiev_Milani F 26/06/1961
+ <BR/>
+nasc 100.000.027-39 Artur_Albertjan Martino_Ferretti M 20/01/1994
+ <BR/>
+nasc 100.000.030-34 Evelijn_Rita Vacavchiev_Rinaldi F 01/11/2005
+ <BR/>
+nasc 100.000.033-87 Bianca_Mia De_Luca_Abadghimarinowa F 16/07/1996
+ <BR/>
+nasc 100.000.036-20 Thiago_Hans Greco_Abanasov M 08/06/2012
+ <BR/>
+nasc 100.000.039-72 Karina_Hanneke Mawradinova_Bernardi F 01/03/2013
+ <BR/>
+nasc 100.000.042-78 Martijn_Eduardo Abadzhiiscka_Amato M 10/05/1985
+ <BR/>
+nasc 100.000.045-10 Catarina_Silena Daaliewa_Vacavliew F 23/03/1994
+ <BR/>
+nasc 100.000.048-63 Camiel_Helio Pacheco_Mawiew M 09/06/2006
+ <BR/>
+nasc 100.000.051-69 Thiago_Aad Abanasova_Daalow M 09/09/1984
+ <BR/>
+nasc 100.000.054-01 Aad_Artur Longo_Vitali M 20/06/2011
+ <BR/>
+nasc 100.000.057-54 Florens_Ernestina Pacheco_Mawradinoff F 15/02/2018
+ <BR/>
+nasc 100.000.060-50 Mateus_Pedro Vacadinov_Vaasilew M 21/12/1968
+ <BR/>
+nasc 100.000.063-00 Paulo_Aad Testa_Daalijski M 20/02/1965
+ <BR/>
+nasc 100.000.066-45 Mateus_Larz Guerra_Daalow M 24/08/2006
+ <BR/>
+nasc 100.000.069-98 Fernanda_Maria Kabacchiisci_Kabackchi F 05/07/2002
+ <BR/>
+nasc 100.000.072-93 Olavo_Rutger Marchetti_Dabckow M 17/11/1968
+ <BR/>
+...Listagem parcial ...<BR/>
+nasc 100.000.270-57 Joao_Helio Rizzi_Abadzhieva M 25/08/1980
+ <BR/>
+nasc 100.000.273-08 Cornelio_Luiz_Felipe Serra_Daaliewa M 16/12/1972
+ <BR/>
+nasc 100.000.276-42 Ana_Larissa Kabacchiisci_Avila F 23/04/1971
+ <BR/>
+nasc 100.000.279-95 Camila_Catarina Marini_Mawloff F 04/03/1993
+ <BR/>
+nasc 100.000.282-90 Zelia_Camila Abadzhieff_De_Rosa F 10/10/1978
+ <BR/>
+nasc 100.000.285-33 Joao_Joren Abanasoff_Kabacchiva M 01/07/1998
+ <BR/>
+nasc 100.000.288-86 Flavio_Pedro Vacadinova_Kabacchieva M 26/04/2004
+ <BR/>
+nasc 100.000.291-81 Kas_Tiago Benedetti_Kabacchiv M 22/08/2020
+ <BR/>
+nasc 100.000.294-24 Miguel_Pedro Esposito_De_Rosa M 22/10/1990
+ <BR/>
+nasc 100.000.297-77 Josefa_Iara Ricci_Abadzhiewa F 01/05/1985
+ <BR/>
+</P>
+<IMG id="i-58" SRC=".\c3-nasc-100.svg" NAME="c3-nasc-100" />
+<H2 id="h-59">{59}(18) .\c3\remocao-1-quadra-com-morad.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Remocao de 5 quadras com moradores.
+ <BR/>
+</P>
+<P id="p-59" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rq B40-2.11
+ <BR/>
+rq B30-3.13
+ <BR/>
+rq B44-10.3
+ <BR/>
+rq B32-4.22
+ <BR/>
+rq B44-3.13
+ <BR/>
+</P>
+<IMG id="i-59" SRC=".\c3-remocao-1-quadra-com-morad.svg" NAME="c3-remocao-1-quadra-com-morad" />
+<H2 id="h-60">{60}(19) .\c3\remocao-centro.qry</H2>
+<P id="nada" style="color: blue; font-family: serif; font-style: italic; font-size: 100%; line-height: 0.8; margin: 4;">
+Remove quadras no centro da cidade.
+ <BR/>
+</P>
+<P id="p-60" style="color: red; font-family: courier; font-size: 125%; line-height: 0.8;">
+rq B31-18.15
+ <BR/>
+rq B31-18.16
+ <BR/>
+rq B31-18.17
+ <BR/>
+rq B31-18.18
+ <BR/>
+rq B31-18.19
+ <BR/>
+rq B31-18.20
+ <BR/>
+rq B31-18.21
+ <BR/>
+rq B31-18.22
+ <BR/>
+rq B31-18.23
+ <BR/>
+rq B31-18.24
+ <BR/>
+rq B31-19.15
+ <BR/>
+rq B31-19.16
+ <BR/>
+rq B31-19.17
+ <BR/>
+rq B31-19.18
+ <BR/>
+rq B31-19.19
+ <BR/>
+rq B31-19.20
+ <BR/>
+rq B31-19.21
+ <BR/>
+rq B31-19.22
+ <BR/>
+rq B31-19.23
+ <BR/>
+rq B31-19.24
+ <BR/>
+rq B31-20.15
+ <BR/>
+rq B31-20.16
+ <BR/>
+rq B31-20.17
+ <BR/>
+rq B31-20.18
+ <BR/>
+rq B31-20.19
+ <BR/>
+...Listagem parcial ...<BR/>
+rq B42-2.13
+ <BR/>
+rq B42-2.14
+ <BR/>
+rq B42-2.15
+ <BR/>
+rq B42-2.16
+ <BR/>
+rq B42-2.17
+ <BR/>
+rq B42-2.18
+ <BR/>
+rq B43-1.1
+ <BR/>
+rq B43-1.2
+ <BR/>
+rq B43-2.1
+ <BR/>
+rq B43-2.2
+ <BR/>
+</P>
+<IMG id="i-60" SRC=".\c3-remocao-centro.svg" NAME="c3-remocao-centro" />
+
+<script>
+// Esta funcao sera' chamada ao clicar em um titulo
+function toggleVisibilidade(tituloId) {
+    // Extrai o numero do ID (ex: "30" de "titulo-imagem-30")
+    const numeroId = tituloId.replace('h-', '');
+
+    // Constroi os IDs do paragrafo e da imagem correspondentes
+    const paragrafoId = 'p-' + numeroId;
+    const imagemId = 'i-' + numeroId;
+
+    // Seleciona os elementos
+    const paragrafo = document.getElementById(paragrafoId);
+    const imagem = document.getElementById(imagemId);
+
+    // Alterna a classe 'esconder' nos elementos, se existirem
+    if (paragrafo) {
+        paragrafo.classList.toggle('esconder');
+    }
+    if (imagem) {
+        imagem.classList.toggle('esconder');
+    }
+}
+
+// Adiciona um ouvinte de evento de clique a todos os titulos
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona todos os H2 que comecam com "titulo-imagem-"
+    const titulos = document.querySelectorAll('h2[id^="h-"]');
+
+    titulos.forEach(function(titulo) {
+        titulo.addEventListener('click', function() {
+            // Chama a funcao passando o ID do titulo clicado
+            toggleVisibilidade(this.id);
+        });
+    });
+});
+</script> 
+
+  </BODY>
+</HTML>
