@@ -1,5 +1,5 @@
 #include "unity.h"
-#include "hash.h"
+#include "hashfile.h"
 #include <stdio.h>
 #include <stddef.h>
 
@@ -15,8 +15,7 @@ HashFile* hf;
 void setUp(void) {
     remove("teste.dir");
     remove("teste.dat");
-    hash_create("teste", sizeof(Record), offsetof(Record, id));
-    hf = hash_open("teste");
+    hf = hash_create(".", "teste", sizeof(Record), offsetof(Record, id));
 }
 
 void tearDown(void) {
