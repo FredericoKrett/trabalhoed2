@@ -18,6 +18,7 @@ Quadra* quadra_create(const char* cep, double x, double y, double width, double 
  */
 int quadra_get_record_size(void);
 int quadra_get_key_offset(void);
+int quadra_get_key_size(void);
 
 /**
  * @brief Libera a memoria alocada para a quadra original (caso nao use mais).

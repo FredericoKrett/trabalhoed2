@@ -19,6 +19,7 @@ struct HashFile {
     long* directory; 
     int record_size;
     int key_offset;
+    int key_size;
 };
 
 // Utils: Calcular tamanhos e buscar ponteiros
@@ -31,8 +32,18 @@ static inline void* get_record_ptr(void* bucket_buf, int index, HashFile* hf) {
     return records_area + (index * hf->record_size);
 }
 
-static inline int get_key(void* record_ptr, HashFile* hf) {
-    return *(int*)((char*)record_ptr + hf->key_offset);
+static inline void get_key_str(void* record_ptr, HashFile* hf, char* out_key) {
+    strncpy(out_key, (char*)record_ptr + hf->key_offset, hf->key_size);
+    out_key[hf->key_size] = '\0';
+}
+
+static int hash_djb2(const char *str) {
+    unsigned long hash = 5381;
+    int c;
+    while ((c = *str++)) {
+        hash = ((hash << 5) + hash) + c;
+    }
+    return (int)(hash & 0x7FFFFFFF);
 }
 
 // Utils: Resolucoes de caminhos
@@ -48,7 +59,7 @@ static void build_filepath(char* buffer, size_t max_len, const char* dir, const 
 // Core Functions
 // ----------------------------------------------------
 
-HashFile* hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset) {
+HashFile* hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset, int key_size) {
     if (!filename_prefix) return NULL;
     
     HashFile* hf = malloc(sizeof(HashFile));
@@ -70,6 +81,7 @@ HashFile* hash_create(const char* out_dir, const char* filename_prefix, int reco
     hf->global_depth = 0;
     hf->record_size = record_size;
     hf->key_offset = key_offset;
+    hf->key_size = key_size;
     hf->dir_size = 1;
     hf->directory = malloc(sizeof(long));
     hf->directory[0] = 0; // offset do primeiro bucket
@@ -77,6 +89,7 @@ HashFile* hash_create(const char* out_dir, const char* filename_prefix, int reco
     fwrite(&hf->global_depth, sizeof(int), 1, hf->dir_file);
     fwrite(&hf->record_size, sizeof(int), 1, hf->dir_file);
     fwrite(&hf->key_offset, sizeof(int), 1, hf->dir_file);
+    fwrite(&hf->key_size, sizeof(int), 1, hf->dir_file);
     fwrite(hf->directory, sizeof(long), hf->dir_size, hf->dir_file);
     
     HashBucketHeader b_header;
@@ -115,6 +128,7 @@ HashFile* hash_open(const char* in_dir, const char* filename_prefix) {
     fread(&hf->global_depth, sizeof(int), 1, hf->dir_file);
     fread(&hf->record_size, sizeof(int), 1, hf->dir_file);
     fread(&hf->key_offset, sizeof(int), 1, hf->dir_file);
+    fread(&hf->key_size, sizeof(int), 1, hf->dir_file);
     
     hf->dir_size = 1 << hf->global_depth;
     hf->directory = malloc(hf->dir_size * sizeof(long));
@@ -129,6 +143,7 @@ void hash_close(HashFile* hf) {
     fwrite(&hf->global_depth, sizeof(int), 1, hf->dir_file);
     fwrite(&hf->record_size, sizeof(int), 1, hf->dir_file);
     fwrite(&hf->key_offset, sizeof(int), 1, hf->dir_file);
+    fwrite(&hf->key_size, sizeof(int), 1, hf->dir_file);
     fwrite(hf->directory, sizeof(long), hf->dir_size, hf->dir_file);
     
     fclose(hf->dir_file);
@@ -196,7 +211,9 @@ static bool bucket_split(HashFile* hf, long old_bucket_offset, void* old_bucket_
     for (int i = 0; i < BUCKET_CAPACITY; i++) {
         if (!temp_active[i]) continue;
         void* rec_ptr = (char*)temp_records + (i * hf->record_size);
-        int cur_hash = get_key(rec_ptr, hf);
+        char temp_key[256];
+        get_key_str(rec_ptr, hf, temp_key);
+        int cur_hash = hash_djb2(temp_key);
         
         if ((cur_hash & bit_to_check) != 0) {
             // Vai para o novo bucket
@@ -225,8 +242,9 @@ static bool bucket_split(HashFile* hf, long old_bucket_offset, void* old_bucket_
 
 bool hash_insert(HashFile* hf, void* reg) {
     if (!hf || !reg) return false;
-    int key = get_key(reg, hf);
-    int h = key & ((1 << hf->global_depth) - 1);
+    char key_str[256];
+    get_key_str(reg, hf, key_str);
+    int h = hash_djb2(key_str) & ((1 << hf->global_depth) - 1);
     long offset = hf->directory[h];
     
     size_t full_bucket_size = get_bucket_disk_size(hf);
@@ -240,8 +258,9 @@ bool hash_insert(HashFile* hf, void* reg) {
     // Reject se existe
     for (int i = 0; i < BUCKET_CAPACITY; i++) {
         if (header->is_active[i]) {
-            int existing_key = get_key(get_record_ptr(bucket_buf, i, hf), hf);
-            if (existing_key == key) {
+            char existing_key[256];
+            get_key_str(get_record_ptr(bucket_buf, i, hf), hf, existing_key);
+            if (strncmp(existing_key, key_str, hf->key_size) == 0) {
                 free(bucket_buf);
                 return false;
             }
@@ -276,9 +295,9 @@ bool hash_insert(HashFile* hf, void* reg) {
 // Search & Delete
 // ----------------------------------------------------
 
-bool hash_search(HashFile* hf, int key, void* out_reg) {
-    if (!hf || !out_reg) return false;
-    int h = key & ((1 << hf->global_depth) - 1);
+bool hash_search(HashFile* hf, const char* key, void* out_reg) {
+    if (!hf || !out_reg || !key) return false;
+    int h = hash_djb2(key) & ((1 << hf->global_depth) - 1);
     long offset = hf->directory[h];
     
     size_t full_bucket_size = get_bucket_disk_size(hf);
@@ -292,7 +311,9 @@ bool hash_search(HashFile* hf, int key, void* out_reg) {
     for (int i = 0; i < BUCKET_CAPACITY; i++) {
         if (header->is_active[i]) {
             void* rec_ptr = get_record_ptr(bucket_buf, i, hf);
-            if (get_key(rec_ptr, hf) == key) {
+            char existing_key[256];
+            get_key_str(rec_ptr, hf, existing_key);
+            if (strncmp(existing_key, key, hf->key_size) == 0) {
                 memcpy(out_reg, rec_ptr, hf->record_size);
                 free(bucket_buf);
                 return true;
@@ -304,9 +325,9 @@ bool hash_search(HashFile* hf, int key, void* out_reg) {
     return false;
 }
 
-bool hash_delete(HashFile* hf, int key) {
-    if (!hf) return false;
-    int h = key & ((1 << hf->global_depth) - 1);
+bool hash_delete(HashFile* hf, const char* key) {
+    if (!hf || !key) return false;
+    int h = hash_djb2(key) & ((1 << hf->global_depth) - 1);
     long offset = hf->directory[h];
     
     size_t full_bucket_size = get_bucket_disk_size(hf);
@@ -319,7 +340,9 @@ bool hash_delete(HashFile* hf, int key) {
     for (int i = 0; i < BUCKET_CAPACITY; i++) {
         if (header->is_active[i]) {
             void* rec_ptr = get_record_ptr(bucket_buf, i, hf);
-            if (get_key(rec_ptr, hf) == key) {
+            char existing_key[256];
+            get_key_str(rec_ptr, hf, existing_key);
+            if (strncmp(existing_key, key, hf->key_size) == 0) {
                 // Efetua o "Tombstone" - marca como inativo apenas
                 header->is_active[i] = false;
                 header->record_count--;

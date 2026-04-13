@@ -30,6 +30,7 @@ void habitante_remove_endereco(Habitante* h);
  */
 int habitante_get_record_size(void);
 int habitante_get_key_offset(void);
+int habitante_get_key_size(void);
 
 /**
  * @brief Libera a memoria.

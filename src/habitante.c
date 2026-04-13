@@ -4,7 +4,6 @@
 #include <stddef.h>
 
 struct habitante {
-    int id_hash; // campo para Extensible Hashing
     char cpf[32];
     char nome[64];
     char sobrenome[64];
@@ -19,20 +18,11 @@ struct habitante {
     char compl[32];
 };
 
-static int hash_djb2_cpf(const char *str) {
-    unsigned long hash = 5381;
-    int c;
-    while ((c = *str++)) {
-        hash = ((hash << 5) + hash) + c;
-    }
-    return (int)(hash & 0x7FFFFFFF);
-}
+// djb2 function foi movida internamente para o HashFile.
 
 Habitante* habitante_create(const char* cpf, const char* nome, const char* sobrenome, char sexo, const char* nascimento) {
     Habitante* h = (Habitante*) calloc(1, sizeof(struct habitante));
     if (!h) return NULL;
-    
-    h->id_hash = hash_djb2_cpf(cpf);
     
     strncpy(h->cpf, cpf, sizeof(h->cpf) - 1);
     h->cpf[31] = '\0';
@@ -79,7 +69,11 @@ int habitante_get_record_size(void) {
 }
 
 int habitante_get_key_offset(void) {
-    return (int)offsetof(struct habitante, id_hash);
+    return (int)offsetof(struct habitante, cpf);
+}
+
+int habitante_get_key_size(void) {
+    return 32;
 }
 
 void habitante_free(Habitante* h) {

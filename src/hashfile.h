@@ -29,10 +29,11 @@ typedef struct HashFile HashFile;
  * @param out_dir Diretório de saída onde os arquivos serão salvos (ex: fornecido via -o). Se NULL, usa o atual.
  * @param filename_prefix Prefixo do nome dos arquivos (ex: "quadras").
  * @param record_size Tamanho em bytes de cada registro.
- * @param key_offset Distância (offset) em bytes do início do registro até o int que atua como chave.
+ * @param key_offset Distância (offset) em bytes do início do registro até o inicio da chave string.
+ * @param key_size Tamanho fixo em bytes da chave string (ex: 32).
  * @return HashFile* Ponteiro opaco para a estrutura inicializada ou NULL em erro.
  */
-HashFile* hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset);
+HashFile* hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset, int key_size);
 
 /**
  * @brief Abre arquivos de um Hash Dinâmico já existente.
@@ -55,25 +56,25 @@ HashFile* hash_open(const char* in_dir, const char* filename_prefix);
 bool hash_insert(HashFile* hf, void* reg);
 
 /**
- * @brief Busca um registro pelo seu valor de chave.
+ * @brief Busca um registro pelo valor da sua chave alfanumérica (string).
  * 
  * @param hf Ponteiro para o contexto do Hashfile.
- * @param key Chave inteira a ser buscada.
+ * @param key Chave string exata a ser buscada.
  * @param out_reg Ponteiro com memória alocada onde o conteúdo encontrado será copiado.
  * @return true Se o registro for encontrado e copiado.
  * @return false Se não encontrado.
  */
-bool hash_search(HashFile* hf, int key, void* out_reg);
+bool hash_search(HashFile* hf, const char* key, void* out_reg);
 
 /**
- * @brief Remove (tombstone) um registro do Hash.
+ * @brief Remove logicamente (tombstone) um registro do Hash pela sua chave iterativa.
  * 
  * @param hf Ponteiro para o contexto do Hashfile.
- * @param key Chave a ser removida.
+ * @param key Chave string exata a ser removida.
  * @return true Se removido com sucesso.
  * @return false Se a chave não existir.
  */
-bool hash_delete(HashFile* hf, int key);
+bool hash_delete(HashFile* hf, const char* key);
 
 /**
  * @brief Gera o arquivo legível (.hfd) contendo o estado global do diretório e buckets.

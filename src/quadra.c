@@ -5,7 +5,6 @@
 
 // Estrutura oculta no arquivo .c (TAD Opaco)
 struct quadra {
-    int id_hash; // campo 'inteiro' usado pelo nosso Extensible Hashing (hashfile.c)
     char cep[32];
     double x;
     double y;
@@ -16,22 +15,11 @@ struct quadra {
     double sw;
 };
 
-// Funcao de hash djb2
-static int hash_djb2(const char *str) {
-    unsigned long hash = 5381;
-    int c;
-    while ((c = *str++)) {
-        hash = ((hash << 5) + hash) + c; // hash * 33 + c
-    }
-    return (int)(hash & 0x7FFFFFFF);
-}
+// hash_djb2 removida deste módulo. O HashFile cuida do hashing internamente com strings.
 
 Quadra* quadra_create(const char* cep, double x, double y, double width, double height, const char* cfill, const char* cstrk, double sw) {
     Quadra* q = (Quadra*) malloc(sizeof(struct quadra));
     if (!q) return NULL;
-    
-    // Calcula a chave primaria inteira baseada na string.
-    q->id_hash = hash_djb2(cep);
     
     strncpy(q->cep, cep, sizeof(q->cep) - 1);
     q->cep[31] = '\0';
@@ -57,7 +45,11 @@ int quadra_get_record_size(void) {
 }
 
 int quadra_get_key_offset(void) {
-    return (int)offsetof(struct quadra, id_hash);
+    return (int)offsetof(struct quadra, cep);
+}
+
+int quadra_get_key_size(void) {
+    return 32; // char cep[32]
 }
 
 void quadra_free(Quadra* q) {
