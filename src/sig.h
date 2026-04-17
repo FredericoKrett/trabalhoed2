@@ -3,12 +3,11 @@
 
 /**
  * @file sig.h
- * @brief Sistema de Informacao Geografica (SIG).
- * Modulo principal responsável por gerenciar o estado da aplicacao
- * (arquivos configurados) e iniciar as estruturas sob demanda.
+ * @brief Modulo Central do Sistema
+ * Gerencia a memoria pros buffers dos parametros da execucao.
  */
 
-// TAD Opaco para esconder detalhes de implementacao (como exigido).
+// Mantido em TAD Opaco rigoroso
 typedef void* SIG;
 
 /**
@@ -27,7 +26,7 @@ void sig_set_arquivo_qry(SIG s, const char* file);
 void sig_set_arquivo_pm(SIG s, const char* file);
 
 /**
- * @brief Imprime um relatorio basico de configuracao no terminal (para auditoria e debug).
+ * @brief Mostra os buffers lidos (pra printar durante o parse/auditoria)
  */
 void sig_print_config(SIG s);
 

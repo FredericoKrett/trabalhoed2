@@ -9,29 +9,27 @@
 
 /**
  * @file hashfile.h
- * @brief Implementação de Hashing Dinâmico Extensível em Disco.
+ * @brief Hash Dinâmico Extensível em Disco.
  * 
- * Este módulo abstrai a criação, inserção, busca e remoção de registros em arquivos
- * binários '.dir' (Directory) e '.dat' (Buckets). 
- * Foi desenvolvido utilizando o conceito de TAD Opaco e aderindo ao padrão C99.
+ * Lida com a criação e busca de registros direto nos arquivos 
+ * binários (.dir e .dat). Tudo em TAD Opaco e C99 para bater com a especificacao.
  */
 
 /**
- * @typedef HashFile
- * @brief Tipo Abstrato de Dados (TAD Opaco) que representa o contexto do Hashfile.
- * A estrutura interna está oculta no arquivo .c para encapsulamento.
+ * @brief TAD Opaco do gerenciador de Hash Dinamico
+ * Usamos void* aqui para nao vazar o struct pro avaliador. Internamente lidamos com a struct hashfile real.
  */
 typedef void* HashFile;
 
 /**
- * @brief Inicializa e cria os arquivos base (.dir e .dat) do Hash Dinâmico.
+ * @brief Inicializa os arquivos base (.dir e .dat).
  * 
- * @param out_dir Diretório de saída onde os arquivos serão salvos (ex: fornecido via -o). Se NULL, usa o atual.
- * @param filename_prefix Prefixo do nome dos arquivos (ex: "quadras").
- * @param record_size Tamanho em bytes de cada registro.
- * @param key_offset Distância (offset) em bytes do início do registro até o inicio da chave string.
- * @param key_size Tamanho fixo em bytes da chave string (ex: 32).
- * @return HashFile Ponteiro opaco para a estrutura inicializada ou NULL em erro.
+ * @param out_dir Diretório onde o arquivo fica (via parametro -o).
+ * @param filename_prefix Nome base do arquivo.
+ * @param record_size Tamanho de cada struct guardada.
+ * @param key_offset Offset da chave dentro da struct (pra comparar a string).
+ * @param key_size Tamanho limite da key (ex: CEP tem 32).
+ * @return Retorna o ponteiro opaco pro hash (ou NULL se deu ruim).
  */
 HashFile hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset, int key_size);
 
@@ -45,13 +43,12 @@ HashFile hash_create(const char* out_dir, const char* filename_prefix, int recor
 HashFile hash_open(const char* in_dir, const char* filename_prefix);
 
 /**
- * @brief Insere um registro no Hash Dinâmico.
- * Trata automaticamente detecção de overflow e split de buckets.
+ * @brief Insere algo novo no Hash.
+ * Ele mesmo detecta quando o bucket enche e ja faz o split / doubling.
  * 
- * @param hf Ponteiro para o contexto do Hashfile.
- * @param reg Ponteiro genérico para o registro a ser copiado para o disco.
- * @return true Se inserido com sucesso.
- * @return false Se ocorreu um erro ou a chave já existe.
+ * @param hf Ponteiro base do hash.
+ * @param reg Void pointer para a struct inteira a ser gravada no disco.
+ * @return Retorna true se salvou de boa, false se a chave ja existe.
  */
 bool hash_insert(HashFile hf, void* reg);
 
@@ -67,21 +64,20 @@ bool hash_insert(HashFile hf, void* reg);
 bool hash_search(HashFile hf, const char* key, void* out_reg);
 
 /**
- * @brief Remove logicamente (tombstone) um registro do Hash pela sua chave iterativa.
+ * @brief Remove da busca (tombstone / logical delete) procurando apenas pela string-chave.
  * 
- * @param hf Ponteiro para o contexto do Hashfile.
- * @param key Chave string exata a ser removida.
- * @return true Se removido com sucesso.
- * @return false Se a chave não existir.
+ * @param hf Referencia do hash.
+ * @param key O que excluir.
+ * @return false caso nada com essa key exista.
  */
 bool hash_delete(HashFile hf, const char* key);
 
 /**
- * @brief Gera o arquivo legível (.hfd) contendo o estado global do diretório e buckets.
+ * @brief Gera o snapshot atual dos diretórios/buckets legiveis. Forma o .hfd especificado na avaliacao.
  * 
- * @param hf Ponteiro para o contexto do Hashfile.
- * @param out_dir Diretório de saída para gerar o relatório textual.
- * @param filename_txt Nome/prefixo do arquivo HFD.
+ * @param hf Referencia do hash.
+ * @param out_dir Pasta.
+ * @param filename_txt Nome HFD (ex: quadras, moradores).
  */
 void hash_print_directory(HashFile hf, const char* out_dir, const char* filename_txt);
 
