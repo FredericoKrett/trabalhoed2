@@ -9,7 +9,7 @@ typedef struct {
     bool is_active[BUCKET_CAPACITY];
 } HashBucketHeader;
 
-struct HashFile {
+struct hashfile {
     char dir_filename[512];
     char data_filename[512];
     FILE* dir_file;
@@ -23,16 +23,16 @@ struct HashFile {
 };
 
 // Utils: Calcular tamanhos e buscar ponteiros
-static inline size_t get_bucket_disk_size(HashFile* hf) {
+static inline size_t get_bucket_disk_size(struct hashfile* hf) {
     return sizeof(HashBucketHeader) + (BUCKET_CAPACITY * hf->record_size);
 }
 
-static inline void* get_record_ptr(void* bucket_buf, int index, HashFile* hf) {
+static inline void* get_record_ptr(void* bucket_buf, int index, struct hashfile* hf) {
     char* records_area = (char*)bucket_buf + sizeof(HashBucketHeader);
     return records_area + (index * hf->record_size);
 }
 
-static inline void get_key_str(void* record_ptr, HashFile* hf, char* out_key) {
+static inline void get_key_str(void* record_ptr, struct hashfile* hf, char* out_key) {
     strncpy(out_key, (char*)record_ptr + hf->key_offset, hf->key_size);
     out_key[hf->key_size] = '\0';
 }
@@ -59,10 +59,10 @@ static void build_filepath(char* buffer, size_t max_len, const char* dir, const 
 // Core Functions
 // ----------------------------------------------------
 
-HashFile* hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset, int key_size) {
+HashFile hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset, int key_size) {
     if (!filename_prefix) return NULL;
     
-    HashFile* hf = malloc(sizeof(HashFile));
+    struct hashfile* hf = malloc(sizeof(struct hashfile));
     if (!hf) return NULL;
 
     build_filepath(hf->dir_filename, sizeof(hf->dir_filename), out_dir, filename_prefix, ".dir");
@@ -106,10 +106,10 @@ HashFile* hash_create(const char* out_dir, const char* filename_prefix, int reco
     return hf;
 }
 
-HashFile* hash_open(const char* in_dir, const char* filename_prefix) {
+HashFile hash_open(const char* in_dir, const char* filename_prefix) {
     if (!filename_prefix) return NULL;
     
-    HashFile* hf = malloc(sizeof(HashFile));
+    struct hashfile* hf = malloc(sizeof(struct hashfile));
     if (!hf) return NULL;
 
     build_filepath(hf->dir_filename, sizeof(hf->dir_filename), in_dir, filename_prefix, ".dir");
@@ -137,7 +137,8 @@ HashFile* hash_open(const char* in_dir, const char* filename_prefix) {
     return hf;
 }
 
-void hash_close(HashFile* hf) {
+void hash_close(HashFile hf_gen) {
+    struct hashfile* hf = (struct hashfile*) hf_gen;
     if (!hf) return;
     fseek(hf->dir_file, 0, SEEK_SET);
     fwrite(&hf->global_depth, sizeof(int), 1, hf->dir_file);
@@ -156,7 +157,7 @@ void hash_close(HashFile* hf) {
 // Auxiliary Insert Logic (SRP)
 // ----------------------------------------------------
 
-static bool directory_doubling(HashFile* hf) {
+static bool directory_doubling(struct hashfile* hf) {
     int old_size = hf->dir_size;
     hf->global_depth++;
     hf->dir_size = 1 << hf->global_depth;
@@ -171,7 +172,7 @@ static bool directory_doubling(HashFile* hf) {
     return true;
 }
 
-static bool bucket_split(HashFile* hf, long old_bucket_offset, void* old_bucket_buf) {
+static bool bucket_split(struct hashfile* hf, long old_bucket_offset, void* old_bucket_buf) {
     HashBucketHeader* old_header = (HashBucketHeader*)old_bucket_buf;
     if (old_header->local_depth == hf->global_depth) {
         if (!directory_doubling(hf)) return false;
@@ -199,7 +200,7 @@ static bool bucket_split(HashFile* hf, long old_bucket_offset, void* old_bucket_
         }
     }
 
-    // Redistribuir registros (movendo para array temporario pra facilitar)
+    // Redistribuir registros 
     void* temp_records = malloc(BUCKET_CAPACITY * hf->record_size);
     bool temp_active[BUCKET_CAPACITY];
     memcpy(temp_records, (char*)old_bucket_buf + sizeof(HashBucketHeader), BUCKET_CAPACITY * hf->record_size);
@@ -240,7 +241,8 @@ static bool bucket_split(HashFile* hf, long old_bucket_offset, void* old_bucket_
     return true;
 }
 
-bool hash_insert(HashFile* hf, void* reg) {
+bool hash_insert(HashFile hf_gen, void* reg) {
+    struct hashfile* hf = (struct hashfile*) hf_gen;
     if (!hf || !reg) return false;
     char key_str[256];
     get_key_str(reg, hf, key_str);
@@ -283,7 +285,7 @@ bool hash_insert(HashFile* hf, void* reg) {
         }
     }
 
-    // Split e tentar denovo recursivamente
+    // Split e tentar de novo recursivamente
     bool split_ok = bucket_split(hf, offset, bucket_buf);
     free(bucket_buf);
     
@@ -295,7 +297,8 @@ bool hash_insert(HashFile* hf, void* reg) {
 // Search & Delete
 // ----------------------------------------------------
 
-bool hash_search(HashFile* hf, const char* key, void* out_reg) {
+bool hash_search(HashFile hf_gen, const char* key, void* out_reg) {
+    struct hashfile* hf = (struct hashfile*) hf_gen;
     if (!hf || !out_reg || !key) return false;
     int h = hash_djb2(key) & ((1 << hf->global_depth) - 1);
     long offset = hf->directory[h];
@@ -325,7 +328,8 @@ bool hash_search(HashFile* hf, const char* key, void* out_reg) {
     return false;
 }
 
-bool hash_delete(HashFile* hf, const char* key) {
+bool hash_delete(HashFile hf_gen, const char* key) {
+    struct hashfile* hf = (struct hashfile*) hf_gen;
     if (!hf || !key) return false;
     int h = hash_djb2(key) & ((1 << hf->global_depth) - 1);
     long offset = hf->directory[h];
@@ -361,7 +365,8 @@ bool hash_delete(HashFile* hf, const char* key) {
 // Directory Output
 // ----------------------------------------------------
 
-void hash_print_directory(HashFile* hf, const char* out_dir, const char* filename_txt) {
+void hash_print_directory(HashFile hf_gen, const char* out_dir, const char* filename_txt) {
+    struct hashfile* hf = (struct hashfile*) hf_gen;
     if (!hf || !filename_txt) return;
     
     char hfd_path[512];

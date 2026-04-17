@@ -18,10 +18,10 @@ struct habitante {
     char compl[32];
 };
 
-// djb2 function foi movida internamente para o HashFile.
 
-Habitante* habitante_create(const char* cpf, const char* nome, const char* sobrenome, char sexo, const char* nascimento) {
-    Habitante* h = (Habitante*) calloc(1, sizeof(struct habitante));
+
+Habitante habitante_create(const char* cpf, const char* nome, const char* sobrenome, char sexo, const char* nascimento) {
+    struct habitante* h = (struct habitante*) calloc(1, sizeof(struct habitante));
     if (!h) return NULL;
     
     strncpy(h->cpf, cpf, sizeof(h->cpf) - 1);
@@ -43,7 +43,8 @@ Habitante* habitante_create(const char* cpf, const char* nome, const char* sobre
     return h;
 }
 
-void habitante_set_endereco(Habitante* h, const char* cep, char face, double num, const char* compl) {
+void habitante_set_endereco(Habitante h_gen, const char* cep, char face, double num, const char* compl) {
+    struct habitante* h = (struct habitante*) h_gen;
     if (!h) return;
     h->is_morador = true;
     strncpy(h->cep, cep, sizeof(h->cep) - 1);
@@ -58,7 +59,8 @@ void habitante_set_endereco(Habitante* h, const char* cep, char face, double num
     }
 }
 
-void habitante_remove_endereco(Habitante* h) {
+void habitante_remove_endereco(Habitante h_gen) {
+    struct habitante* h = (struct habitante*) h_gen;
     if (!h) return;
     h->is_morador = false;
     h->cep[0] = '\0';
@@ -76,18 +78,16 @@ int habitante_get_key_size(void) {
     return 32;
 }
 
-void habitante_free(Habitante* h) {
-    free(h);
-}
+void habitante_free(Habitante h) { free(h); }
 
-const char* habitante_get_cpf(Habitante* h) { return h ? h->cpf : ""; }
-const char* habitante_get_nome(Habitante* h) { return h ? h->nome : ""; }
-const char* habitante_get_sobrenome(Habitante* h) { return h ? h->sobrenome : ""; }
-char habitante_get_sexo(Habitante* h) { return h ? h->sexo : '\0'; }
-const char* habitante_get_nascimento(Habitante* h) { return h ? h->nascimento : ""; }
+const char* habitante_get_cpf(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->cpf : ""; }
+const char* habitante_get_nome(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->nome : ""; }
+const char* habitante_get_sobrenome(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->sobrenome : ""; }
+char habitante_get_sexo(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->sexo : '\0'; }
+const char* habitante_get_nascimento(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->nascimento : ""; }
 
-bool habitante_is_morador(Habitante* h) { return h ? h->is_morador : false; }
-const char* habitante_get_cep(Habitante* h) { return h ? h->cep : ""; }
-char habitante_get_face(Habitante* h) { return h ? h->face : '\0'; }
-double habitante_get_num(Habitante* h) { return h ? h->num : 0.0; }
-const char* habitante_get_compl(Habitante* h) { return h ? h->compl : ""; }
+bool habitante_is_morador(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->is_morador : false; }
+const char* habitante_get_cep(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->cep : ""; }
+char habitante_get_face(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->face : '\0'; }
+double habitante_get_num(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->num : 0.0; }
+const char* habitante_get_compl(Habitante h) { struct habitante* _h = (struct habitante*)h; return _h ? _h->compl : ""; }

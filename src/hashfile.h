@@ -21,7 +21,7 @@
  * @brief Tipo Abstrato de Dados (TAD Opaco) que representa o contexto do Hashfile.
  * A estrutura interna está oculta no arquivo .c para encapsulamento.
  */
-typedef struct HashFile HashFile;
+typedef void* HashFile;
 
 /**
  * @brief Inicializa e cria os arquivos base (.dir e .dat) do Hash Dinâmico.
@@ -31,18 +31,18 @@ typedef struct HashFile HashFile;
  * @param record_size Tamanho em bytes de cada registro.
  * @param key_offset Distância (offset) em bytes do início do registro até o inicio da chave string.
  * @param key_size Tamanho fixo em bytes da chave string (ex: 32).
- * @return HashFile* Ponteiro opaco para a estrutura inicializada ou NULL em erro.
+ * @return HashFile Ponteiro opaco para a estrutura inicializada ou NULL em erro.
  */
-HashFile* hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset, int key_size);
+HashFile hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset, int key_size);
 
 /**
  * @brief Abre arquivos de um Hash Dinâmico já existente.
  * 
  * @param in_dir Diretório onde os arquivos estão salvos (ex: fornecido via -e). Se NULL, usa o atual.
  * @param filename_prefix Prefixo do arquivo a ser lido.
- * @return HashFile* Ponteiro opaco para a estrutura ou NULL se não encontrado.
+ * @return HashFile Ponteiro opaco para a estrutura ou NULL se não encontrado.
  */
-HashFile* hash_open(const char* in_dir, const char* filename_prefix);
+HashFile hash_open(const char* in_dir, const char* filename_prefix);
 
 /**
  * @brief Insere um registro no Hash Dinâmico.
@@ -53,7 +53,7 @@ HashFile* hash_open(const char* in_dir, const char* filename_prefix);
  * @return true Se inserido com sucesso.
  * @return false Se ocorreu um erro ou a chave já existe.
  */
-bool hash_insert(HashFile* hf, void* reg);
+bool hash_insert(HashFile hf, void* reg);
 
 /**
  * @brief Busca um registro pelo valor da sua chave alfanumérica (string).
@@ -64,7 +64,7 @@ bool hash_insert(HashFile* hf, void* reg);
  * @return true Se o registro for encontrado e copiado.
  * @return false Se não encontrado.
  */
-bool hash_search(HashFile* hf, const char* key, void* out_reg);
+bool hash_search(HashFile hf, const char* key, void* out_reg);
 
 /**
  * @brief Remove logicamente (tombstone) um registro do Hash pela sua chave iterativa.
@@ -74,7 +74,7 @@ bool hash_search(HashFile* hf, const char* key, void* out_reg);
  * @return true Se removido com sucesso.
  * @return false Se a chave não existir.
  */
-bool hash_delete(HashFile* hf, const char* key);
+bool hash_delete(HashFile hf, const char* key);
 
 /**
  * @brief Gera o arquivo legível (.hfd) contendo o estado global do diretório e buckets.
@@ -83,13 +83,13 @@ bool hash_delete(HashFile* hf, const char* key);
  * @param out_dir Diretório de saída para gerar o relatório textual.
  * @param filename_txt Nome/prefixo do arquivo HFD.
  */
-void hash_print_directory(HashFile* hf, const char* out_dir, const char* filename_txt);
+void hash_print_directory(HashFile hf, const char* out_dir, const char* filename_txt);
 
 /**
  * @brief Fecha os arquivos, grava os metadados em disco e libera a memória.
  * 
  * @param hf Ponteiro para o contexto do Hashfile.
  */
-void hash_close(HashFile* hf);
+void hash_close(HashFile hf);
 
 #endif // HASHFILE_H

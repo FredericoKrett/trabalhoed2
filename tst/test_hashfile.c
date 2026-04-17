@@ -11,7 +11,7 @@ typedef struct {
     int idade;
 } Record;
 
-HashFile* hf;
+HashFile hf;
 
 void setUp(void) {
     remove("teste.dir");
