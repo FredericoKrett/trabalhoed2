@@ -105,3 +105,37 @@ void parser_parse_pm(HashFile hf_habitantes, const char* pm_filepath) {
     }
     fclose(f);
 }
+
+void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, const char* qry_filepath, const char* txt_out_filepath) {
+    if (!qry_filepath || !txt_out_filepath || !hf_quadras || !hf_habitantes) return;
+
+    FILE* f_in = fopen(qry_filepath, "r");
+    if (!f_in) {
+        fprintf(stderr, "Erro ao abrir o arquivo QRY: %s\n", qry_filepath);
+        return;
+    }
+
+    FILE* f_out = fopen(txt_out_filepath, "w");
+    if (!f_out) {
+        fprintf(stderr, "Erro ao criar o arquivo TXT: %s\n", txt_out_filepath);
+        fclose(f_in);
+        return;
+    }
+
+    char line[512];
+    while (fgets(line, sizeof(line), f_in)) {
+        char type[16];
+        if (sscanf(line, "%15s", type) != 1) continue;
+
+        if (strcmp(type, "mud") == 0) {
+            fprintf(f_out, "O comando 'mud' foi lido, mas a logica ainda sera implementada no proximo passo: %s", line);
+        } else if (strcmp(type, "pq") == 0) {
+            fprintf(f_out, "O comando 'pq' foi lido, mas a logica ainda sera implementada no proximo passo: %s", line);
+        } else {
+            fprintf(f_out, "Registro/Comando lido (%s), ignorando...\n", type);
+        }
+    }
+
+    fclose(f_in);
+    fclose(f_out);
+}

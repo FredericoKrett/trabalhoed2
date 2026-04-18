@@ -26,6 +26,18 @@ static char* duplicate_string(const char* src) {
     return dst;
 }
 
+static void get_filename_no_ext(const char* path, char* out) {
+    if (!path) { out[0] = '\0'; return; }
+    const char* last_slash = strrchr(path, '/');
+    const char* last_bslash = strrchr(path, '\\');
+    const char* base = path;
+    if (last_slash && last_slash > base) base = last_slash + 1;
+    if (last_bslash && last_bslash > base) base = last_bslash + 1;
+    strcpy(out, base);
+    char* ext = strrchr(out, '.');
+    if (ext) *ext = '\0';
+}
+
 SIG sig_create(void) {
     struct sig* s = (struct sig*)calloc(1, sizeof(struct sig));
     return s;
@@ -111,6 +123,31 @@ void sig_init_files(SIG s_gen) {
         }
         printf("Interpretando %s...\n", path);
         parser_parse_pm(s->hash_pessoas, path);
+    }
+
+    if (s->arquivo_qry && s->hash_quadras && s->hash_pessoas) {
+        char qry_path[1024];
+        if (s->base_entrada) {
+            sprintf(qry_path, "%s/%s", s->base_entrada, s->arquivo_qry);
+        } else {
+            strcpy(qry_path, s->arquivo_qry);
+        }
+
+        char txt_path[1024];
+        char geo_name[128] = "out";
+        char qry_name[128] = "qry";
+        
+        get_filename_no_ext(s->arquivo_geo, geo_name);
+        get_filename_no_ext(s->arquivo_qry, qry_name);
+
+        if (s->base_saida) {
+            sprintf(txt_path, "%s/%s-%s.txt", s->base_saida, geo_name, qry_name);
+        } else {
+            sprintf(txt_path, "%s-%s.txt", geo_name, qry_name);
+        }
+
+        printf("Interpretando consultas QRY em %s (saida TXT em %s)...\n", qry_path, txt_path);
+        parser_parse_qry(s->hash_quadras, s->hash_pessoas, qry_path, txt_path);
     }
 }
 
