@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stddef.h>
 
-// Estrutura oculta no arquivo .c (TAD Opaco)
+// Estrutura oculta no arquivo .c
 struct quadra {
     char cep[32];
     double x;
@@ -15,7 +15,6 @@ struct quadra {
     double sw;
 };
 
-// hash_djb2 removida deste módulo. O HashFile cuida do hashing internamente com strings.
 
 Quadra quadra_create(const char* cep, double x, double y, double width, double height, const char* cfill, const char* cstrk, double sw) {
     struct quadra* q = (struct quadra*) malloc(sizeof(struct quadra));

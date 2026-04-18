@@ -24,13 +24,13 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // Mostra como ficou a extracao pro avaliador ver
+    // Mostra como ficou a extracao
     sig_print_config(sig);
 
     // (Futuro) - Construtor de arquivos e Hash
     sig_init_files(sig);
 
-    // Finaliza (libera TODA a memoria, importante)
+    // Finaliza (libera TODA a memoria)
     sig_destroy(sig);
 
     return 0;

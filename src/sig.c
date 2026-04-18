@@ -3,12 +3,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "hashfile.h"
+#include "parser.h"
+#include "quadra.h"
+#include "habitante.h"
+
 struct sig {
     char* base_entrada;
     char* base_saida;
     char* arquivo_geo;
     char* arquivo_qry;
     char* arquivo_pm;
+
+    HashFile hash_quadras;
+    HashFile hash_pessoas;
 };
 
 static char* duplicate_string(const char* src) {
@@ -65,14 +73,55 @@ void sig_print_config(SIG s_gen) {
 }
 
 void sig_init_files(SIG s_gen) {
-    (void)s_gen; // Stub para evitar warning de unused parameter
-    // Stub para compor caminhos e inicializar hashfiles
-    printf("Inicializando o motor SIG...\n");
+    struct sig* s = (struct sig*) s_gen;
+
+    printf("Inicializando o motor SIG e tabelas Hash...\n");
+
+    s->hash_quadras = hash_create(s->base_saida, "quadras", 
+                                  quadra_get_record_size(), 
+                                  quadra_get_key_offset(), 
+                                  quadra_get_key_size());
+
+    s->hash_pessoas = hash_create(s->base_saida, "pessoas", 
+                                  habitante_get_record_size(), 
+                                  habitante_get_key_offset(), 
+                                  habitante_get_key_size());
+
+    if (!s->hash_quadras || !s->hash_pessoas) {
+        fprintf(stderr, "Aviso: Falha ao inicializar o armazenamento persistente.\n");
+    }
+
+    if (s->arquivo_geo && s->hash_quadras) {
+        char path[1024];
+        if (s->base_entrada) {
+            sprintf(path, "%s/%s", s->base_entrada, s->arquivo_geo);
+        } else {
+            strcpy(path, s->arquivo_geo);
+        }
+        printf("Interpretando %s...\n", path);
+        parser_parse_geo(s->hash_quadras, path);
+    }
+
+    if (s->arquivo_pm && s->hash_pessoas) {
+        char path[1024];
+        if (s->base_entrada) {
+            sprintf(path, "%s/%s", s->base_entrada, s->arquivo_pm);
+        } else {
+            strcpy(path, s->arquivo_pm);
+        }
+        printf("Interpretando %s...\n", path);
+        parser_parse_pm(s->hash_pessoas, path);
+    }
 }
 
 void sig_destroy(SIG s_gen) {
     struct sig* s = (struct sig*) s_gen;
     if (!s) return;
+    
+    // Finaliza as conexoes com o HashFile
+    if (s->hash_quadras) hash_close(s->hash_quadras);
+    if (s->hash_pessoas) hash_close(s->hash_pessoas);
+
     free(s->base_entrada);
     free(s->base_saida);
     free(s->arquivo_geo);

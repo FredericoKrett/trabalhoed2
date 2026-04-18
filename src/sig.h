@@ -6,8 +6,6 @@
  * @brief Modulo Central do Sistema
  * Gerencia a memoria pros buffers dos parametros da execucao.
  */
-
-// Mantido em TAD Opaco rigoroso
 typedef void* SIG;
 
 /**

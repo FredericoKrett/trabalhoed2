@@ -12,12 +12,11 @@
  * @brief Hash Dinâmico Extensível em Disco.
  * 
  * Lida com a criação e busca de registros direto nos arquivos 
- * binários (.dir e .dat). Tudo em TAD Opaco e C99 para bater com a especificacao.
+ * binários (.dir e .dat).
  */
 
 /**
  * @brief TAD Opaco do gerenciador de Hash Dinamico
- * Usamos void* aqui para nao vazar o struct pro avaliador. Internamente lidamos com a struct hashfile real.
  */
 typedef void* HashFile;
 
@@ -29,7 +28,7 @@ typedef void* HashFile;
  * @param record_size Tamanho de cada struct guardada.
  * @param key_offset Offset da chave dentro da struct (pra comparar a string).
  * @param key_size Tamanho limite da key (ex: CEP tem 32).
- * @return Retorna o ponteiro opaco pro hash (ou NULL se deu ruim).
+ * @return Retorna o ponteiro opaco pro hash.
  */
 HashFile hash_create(const char* out_dir, const char* filename_prefix, int record_size, int key_offset, int key_size);
 
@@ -48,7 +47,7 @@ HashFile hash_open(const char* in_dir, const char* filename_prefix);
  * 
  * @param hf Ponteiro base do hash.
  * @param reg Void pointer para a struct inteira a ser gravada no disco.
- * @return Retorna true se salvou de boa, false se a chave ja existe.
+ * @return Retorna true se salvou, false se a chave ja existe.
  */
 bool hash_insert(HashFile hf, void* reg);
 
@@ -73,7 +72,7 @@ bool hash_search(HashFile hf, const char* key, void* out_reg);
 bool hash_delete(HashFile hf, const char* key);
 
 /**
- * @brief Gera o snapshot atual dos diretórios/buckets legiveis. Forma o .hfd especificado na avaliacao.
+ * @brief Gera o snapshot atual dos diretórios/buckets legiveis.
  * 
  * @param hf Referencia do hash.
  * @param out_dir Pasta.
