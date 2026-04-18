@@ -128,9 +128,9 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, const char* q
         if (sscanf(line, "%15s", type) != 1) continue;
 
         if (strcmp(type, "mud") == 0) {
-            fprintf(f_out, "O comando 'mud' foi lido, mas a logica ainda sera implementada no proximo passo: %s", line);
+            fprintf(f_out, "O comando 'mud' foi lido, mas a logica ainda sera implementada\n");
         } else if (strcmp(type, "pq") == 0) {
-            fprintf(f_out, "O comando 'pq' foi lido, mas a logica ainda sera implementada no proximo passo: %s", line);
+            fprintf(f_out, "O comando 'pq' foi lido, mas a logica ainda sera implementada\n");
         } else {
             fprintf(f_out, "Registro/Comando lido (%s), ignorando...\n", type);
         }
