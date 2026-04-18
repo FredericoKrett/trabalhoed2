@@ -1,0 +1,16 @@
+# Forçar o GitHub a ignorar arquivos de configuração e entrada nas estatísticas
+*.geo linguist-documentation
+*.pm linguist-documentation
+*.tst linguist-documentation
+*.qry linguist-documentation
+
+# Marcar a pasta de testes e de saída como 'vendored' (não conta no gráfico)
+testes/* linguist-vendored
+testes/** linguist-vendored
+tst/* linguist-vendored
+tst/** linguist-vendored
+saida_teste_1/* linguist-vendored
+
+# Garantir que arquivos .dat e .exe não sejam lidos como código
+*.dat linguist-generated
+*.exe filter=lfs diff=nosubs -merge
