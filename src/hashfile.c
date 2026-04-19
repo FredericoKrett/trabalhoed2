@@ -395,3 +395,32 @@ void hash_print_directory(HashFile hf_gen, const char* out_dir, const char* file
     free(bucket_buf);
     fclose(txt);
 }
+
+void hash_for_each(HashFile hf_gen, HashIteratorFunc callback, void* context) {
+    struct hashfile* hf = (struct hashfile*) hf_gen;
+    if (!hf || !callback) return;
+
+    size_t full_bucket_size = get_bucket_disk_size(hf);
+    void* bucket_buf = malloc(full_bucket_size);
+    if (!bucket_buf) return;
+
+    // Vai pro inicio do .dat
+    fseek(hf->data_file, 0, SEEK_SET);
+
+    while (fread(bucket_buf, full_bucket_size, 1, hf->data_file) == 1) {
+        HashBucketHeader* header = (HashBucketHeader*)bucket_buf;
+        
+        // Ignora buckets vazios pra acelerar
+        if (header->record_count == 0) continue;
+
+        for (int i = 0; i < BUCKET_CAPACITY; i++) {
+            if (header->is_active[i]) {
+                void* rec_ptr = get_record_ptr(bucket_buf, i, hf);
+                // Call back repassando um ponteiro para os dados
+                callback(rec_ptr, context);
+            }
+        }
+    }
+
+    free(bucket_buf);
+}

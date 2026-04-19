@@ -87,4 +87,16 @@ void hash_print_directory(HashFile hf, const char* out_dir, const char* filename
  */
 void hash_close(HashFile hf);
 
+/**
+ * @brief Itera por todos os registros validos no arquivo Hash.
+ * Esta funcao permite buscar e gerar os relatorios mesmo num
+ * banco nao estruturado.
+ * 
+ * @param hf O HashFile atual
+ * @param callback Ponteiro de funcao invocado com cada struct opaca lida
+ * @param context Contexto generico para acumular o resultado do iterador
+ */
+typedef void (*HashIteratorFunc)(void* record, void* context);
+void hash_for_each(HashFile hf, HashIteratorFunc callback, void* context);
+
 #endif // HASHFILE_H
