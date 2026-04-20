@@ -7,6 +7,7 @@
 #include "parser.h"
 #include "quadra.h"
 #include "habitante.h"
+#include "svg.h"
 
 struct sig {
     char* base_entrada;
@@ -125,6 +126,18 @@ void sig_init_files(SIG s_gen) {
         parser_parse_pm(s->hash_pessoas, path);
     }
 
+    char geo_name[128] = "out";
+    if (s->arquivo_geo) {
+        get_filename_no_ext(s->arquivo_geo, geo_name);
+        char base_svg_path[1024];
+        if (s->base_saida) sprintf(base_svg_path, "%s/%s.svg", s->base_saida, geo_name);
+        else sprintf(base_svg_path, "%s.svg", geo_name);
+        
+        Svg base_svg = svg_create();
+        svg_render_and_close(base_svg, s->hash_quadras, NULL, base_svg_path);
+        printf("Mapa base exportado em: %s\n", base_svg_path);
+    }
+
     if (s->arquivo_qry && s->hash_quadras && s->hash_pessoas) {
         char qry_path[1024];
         if (s->base_entrada) {
@@ -134,20 +147,27 @@ void sig_init_files(SIG s_gen) {
         }
 
         char txt_path[1024];
-        char geo_name[128] = "out";
         char qry_name[128] = "qry";
         
-        get_filename_no_ext(s->arquivo_geo, geo_name);
         get_filename_no_ext(s->arquivo_qry, qry_name);
+
+        char qry_svg_path[1024];
 
         if (s->base_saida) {
             sprintf(txt_path, "%s/%s-%s.txt", s->base_saida, geo_name, qry_name);
+            sprintf(qry_svg_path, "%s/%s-%s.svg", s->base_saida, geo_name, qry_name);
         } else {
             sprintf(txt_path, "%s-%s.txt", geo_name, qry_name);
+            sprintf(qry_svg_path, "%s-%s.svg", geo_name, qry_name);
         }
 
         printf("Interpretando consultas QRY em %s (saida TXT em %s)...\n", qry_path, txt_path);
-        parser_parse_qry(s->hash_quadras, s->hash_pessoas, qry_path, txt_path);
+        
+        Svg qry_svg = svg_create();
+        parser_parse_qry(s->hash_quadras, s->hash_pessoas, qry_svg, qry_path, txt_path);
+        
+        svg_render_and_close(qry_svg, s->hash_quadras, s->hash_pessoas, qry_svg_path);
+        printf("Mapa QRY exportado em: %s\n", qry_svg_path);
     }
 }
 
@@ -156,8 +176,14 @@ void sig_destroy(SIG s_gen) {
     if (!s) return;
     
     // Finaliza as conexoes com o HashFile
-    if (s->hash_quadras) hash_close(s->hash_quadras);
-    if (s->hash_pessoas) hash_close(s->hash_pessoas);
+    if (s->hash_quadras) {
+        hash_print_directory(s->hash_quadras, s->base_saida, "quadras");
+        hash_close(s->hash_quadras);
+    }
+    if (s->hash_pessoas) {
+        hash_print_directory(s->hash_pessoas, s->base_saida, "pessoas");
+        hash_close(s->hash_pessoas);
+    }
 
     free(s->base_entrada);
     free(s->base_saida);

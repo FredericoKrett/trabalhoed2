@@ -2,6 +2,7 @@
 #define PARSER_H
 
 #include "hashfile.h"
+#include "svg.h"
 
 /**
  * @file parser.h
@@ -39,9 +40,10 @@ void parser_parse_pm(HashFile hf_habitantes, const char* pm_filepath);
  * 
  * @param hf_quadras HashFile para acessar e modificar Quadras.
  * @param hf_habitantes HashFile para acessar e modificar Habitantes.
+ * @param svg Instancia isolada para escrever tags de overlays.
  * @param qry_filepath Caminho para ler o arquivo .qry
  * @param txt_out_filepath Caminho para escrever o relatorio gerado.
  */
-void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, const char* qry_filepath, const char* txt_out_filepath);
+void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, const char* qry_filepath, const char* txt_out_filepath);
 
 #endif // PARSER_H

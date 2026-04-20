@@ -4,6 +4,7 @@
 #include "parser.h"
 #include "quadra.h"
 #include "habitante.h"
+#include "svg.h"
 
 void parser_parse_geo(HashFile hf_quadras, const char* geo_filepath) {
     if (!geo_filepath || !hf_quadras) return;
@@ -109,6 +110,8 @@ void parser_parse_pm(HashFile hf_habitantes, const char* pm_filepath) {
 typedef struct {
     FILE* txt;
     HashFile hf_habitantes;
+    HashFile hf_quadras;
+    Svg svg;
     
     int hab_totais;
     int hab_m;
@@ -155,7 +158,7 @@ static void rq_callback(void* rec, void* ctx_gen) {
     }
 }
 
-void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, const char* qry_filepath, const char* txt_out_filepath) {
+void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, const char* qry_filepath, const char* txt_out_filepath) {
     if (!qry_filepath || !txt_out_filepath || !hf_quadras || !hf_habitantes) return;
 
     FILE* f_in = fopen(qry_filepath, "r");
@@ -186,6 +189,17 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, const char* q
                    habitante_set_endereco((Habitante)buffer, cep, face, num, compl);
                    hash_delete(hf_habitantes, cpf);
                    hash_insert(hf_habitantes, buffer);
+                   
+                   // Evento grafico da Mudanca de Endereco
+                   double dx = 0, dy = 0;
+                   void* qbuf = calloc(1, quadra_get_record_size());
+                   if(hash_search(hf_quadras, cep, qbuf)) {
+                       quadra_get_anchor((Quadra)qbuf, &dx, &dy);
+                   }
+                   free(qbuf);
+                   char svg_txt[256];
+                   sprintf(svg_txt, "<rect x=\"%.2f\" y=\"%.2f\" width=\"20\" height=\"10\" fill=\"none\" stroke=\"red\"/><text x=\"%.2f\" y=\"%.2f\" font-size=\"7\" fill=\"red\">%s</text>", dx-10, dy-5, dx-10, dy+3, cpf);
+                   svg_add_overlay(svg, svg_txt);
                }
                free(buffer);
             }
@@ -210,6 +224,15 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, const char* q
                     habitante_remove_endereco(h);
                     hash_delete(hf_habitantes, cpf);
                     hash_insert(hf_habitantes, h);
+                    
+                    // Evento grafico do despejo
+                    double dx = 0, dy = 0;
+                    void* qbuf = calloc(1, quadra_get_record_size());
+                    if(hash_search(hf_quadras, habitante_get_cep(h), qbuf)) quadra_get_anchor((Quadra)qbuf, &dx, &dy);
+                    free(qbuf);
+                    char svg_txt[256];
+                    sprintf(svg_txt, "<circle cx=\"%.2f\" cy=\"%.2f\" r=\"5\" fill=\"black\"/>", dx, dy);
+                    svg_add_overlay(svg, svg_txt);
                 }
                 free(buffer);
             }
@@ -224,6 +247,15 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, const char* q
                             cpf, habitante_get_nome(h), habitante_get_sobrenome(h));
                     if(habitante_is_morador(h)) {
                         fprintf(f_out, "  L Residia em: %s Face %c Num %.1f\n", habitante_get_cep(h), habitante_get_face(h), habitante_get_num(h));
+                        
+                        double dx = 0, dy = 0;
+                        void* qbuf = calloc(1, quadra_get_record_size());
+                        if(hash_search(hf_quadras, habitante_get_cep(h), qbuf)) quadra_get_anchor((Quadra)qbuf, &dx, &dy);
+                        free(qbuf);
+                        char svg_txt[256];
+                        sprintf(svg_txt, "<path d=\"M%.2f,%.2f L%.2f,%.2f M%.2f,%.2f L%.2f,%.2f\" stroke=\"red\" stroke-width=\"2\"/>",
+                                dx-5, dy, dx+5, dy, dx, dy-5, dx, dy+5);
+                        svg_add_overlay(svg, svg_txt);
                     }
                     hash_delete(hf_habitantes, cpf);
                 }
@@ -255,8 +287,19 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, const char* q
                 QryContext ctx = {0};
                 ctx.txt = f_out;
                 ctx.hf_habitantes = hf_habitantes;
+                ctx.svg = svg;
                 strncpy(ctx.target_cep, cep, 63);
                 hash_for_each(hf_habitantes, rq_callback, &ctx);
+                
+                // SVG Evento 'rq' cruza 
+                double qx = 0, qy = 0;
+                void* qbuf = calloc(1, quadra_get_record_size());
+                if(hash_search(hf_quadras, cep, qbuf)) quadra_get_anchor((Quadra)qbuf, &qx, &qy);
+                free(qbuf);
+                char svg_txt[256];
+                sprintf(svg_txt, "<text x=\"%.2f\" y=\"%.2f\" font-family=\"Arial\" font-size=\"14\" fill=\"red\" text-anchor=\"middle\">X</text>", qx, qy);
+                svg_add_overlay(svg, svg_txt);
+                
                 hash_delete(hf_quadras, cep);
                 fprintf(f_out, "Quadra removida do HashFile!\n");
             }
