@@ -73,6 +73,33 @@ static void draw_quadra_cb(void* record, void* ctx_file) {
     fprintf(f, "        text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"%s\" opacity=\"0.5\">%s</text>\n", cstrk, cep);
 }
 
+struct bbox {
+    double min_x, min_y, max_x, max_y;
+    int has_item;
+};
+
+static void compute_bbox_cb(void* record, void* ctx) {
+    struct bbox* b = (struct bbox*)ctx;
+    Quadra q = (Quadra)record;
+    double x = quadra_get_x(q);
+    double y = quadra_get_y(q);
+    double w = quadra_get_w(q);
+    double h = quadra_get_h(q);
+
+    if (!b->has_item) {
+        b->min_x = x;
+        b->max_x = x + w;
+        b->min_y = y;
+        b->max_y = y + h;
+        b->has_item = 1;
+    } else {
+        if (x < b->min_x) b->min_x = x;
+        if (y < b->min_y) b->min_y = y;
+        if (x + w > b->max_x) b->max_x = x + w;
+        if (y + h > b->max_y) b->max_y = y + h;
+    }
+}
+
 void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas, const char* filepath) {
     if (!svg_gen || !filepath) return;
     struct svg* s = (struct svg*)svg_gen;
@@ -84,14 +111,30 @@ void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas,
         return;
     }
 
-    // Cabecalho Global
-    fprintf(f, "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
+    struct bbox b = {0, 0, 0, 0, 0};
+    if (hf_quadras) {
+        hash_for_each(hf_quadras, compute_bbox_cb, &b);
+    }
+
+    if (b.has_item) {
+        // Adds margin
+        double margin = 100.0;
+        b.min_x -= margin;
+        b.min_y -= margin;
+        b.max_x += margin;
+        b.max_y += margin;
+    } else {
+        b.min_x = 0; b.min_y = 0; b.max_x = 1000; b.max_y = 1000;
+    }
+
+    // Cabecalho Global com o ViewBox
+    fprintf(f, "<svg viewBox=\"%.2f %.2f %.2f %.2f\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n", 
+            b.min_x, b.min_y, (b.max_x - b.min_x), (b.max_y - b.min_y));
 
     // 1. Z-Order Layer (Fundo): Quadras
     if (hf_quadras) {
         hash_for_each(hf_quadras, draw_quadra_cb, f);
     }
-
 
     // 2. Z-Order Layer (Topo): Overlays
     struct overlay_node* curr = s->overlay_head;

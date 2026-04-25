@@ -15,7 +15,10 @@ ted: $(CORE_SRC) $(MAIN_SRC)
 projeto: ted
 
 run: ted
-	./ted -e testes/t1 -f c1.geo -pm c1.pm -o saida_teste_1
+	mkdir -p saida_teste_1_base saida_teste_1_mudanca saida_teste_1_mudanca_verif
+	./ted -e testes/t1 -f c1.geo -pm c1.pm -o saida_teste_1_base
+	./ted -e testes/t1 -f c1.geo -pm c1.pm -q c1/mudanca-todos-moradores.qry -o saida_teste_1_mudanca
+	./ted -e testes/t1 -f c1.geo -pm c1.pm -q c1/mudanca-todos-moradores-com-verif.qry -o saida_teste_1_mudanca_verif
 
 # ===== Testes ======
 test: test_hashfile test_svg
@@ -32,3 +35,6 @@ test_svg: $(CORE_SRC) $(TST_SVG) $(UNITY)
 
 clean:
 	rm -f *.dat *.dir test_hashfile test_svg ted projeto.exe *.svg
+
+run_all: ted
+	powershell -ExecutionPolicy Bypass -File run_tests.ps1

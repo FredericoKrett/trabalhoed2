@@ -123,7 +123,14 @@ typedef struct {
     int st_m;
     int st_f;
     
+    int moradores_N;
+    int moradores_S;
+    int moradores_L;
+    int moradores_O;
+    
     char target_cep[64];
+    char cpfs_afetados[1000][64]; // Anota quem vai ser despejado
+    int qtd_afetados;
 } QryContext;
 
 static void censo_callback(void* rec, void* ctx_gen) {
@@ -148,13 +155,27 @@ static void censo_callback(void* rec, void* ctx_gen) {
 static void rq_callback(void* rec, void* ctx_gen) {
     QryContext* ctx = (QryContext*)ctx_gen;
     Habitante h = (Habitante)rec;
+    
     if (habitante_is_morador(h) && strcmp(habitante_get_cep(h), ctx->target_cep) == 0) {
         fprintf(ctx->txt, "Morador afetado (agora sem-teto) | CPF: %s | Nome: %s %s\n", 
                 habitante_get_cpf(h), habitante_get_nome(h), habitante_get_sobrenome(h));
         
-        habitante_remove_endereco(h);
-        hash_delete(ctx->hf_habitantes, habitante_get_cpf(h)); 
-        hash_insert(ctx->hf_habitantes, h);
+        strcpy(ctx->cpfs_afetados[ctx->qtd_afetados], habitante_get_cpf(h));
+        ctx->qtd_afetados++;
+    }
+}
+
+static void pq_callback(void* rec, void* ctx_gen) {
+    QryContext* ctx = (QryContext*)ctx_gen;
+    Habitante h = (Habitante)rec;
+    
+    // Conta os moradores por face
+    if (habitante_is_morador(h) && strcmp(habitante_get_cep(h), ctx->target_cep) == 0) {
+        char face = habitante_get_face(h);
+        if (face == 'N') ctx->moradores_N++;
+        else if (face == 'S') ctx->moradores_S++;
+        else if (face == 'L') ctx->moradores_L++;
+        else if (face == 'O') ctx->moradores_O++;
     }
 }
 
@@ -280,22 +301,34 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
                 free(buffer);
             }
         }
-        else if (strcmp(type, "rq") == 0) {
+else if (strcmp(type, "rq") == 0) {
             char cep[64];
             if (sscanf(line, "%*s %63s", cep) == 1) {
                 fprintf(f_out, "\nRemovendo Quadra: %s\n", cep);
                 QryContext ctx = {0};
                 ctx.txt = f_out;
-                ctx.hf_habitantes = hf_habitantes;
-                ctx.svg = svg;
                 strncpy(ctx.target_cep, cep, 63);
+                
+                // 1. Itera cegamente e anota
                 hash_for_each(hf_habitantes, rq_callback, &ctx);
                 
-                // SVG Evento 'rq' cruza 
+                // 2. Com a iteracao finalizada, modifica o disco em seguranca
+                for(int i = 0; i < ctx.qtd_afetados; i++) {
+                    void* buffer = calloc(1, habitante_get_record_size());
+                    if(hash_search(hf_habitantes, ctx.cpfs_afetados[i], buffer)){
+                        habitante_remove_endereco((Habitante)buffer);
+                        hash_delete(hf_habitantes, ctx.cpfs_afetados[i]); 
+                        hash_insert(hf_habitantes, buffer);
+                    }
+                    free(buffer);
+                }
+                
+                // 3. Marca no SVG e exclui a quadra
                 double qx = 0, qy = 0;
                 void* qbuf = calloc(1, quadra_get_record_size());
                 if(hash_search(hf_quadras, cep, qbuf)) quadra_get_anchor((Quadra)qbuf, &qx, &qy);
                 free(qbuf);
+                
                 char svg_txt[256];
                 sprintf(svg_txt, "<text x=\"%.2f\" y=\"%.2f\" font-family=\"Arial\" font-size=\"14\" fill=\"red\" text-anchor=\"middle\">X</text>", qx, qy);
                 svg_add_overlay(svg, svg_txt);
@@ -305,7 +338,41 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
             }
         }
         else if (strcmp(type, "pq") == 0) {
-            
+            char cep[64];
+            if (sscanf(line, "%*s %63s", cep) == 1) {
+                QryContext ctx = {0};
+                strncpy(ctx.target_cep, cep, 63);
+                
+                // Itera para contar
+                hash_for_each(hf_habitantes, pq_callback, &ctx);
+                
+                double qx = 0, qy = 0, w = 0, h = 0;
+                void* qbuf = calloc(1, quadra_get_record_size());
+                if(hash_search(hf_quadras, cep, qbuf)) {
+                    quadra_get_anchor((Quadra)qbuf, &qx, &qy);
+                    w = quadra_get_w((Quadra)qbuf);
+                    h = quadra_get_h((Quadra)qbuf);
+                }
+                free(qbuf);
+                
+                int total = ctx.moradores_N + ctx.moradores_S + ctx.moradores_L + ctx.moradores_O;
+                
+                // Injeta os textos no SVG (usando proporcoes relativas a ancora/tamanho da quadra)
+                char svg_txt[512];
+                sprintf(svg_txt, 
+                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"10\" fill=\"blue\" text-anchor=\"middle\">%d</text>"  // Total (centro)
+                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"8\" fill=\"black\" text-anchor=\"middle\">%d</text>" // N
+                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"8\" fill=\"black\" text-anchor=\"middle\">%d</text>" // S
+                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"8\" fill=\"black\" text-anchor=\"start\">%d</text>"  // L
+                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"8\" fill=\"black\" text-anchor=\"end\">%d</text>",   // O
+                    qx - w/2, qy - h/2, total,
+                    qx - w/2, qy - h + 10, ctx.moradores_N,
+                    qx - w/2, qy - 2, ctx.moradores_S,
+                    qx - w + 2, qy - h/2, ctx.moradores_L,
+                    qx - 2, qy - h/2, ctx.moradores_O
+                );
+                svg_add_overlay(svg, svg_txt);
+            }
         }
         else if (strcmp(type, "censo") == 0) {
             QryContext ctx = {0};
