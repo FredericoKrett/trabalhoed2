@@ -6,7 +6,7 @@
 
 // Lista simplesmente encadeada no C para Overlays dinâmicos
 struct overlay_node {
-    char data[256];
+    char* data;
     struct overlay_node* next;
 };
 
@@ -25,7 +25,10 @@ void svg_add_overlay(Svg svg_gen, const char* str) {
     struct svg* s = (struct svg*)svg_gen;
 
     struct overlay_node* node = (struct overlay_node*)calloc(1, sizeof(struct overlay_node));
-    strncpy(node->data, str, 255);
+    node->data = malloc(strlen(str) + 1);
+    if (node->data) {
+        strcpy(node->data, str);
+    }
 
     if (!s->overlay_head) {
         s->overlay_head = node;
@@ -44,6 +47,7 @@ void svg_free(Svg svg_gen) {
     while (curr) {
         struct overlay_node* tmp = curr;
         curr = curr->next;
+        if (tmp->data) free(tmp->data);
         free(tmp);
     }
     free(s);
@@ -127,6 +131,27 @@ void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas,
         b.min_x = 0; b.min_y = 0; b.max_x = 1000; b.max_y = 1000;
     }
 
+    // Expand bounding box for overlays if any
+    struct overlay_node* curr_b = s->overlay_head;
+    while (curr_b) {
+        double ox = 0, oy = 0, ow = 0, oh = 0;
+        char* rect_ptr = strstr(curr_b->data, "<rect");
+        if (rect_ptr) {
+            char* x_ptr = strstr(rect_ptr, "x=\"");
+            if (x_ptr) ox = atof(x_ptr + 3);
+            char* y_ptr = strstr(rect_ptr, "y=\"");
+            if (y_ptr) oy = atof(y_ptr + 3);
+            char* w_ptr = strstr(rect_ptr, "width=\"");
+            if (w_ptr) ow = atof(w_ptr + 7);
+            char* h_ptr = strstr(rect_ptr, "height=\"");
+            if (h_ptr) oh = atof(h_ptr + 8);
+            
+            if (ox + ow > b.max_x) b.max_x = ox + ow + 50.0;
+            if (oy + oh > b.max_y) b.max_y = oy + oh + 50.0;
+        }
+        curr_b = curr_b->next;
+    }
+
     // Cabecalho Global com o ViewBox
     fprintf(f, "<svg viewBox=\"%.2f %.2f %.2f %.2f\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n", 
             b.min_x, b.min_y, (b.max_x - b.min_x), (b.max_y - b.min_y));
@@ -139,7 +164,10 @@ void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas,
     // 2. Z-Order Layer (Topo): Overlays
     struct overlay_node* curr = s->overlay_head;
     while (curr) {
-        fprintf(f, "  %s\n", curr->data);
+        if (curr->data) {
+            fprintf(f, "  %s\n", curr->data);
+            free(curr->data);
+        }
         struct overlay_node* tmp = curr;
         curr = curr->next;
         free(tmp);

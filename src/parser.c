@@ -133,6 +133,28 @@ typedef struct {
     int qtd_afetados;
 } QryContext;
 
+static void find_max_x_cb(void* rec, void* ctx) {
+    Quadra q = (Quadra)rec;
+    double x = quadra_get_x(q) + quadra_get_w(q);
+    double* max_x = (double*)ctx;
+    if (x > *max_x) *max_x = x;
+}
+
+static void draw_out_box(Svg svg, double map_max_x, int* out_count, const char* cpf, const char* text, const char* fill, const char* text_color) {
+    double ox = map_max_x + 30.0 + (*out_count % 10) * 110.0;
+    double oy = (*out_count / 10) * 60.0;
+    char svg_txt[512];
+    sprintf(svg_txt, 
+        "<rect width=\"100.000000\" height=\"50.000000\" x=\"%.2f\" y=\"%.2f\" fill=\"%s\" stroke=\"black\" stroke-width=\"1\" fill-opacity=\"1.000000\" rx=\"20.000000\" ry=\"20.000000\" />\n"
+        "<text x=\"%.2f\" y=\"%.2f\" fill=\"%s\" stroke=\"%s\" font-size=\"14\" text-anchor=\"middle\">%s</text>\n"
+        "<text x=\"%.2f\" y=\"%.2f\" fill=\"%s\" stroke=\"%s\" font-size=\"9\" text-anchor=\"middle\">%s</text>",
+        ox, oy, fill,
+        ox + 50.0, oy + 12.0, text_color, text_color, text,
+        ox + 50.0, oy + 28.0, text_color, text_color, cpf);
+    svg_add_overlay(svg, svg_txt);
+    (*out_count)++;
+}
+
 static void censo_callback(void* rec, void* ctx_gen) {
     QryContext* ctx = (QryContext*)ctx_gen;
     Habitante h = (Habitante)rec;
@@ -195,6 +217,10 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
         return;
     }
 
+    double map_max_x = 0.0;
+    hash_for_each(hf_quadras, find_max_x_cb, &map_max_x);
+    int out_count = 0;
+
     char line[512];
     while (fgets(line, sizeof(line), f_in)) {
         char type[16];
@@ -242,18 +268,23 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
                     Habitante h = (Habitante)buffer;
                     fprintf(f_out, "Despejo -> CPF: %s | End antigo: %s Face %c Num %.1f\n", 
                             cpf, habitante_get_cep(h), habitante_get_face(h), habitante_get_num(h));
+                    
+                    // Evento grafico do despejo
+                    if (habitante_is_morador(h)) {
+                        double dx = 0, dy = 0;
+                        void* qbuf = calloc(1, quadra_get_record_size());
+                        if(hash_search(hf_quadras, habitante_get_cep(h), qbuf)) quadra_get_anchor((Quadra)qbuf, &dx, &dy);
+                        free(qbuf);
+                        char svg_txt[256];
+                        sprintf(svg_txt, "<circle cx=\"%.2f\" cy=\"%.2f\" r=\"5\" fill=\"black\"/>", dx, dy);
+                        svg_add_overlay(svg, svg_txt);
+                    } else {
+                        draw_out_box(svg, map_max_x, &out_count, cpf, "OUT", "#828062", "#F4EED7");
+                    }
+                    
                     habitante_remove_endereco(h);
                     hash_delete(hf_habitantes, cpf);
                     hash_insert(hf_habitantes, h);
-                    
-                    // Evento grafico do despejo
-                    double dx = 0, dy = 0;
-                    void* qbuf = calloc(1, quadra_get_record_size());
-                    if(hash_search(hf_quadras, habitante_get_cep(h), qbuf)) quadra_get_anchor((Quadra)qbuf, &dx, &dy);
-                    free(qbuf);
-                    char svg_txt[256];
-                    sprintf(svg_txt, "<circle cx=\"%.2f\" cy=\"%.2f\" r=\"5\" fill=\"black\"/>", dx, dy);
-                    svg_add_overlay(svg, svg_txt);
                 }
                 free(buffer);
             }
@@ -296,6 +327,7 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
                                 habitante_get_cep(h), habitante_get_face(h), habitante_get_num(h), habitante_get_compl(h));
                     } else {
                         fprintf(f_out, "  L Sem-teto\n");
+                        draw_out_box(svg, map_max_x, &out_count, cpf, ":::", "#e9afaf", "#55d400");
                     }
                 }
                 free(buffer);
