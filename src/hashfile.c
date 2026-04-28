@@ -9,6 +9,13 @@ typedef struct {
     bool is_active[BUCKET_CAPACITY];
 } HashBucketHeader;
 
+typedef struct {
+    long old_offset;
+    long new_offset;
+    int new_local_depth;
+    int global_depth;
+} SplitEvent;
+
 struct hashfile {
     char dir_filename[512];
     char data_filename[512];
@@ -20,6 +27,9 @@ struct hashfile {
     int record_size;
     int key_offset;
     int key_size;
+    SplitEvent* split_events;
+    int split_count;
+    int split_capacity;
 };
 
 // Utils: Calcular tamanhos e buscar ponteiros
@@ -46,6 +56,24 @@ static int hash_djb2(const char *str) {
     return (int)(hash & 0x7FFFFFFF);
 }
 
+static void record_split_event(struct hashfile* hf, long old_offset, long new_offset, int new_local_depth) {
+    if (!hf) return;
+
+    if (hf->split_count == hf->split_capacity) {
+        int new_capacity = hf->split_capacity == 0 ? 32 : hf->split_capacity * 2;
+        SplitEvent* new_events = realloc(hf->split_events, new_capacity * sizeof(SplitEvent));
+        if (!new_events) return;
+        hf->split_events = new_events;
+        hf->split_capacity = new_capacity;
+    }
+
+    hf->split_events[hf->split_count].old_offset = old_offset;
+    hf->split_events[hf->split_count].new_offset = new_offset;
+    hf->split_events[hf->split_count].new_local_depth = new_local_depth;
+    hf->split_events[hf->split_count].global_depth = hf->global_depth;
+    hf->split_count++;
+}
+
 // Utils: Resolucoes de caminhos
 static void build_filepath(char* buffer, size_t max_len, const char* dir, const char* prefix, const char* ext) {
     if (dir && strlen(dir) > 0) {
@@ -65,8 +93,8 @@ HashFile hash_create(const char* out_dir, const char* filename_prefix, int recor
     struct hashfile* hf = malloc(sizeof(struct hashfile));
     if (!hf) return NULL;
 
-    build_filepath(hf->dir_filename, sizeof(hf->dir_filename), out_dir, filename_prefix, ".dir");
-    build_filepath(hf->data_filename, sizeof(hf->data_filename), out_dir, filename_prefix, ".dat");
+    build_filepath(hf->dir_filename, sizeof(hf->dir_filename), out_dir, filename_prefix, ".hfc");
+    build_filepath(hf->data_filename, sizeof(hf->data_filename), out_dir, filename_prefix, ".hf");
 
     hf->dir_file = fopen(hf->dir_filename, "w+b");
     hf->data_file = fopen(hf->data_filename, "w+b");
@@ -82,6 +110,9 @@ HashFile hash_create(const char* out_dir, const char* filename_prefix, int recor
     hf->record_size = record_size;
     hf->key_offset = key_offset;
     hf->key_size = key_size;
+    hf->split_events = NULL;
+    hf->split_count = 0;
+    hf->split_capacity = 0;
     hf->dir_size = 1;
     hf->directory = malloc(sizeof(long));
     hf->directory[0] = 0; // offset do primeiro bucket
@@ -112,8 +143,8 @@ HashFile hash_open(const char* in_dir, const char* filename_prefix) {
     struct hashfile* hf = malloc(sizeof(struct hashfile));
     if (!hf) return NULL;
 
-    build_filepath(hf->dir_filename, sizeof(hf->dir_filename), in_dir, filename_prefix, ".dir");
-    build_filepath(hf->data_filename, sizeof(hf->data_filename), in_dir, filename_prefix, ".dat");
+    build_filepath(hf->dir_filename, sizeof(hf->dir_filename), in_dir, filename_prefix, ".hfc");
+    build_filepath(hf->data_filename, sizeof(hf->data_filename), in_dir, filename_prefix, ".hf");
 
     hf->dir_file = fopen(hf->dir_filename, "r+b");
     hf->data_file = fopen(hf->data_filename, "r+b");
@@ -129,6 +160,9 @@ HashFile hash_open(const char* in_dir, const char* filename_prefix) {
     fread(&hf->record_size, sizeof(int), 1, hf->dir_file);
     fread(&hf->key_offset, sizeof(int), 1, hf->dir_file);
     fread(&hf->key_size, sizeof(int), 1, hf->dir_file);
+    hf->split_events = NULL;
+    hf->split_count = 0;
+    hf->split_capacity = 0;
     
     hf->dir_size = 1 << hf->global_depth;
     hf->directory = malloc(hf->dir_size * sizeof(long));
@@ -150,6 +184,7 @@ void hash_close(HashFile hf_gen) {
     fclose(hf->dir_file);
     fclose(hf->data_file);
     free(hf->directory);
+    free(hf->split_events);
     free(hf);
 }
 
@@ -235,6 +270,8 @@ static bool bucket_split(struct hashfile* hf, long old_bucket_offset, void* old_
     fwrite(old_bucket_buf, full_bucket_size, 1, hf->data_file);
     fseek(hf->data_file, new_bucket_offset, SEEK_SET);
     fwrite(new_bucket_buf, full_bucket_size, 1, hf->data_file);
+
+    record_split_event(hf, old_bucket_offset, new_bucket_offset, old_header->local_depth);
 
     free(temp_records);
     free(new_bucket_buf);
@@ -378,6 +415,15 @@ void hash_print_directory(HashFile hf_gen, const char* out_dir, const char* file
     fprintf(txt, "Global Depth: %d\n", hf->global_depth);
     fprintf(txt, "Directory Size: %d\n", hf->dir_size);
     fprintf(txt, "Bucket Capacity: %d\n", BUCKET_CAPACITY);
+    fprintf(txt, "Bucket Expansions: %d\n", hf->split_count);
+    for (int i = 0; i < hf->split_count; i++) {
+        fprintf(txt, "Expansion[%d] old_offset=%ld new_offset=%ld local_depth=%d global_depth=%d\n",
+                i,
+                hf->split_events[i].old_offset,
+                hf->split_events[i].new_offset,
+                hf->split_events[i].new_local_depth,
+                hf->split_events[i].global_depth);
+    }
     
     size_t full_bucket_size = get_bucket_disk_size(hf);
     void* bucket_buf = malloc(full_bucket_size);
@@ -410,7 +456,7 @@ void hash_for_each(HashFile hf_gen, HashIteratorFunc callback, void* context) {
     while (fread(bucket_buf, full_bucket_size, 1, hf->data_file) == 1) {
         HashBucketHeader* header = (HashBucketHeader*)bucket_buf;
         
-        // Ignora buckets vazios pra acelerar
+        // Buckets sem registros ativos nao disparam callbacks.
         if (header->record_count == 0) continue;
 
         for (int i = 0; i < BUCKET_CAPACITY; i++) {
