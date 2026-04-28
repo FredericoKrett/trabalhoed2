@@ -1,9 +1,18 @@
 * text=auto eol=lf
 
+*.c linguist-language=C
+*.h linguist-language=C
+
 *.geo linguist-documentation
 *.pm linguist-documentation
 *.qry linguist-documentation
 
+exemplos/** linguist-vendored
+pdfs/** linguist-documentation
+testes/** linguist-vendored
+tst/unity/** linguist-vendored
+
+*.html linguist-vendored
 *.pdf binary
 *.exe binary
 ted binary

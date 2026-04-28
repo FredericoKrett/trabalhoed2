@@ -17,6 +17,7 @@ test_output.svg
 parser_test.geo
 parser_test.pm
 
+.codex_tmp/
 
 exemplos/
 pdfs/
