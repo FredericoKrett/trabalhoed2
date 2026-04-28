@@ -14,8 +14,8 @@ typedef struct {
 HashFile hf;
 
 void setUp(void) {
-    remove("teste.dir");
-    remove("teste.dat");
+    remove("teste.hfc");
+    remove("teste.hf");
     hf = hash_create(".", "teste", sizeof(Record), offsetof(Record, id), 32);
 }
 
