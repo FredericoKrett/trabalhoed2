@@ -1,13 +1,16 @@
+* text=auto eol=lf
+
 *.geo linguist-documentation
 *.pm linguist-documentation
-*.tst linguist-documentation
 *.qry linguist-documentation
 
-testes/* linguist-vendored
-testes/** linguist-vendored
-tst/* linguist-vendored
-tst/** linguist-vendored
-saida_teste_1/* linguist-vendored
+*.pdf binary
+*.exe binary
+ted binary
 
 *.dat linguist-generated
-*.exe filter=lfs diff=nosubs -merge
+*.dir linguist-generated
+*.hf linguist-generated
+*.hfc linguist-generated
+*.hfd linguist-generated
+*.svg linguist-generated
