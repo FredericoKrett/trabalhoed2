@@ -67,14 +67,10 @@ static void draw_quadra_cb(void* record, void* ctx_file) {
     const char* cstrk = quadra_get_cstrk(q);
     double sw = quadra_get_sw(q);
 
-    // Ajuste de "none" se houver para algo padronizado no SVG, ou passar direto
-    // A tag <rect> em si:
-    fprintf(f, "  <rect x=\"%.2f\" y=\"%.2f\" width=\"%.2f\" height=\"%.2f\"\n", x, y, w, h);
-    fprintf(f, "        style=\"fill:%s;stroke:%s;stroke-width:%.1f\" />\n", cfill, cstrk, sw);
-
-    // A tag <text> com o CEP centralizado. Para centralizar a fonte:
-    fprintf(f, "  <text x=\"%.2f\" y=\"%.2f\" font-family=\"Arial\" font-size=\"12\"\n", x + (w / 2.0), y + (h / 2.0));
-    fprintf(f, "        text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"%s\" opacity=\"0.5\">%s</text>\n", cstrk, cep);
+    fprintf(f, "  <rect id=\"%s\" x=\"%.6f\" y=\"%.6f\" width=\"%.6f\" height=\"%.6f\" fill=\"%s\" stroke=\"%s\" fill-opacity=\"0.8\" stroke-width=\"%.1fpx\" />\n",
+            cep, x, y, w, h, cfill, cstrk, sw);
+    fprintf(f, "  <text x=\"%.6f\" y=\"%.6f\" fill=\"%s\" stroke=\"black\" font-size=\"12\">%s</text>\n",
+            x + 5.0, y + 9.0, cstrk, cep);
 }
 
 struct bbox {
@@ -106,6 +102,7 @@ static void compute_bbox_cb(void* record, void* ctx) {
 
 void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas, const char* filepath) {
     if (!svg_gen || !filepath) return;
+    (void)hf_pessoas;
     struct svg* s = (struct svg*)svg_gen;
 
     FILE* f = fopen(filepath, "w");
@@ -152,16 +149,13 @@ void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas,
         curr_b = curr_b->next;
     }
 
-    // Cabecalho Global com o ViewBox
     fprintf(f, "<svg viewBox=\"%.2f %.2f %.2f %.2f\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n", 
             b.min_x, b.min_y, (b.max_x - b.min_x), (b.max_y - b.min_y));
 
-    // 1. Z-Order Layer (Fundo): Quadras
     if (hf_quadras) {
         hash_for_each(hf_quadras, draw_quadra_cb, f);
     }
 
-    // 2. Z-Order Layer (Topo): Overlays
     struct overlay_node* curr = s->overlay_head;
     while (curr) {
         if (curr->data) {
@@ -176,7 +170,6 @@ void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas,
     fprintf(f, "</svg>\n");
     fclose(f);
 
-    // Limpa a struct base
     s->overlay_head = NULL;
     s->overlay_tail = NULL;
     free(s);
