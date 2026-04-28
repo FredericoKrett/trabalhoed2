@@ -5,7 +5,7 @@
 
 /**
  * @file habitante.h
- * @brief Implementacao do dominio de Habitante e Endereco (Morador).
+ * @brief TAD opaco para habitantes e respectivos enderecos.
  */
 
 typedef void* Habitante;
@@ -26,7 +26,7 @@ void habitante_set_endereco(Habitante h, const char* cep, char face, double num,
 void habitante_remove_endereco(Habitante h);
 
 /**
- * @brief Funcoes utilitarias de metadados para amarracao com o HashFile.
+ * @brief Metadados necessarios para persistencia em HashFile.
  */
 int habitante_get_record_size(void);
 int habitante_get_key_offset(void);
@@ -37,14 +37,14 @@ int habitante_get_key_size(void);
  */
 void habitante_free(Habitante h);
 
-// Getters basicos
+/* Consultas dos dados pessoais. */
 const char* habitante_get_cpf(Habitante h);
 const char* habitante_get_nome(Habitante h);
 const char* habitante_get_sobrenome(Habitante h);
 char habitante_get_sexo(Habitante h);
 const char* habitante_get_nascimento(Habitante h);
 
-// Getters de Moradia
+/* Consultas dos dados de moradia. */
 bool habitante_is_morador(Habitante h);
 const char* habitante_get_cep(Habitante h);
 char habitante_get_face(Habitante h);

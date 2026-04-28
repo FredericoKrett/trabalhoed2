@@ -71,3 +71,33 @@ void quadra_get_anchor(Quadra q, double* out_x, double* out_y) {
     if (out_x) *out_x = _q->x + _q->w; // canto sudeste (x+w)
     if (out_y) *out_y = _q->y + _q->h; // canto sudeste (y+h, assumindo viewbox svg)
 }
+
+void quadra_get_address_point(Quadra q, char face, double num, double* out_x, double* out_y) {
+    struct quadra* _q = (struct quadra*)q;
+    if (!_q) return;
+
+    double x = _q->x + _q->w;
+    double y = _q->y + _q->h;
+
+    switch (face) {
+        case 'N':
+            x = _q->x + _q->w - num;
+            y = _q->y + _q->h;
+            break;
+        case 'S':
+            x = _q->x + _q->w - num;
+            y = _q->y;
+            break;
+        case 'L':
+            x = _q->x + _q->w;
+            y = _q->y + num;
+            break;
+        case 'O':
+            x = _q->x;
+            y = _q->y + num;
+            break;
+    }
+
+    if (out_x) *out_x = x;
+    if (out_y) *out_y = y;
+}

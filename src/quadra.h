@@ -14,7 +14,7 @@ typedef void* Quadra;
 Quadra quadra_create(const char* cep, double x, double y, double width, double height, const char* cfill, const char* cstrk, double sw);
 
 /**
- * @brief Funcoes utilitarias de metadados para amarracao com o HashFile.
+ * @brief Metadados necessarios para persistencia em HashFile.
  */
 int quadra_get_record_size(void);
 int quadra_get_key_offset(void);
@@ -40,5 +40,10 @@ double quadra_get_sw(Quadra q);
  * Usado para calculos de distancia nos comandos do relatorio.
  */
 void quadra_get_anchor(Quadra q, double* out_x, double* out_y);
+
+/**
+ * @brief Calcula o ponto real de um endereco numa face da quadra.
+ */
+void quadra_get_address_point(Quadra q, char face, double num, double* out_x, double* out_y);
 
 #endif // QUADRA_H
