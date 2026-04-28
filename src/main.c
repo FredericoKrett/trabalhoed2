@@ -4,10 +4,8 @@
 #include "sig.h"
 
 int main(int argc, char* argv[]) {
-    // Instancia o novo modulo SIG para gerenciar o projeto
     SIG sig = sig_create();
 
-    // Faz o parse manual de cada string dos argumentos
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-e") == 0 && i + 1 < argc) {
             sig_set_base_entrada(sig, argv[++i]);
@@ -24,13 +22,8 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // Mostra como ficou a extracao
     sig_print_config(sig);
-
-    // (Futuro) - Construtor de arquivos e Hash
     sig_init_files(sig);
-
-    // Finaliza (libera TODA a memoria)
     sig_destroy(sig);
 
     return 0;

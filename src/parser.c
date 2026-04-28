@@ -6,6 +6,28 @@
 #include "habitante.h"
 #include "svg.h"
 
+static char parse_face_token(const char* token) {
+    if (!token || token[0] == '\0') return '\0';
+
+    const char* dot = strrchr(token, '.');
+    char face = (dot && dot[1] != '\0') ? dot[1] : token[0];
+    if (face == 'W') return 'L';
+    if (face == 'E') return 'O';
+    return face;
+}
+
+static void get_qry_address_point(Quadra q, const char* face_token, char face, double num, double* out_x, double* out_y) {
+    if (!q) return;
+
+    if (face_token && strncmp(face_token, "Face.", 5) == 0) {
+        if (out_x) *out_x = quadra_get_x(q) + quadra_get_w(q);
+        if (out_y) *out_y = quadra_get_y(q) + num;
+        return;
+    }
+
+    quadra_get_address_point(q, face, num, out_x, out_y);
+}
+
 void parser_parse_geo(HashFile hf_quadras, const char* geo_filepath) {
     if (!geo_filepath || !hf_quadras) return;
 
@@ -29,7 +51,7 @@ void parser_parse_geo(HashFile hf_quadras, const char* geo_filepath) {
             sw_str[0] = '\0';
             current_cstrk[0] = '\0';
             current_cfill[0] = '\0';
-            sscanf(line, "%*s %31s %63s %63s", sw_str, current_cstrk, current_cfill);
+            sscanf(line, "%*s %31s %63s %63s", sw_str, current_cfill, current_cstrk);
             
             // Remove o sufixo "px" se existir na espessura
             char *px = strstr(sw_str, "px");
@@ -78,16 +100,12 @@ void parser_parse_pm(HashFile hf_habitantes, const char* pm_filepath) {
                 }
             }
         } else if (strcmp(type, "m") == 0) {
-            char cpf[64], cep[64], compl[64];
-            char face;
+            char cpf[64], cep[64], face_token[32], compl[64];
             double num;
-            // Considerando o formato: m <cpf> <cep> <face> <num> <compl>
-            // A leitura eh controlada por sscanf para ser limpa e direta
-            if (sscanf(line, "%*s %63s %63s %c %lf %63s", cpf, cep, &face, &num, compl) >= 4) {
-                // Caso falhe de ler o compemento, limpa.
-                if (sscanf(line, "%*s %*s %*s %*c %*s %63s", compl) != 1) {
-                    compl[0] = '\0';
-                }
+            int read = sscanf(line, "%*s %63s %63s %31s %lf %63s", cpf, cep, face_token, &num, compl);
+            if (read >= 4) {
+                char face = parse_face_token(face_token);
+                if (read < 5) compl[0] = '\0';
                 
                 void* buffer = calloc(1, habitante_get_record_size());
                 if (buffer) {
@@ -144,7 +162,7 @@ static void draw_out_box(Svg svg, double map_max_x, int* out_count, const char* 
     double ox = map_max_x + 30.0 + (*out_count % 10) * 110.0;
     double oy = (*out_count / 10) * 60.0;
     char svg_txt[512];
-    sprintf(svg_txt, 
+    snprintf(svg_txt, sizeof(svg_txt),
         "<rect width=\"100.000000\" height=\"50.000000\" x=\"%.2f\" y=\"%.2f\" fill=\"%s\" stroke=\"black\" stroke-width=\"1\" fill-opacity=\"1.000000\" rx=\"20.000000\" ry=\"20.000000\" />\n"
         "<text x=\"%.2f\" y=\"%.2f\" fill=\"%s\" stroke=\"%s\" font-size=\"14\" text-anchor=\"middle\">%s</text>\n"
         "<text x=\"%.2f\" y=\"%.2f\" fill=\"%s\" stroke=\"%s\" font-size=\"9\" text-anchor=\"middle\">%s</text>",
@@ -153,6 +171,75 @@ static void draw_out_box(Svg svg, double map_max_x, int* out_count, const char* 
         ox + 50.0, oy + 28.0, text_color, text_color, cpf);
     svg_add_overlay(svg, svg_txt);
     (*out_count)++;
+}
+
+static void draw_removed_quadra(Svg svg, Quadra q) {
+    if (!svg || !q) return;
+
+    double x = quadra_get_x(q);
+    double y = quadra_get_y(q);
+    double w = quadra_get_w(q);
+    double h = quadra_get_h(q);
+    char svg_txt[512];
+    snprintf(svg_txt, sizeof(svg_txt),
+        "<rect width=\"%.6f\" height=\"%.6f\" x=\"%.6f\" y=\"%.6f\" fill=\"white\" stroke=\"red\" stroke-width=\"1\" fill-opacity=\"0.500000\" rx=\"0.000000\" ry=\"0.000000\" />\n"
+        "<line x1=\"%.6f\" y1=\"%.6f\" x2=\"%.6f\" y2=\"%.6f\" stroke=\"red\" stroke-width=\"1\" stroke-opacity=\"0.500000\" />\n"
+        "<line x1=\"%.6f\" y1=\"%.6f\" x2=\"%.6f\" y2=\"%.6f\" stroke=\"red\" stroke-width=\"1\" stroke-opacity=\"0.500000\" />",
+        w, h, x, y,
+        x, y, x + w, y + h,
+        x, y + h, x + w, y);
+    svg_add_overlay(svg, svg_txt);
+}
+
+static void draw_pq_markers(Svg svg, Quadra q) {
+    if (!svg || !q) return;
+
+    double x = quadra_get_x(q);
+    double y = quadra_get_y(q);
+    double w = quadra_get_w(q);
+    double h = quadra_get_h(q);
+    char svg_txt[1024];
+    snprintf(svg_txt, sizeof(svg_txt),
+        "<rect width=\"10.000000\" height=\"10.000000\" x=\"%.6f\" y=\"%.6f\" fill=\"red\" stroke=\"red\" stroke-width=\"1\" fill-opacity=\"0.300000\" rx=\"0.000000\" ry=\"0.000000\" stroke-dasharray=\"1, 1\" />\n"
+        "<rect width=\"10.000000\" height=\"10.000000\" x=\"%.6f\" y=\"%.6f\" fill=\"red\" stroke=\"red\" stroke-width=\"1\" fill-opacity=\"0.300000\" rx=\"0.000000\" ry=\"0.000000\" stroke-dasharray=\"1, 1\" />\n"
+        "<rect width=\"10.000000\" height=\"10.000000\" x=\"%.6f\" y=\"%.6f\" fill=\"red\" stroke=\"red\" stroke-width=\"1\" fill-opacity=\"0.300000\" rx=\"0.000000\" ry=\"0.000000\" stroke-dasharray=\"1, 1\" />\n"
+        "<rect width=\"10.000000\" height=\"10.000000\" x=\"%.6f\" y=\"%.6f\" fill=\"red\" stroke=\"red\" stroke-width=\"1\" fill-opacity=\"0.300000\" rx=\"0.000000\" ry=\"0.000000\" stroke-dasharray=\"1, 1\" />\n"
+        "<rect width=\"15.000000\" height=\"15.000000\" x=\"%.6f\" y=\"%.6f\" fill=\"red\" stroke=\"red\" stroke-width=\"1\" fill-opacity=\"0.300000\" rx=\"0.000000\" ry=\"0.000000\" stroke-dasharray=\"1, 1\" />",
+        x + 2.0, y + h / 2.0 - 5.0,
+        x + w - 12.0, y + h / 2.0 - 5.0,
+        x + w / 2.0 - 5.0, y + 2.0,
+        x + w / 2.0 - 5.0, y + h - 12.0,
+        x + w / 2.0 - 7.5, y + h / 2.0 - 7.5);
+    svg_add_overlay(svg, svg_txt);
+}
+
+static void draw_mud_marker(Svg svg, double x, double y, const char* cpf, int mud_count) {
+    if (!svg || !cpf) return;
+
+    double tx = x;
+    double ty = y - 120.0 - (mud_count * 18.0);
+    if (mud_count % 2 == 1) {
+        tx = x - 220.0 - (mud_count * 18.0);
+        ty = y;
+    }
+
+    char svg_txt[1024];
+    snprintf(svg_txt, sizeof(svg_txt),
+        "<circle cx=\"%.6f\" cy=\"%.6f\" r=\"2.500000\" stroke-opacity=\"0.5\" fill=\"none\" stroke=\"red\" stroke-width=\"2\" />\n"
+        "<circle cx=\"%.6f\" cy=\"%.6f\" r=\"5.000000\" stroke-opacity=\"0.5\" fill=\"none\" stroke=\"yellow\" stroke-width=\"2\" />\n"
+        "<circle cx=\"%.6f\" cy=\"%.6f\" r=\"7.500000\" stroke-opacity=\"0.5\" fill=\"none\" stroke=\"magenta\" stroke-width=\"2\" />\n"
+        "<circle cx=\"%.6f\" cy=\"%.6f\" r=\"10.000000\" stroke-opacity=\"0.5\" fill=\"none\" stroke=\"red\" stroke-width=\"2\" />\n"
+        "<circle cx=\"%.6f\" cy=\"%.6f\" r=\"12.500000\" stroke-opacity=\"0.5\" fill=\"none\" stroke=\"yellow\" stroke-width=\"2\" />\n"
+        "<text x=\"%.6f\" y=\"%.6f\" fill=\"red\" stroke=\"black\" font-size=\"10\">%s</text>\n"
+        "<line x1=\"%.6f\" y1=\"%.6f\" x2=\"%.6f\" y2=\"%.6f\" stroke=\"red\" stroke-width=\"2\" stroke-opacity=\"1.000000\" stroke-dasharray=\"5,5\" />",
+        x, y,
+        x, y,
+        x, y,
+        x, y,
+        x, y,
+        tx, ty, cpf,
+        x, y, tx, ty);
+    svg_add_overlay(svg, svg_txt);
 }
 
 static void censo_callback(void* rec, void* ctx_gen) {
@@ -220,6 +307,7 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
     double map_max_x = 0.0;
     hash_for_each(hf_quadras, find_max_x_cb, &map_max_x);
     int out_count = 0;
+    int mud_count = 0;
 
     char line[512];
     while (fgets(line, sizeof(line), f_in)) {
@@ -227,10 +315,12 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
         if (sscanf(line, "%15s", type) != 1) continue;
 
         if (strcmp(type, "mud") == 0) {
-            char cpf[64], cep[64], compl[64];
-            char face; double num;
-            if (sscanf(line, "%*s %63s %63s %c %lf %63s", cpf, cep, &face, &num, compl) >= 4) {
-               if (sscanf(line, "%*s %*s %*s %*c %*s %63s", compl) != 1) compl[0] = '\0';
+            char cpf[64], cep[64], face_token[32], compl[64];
+            double num;
+            int read = sscanf(line, "%*s %63s %63s %31s %lf %63s", cpf, cep, face_token, &num, compl);
+            if (read >= 4) {
+               char face = parse_face_token(face_token);
+               if (read < 5) compl[0] = '\0';
                void* buffer = calloc(1, habitante_get_record_size());
                if(hash_search(hf_habitantes, cpf, buffer)){
                    habitante_set_endereco((Habitante)buffer, cep, face, num, compl);
@@ -241,12 +331,10 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
                    double dx = 0, dy = 0;
                    void* qbuf = calloc(1, quadra_get_record_size());
                    if(hash_search(hf_quadras, cep, qbuf)) {
-                       quadra_get_anchor((Quadra)qbuf, &dx, &dy);
+                       get_qry_address_point((Quadra)qbuf, face_token, face, num, &dx, &dy);
+                       draw_mud_marker(svg, dx, dy, cpf, mud_count++);
                    }
                    free(qbuf);
-                   char svg_txt[256];
-                   sprintf(svg_txt, "<rect x=\"%.2f\" y=\"%.2f\" width=\"20\" height=\"10\" fill=\"none\" stroke=\"red\"/><text x=\"%.2f\" y=\"%.2f\" font-size=\"7\" fill=\"red\">%s</text>", dx-10, dy-5, dx-10, dy+3, cpf);
-                   svg_add_overlay(svg, svg_txt);
                }
                free(buffer);
             }
@@ -256,8 +344,11 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
             char sexo;
             if (sscanf(line, "%*s %63s %63s %63s %c %63s", cpf, nome, sobre, &sexo, nasc) == 5) {
                 Habitante h = habitante_create(cpf, nome, sobre, sexo, nasc);
-                hash_insert(hf_habitantes, h);
-                habitante_free(h);
+                if (h) {
+                    hash_insert(hf_habitantes, h);
+                    draw_out_box(svg, map_max_x, &out_count, cpf, "***", "#AAAAFF", "#000080");
+                    habitante_free(h);
+                }
             }
         }
         else if (strcmp(type, "dspj") == 0) {
@@ -270,17 +361,7 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
                             cpf, habitante_get_cep(h), habitante_get_face(h), habitante_get_num(h));
                     
                     // Evento grafico do despejo
-                    if (habitante_is_morador(h)) {
-                        double dx = 0, dy = 0;
-                        void* qbuf = calloc(1, quadra_get_record_size());
-                        if(hash_search(hf_quadras, habitante_get_cep(h), qbuf)) quadra_get_anchor((Quadra)qbuf, &dx, &dy);
-                        free(qbuf);
-                        char svg_txt[256];
-                        sprintf(svg_txt, "<circle cx=\"%.2f\" cy=\"%.2f\" r=\"5\" fill=\"black\"/>", dx, dy);
-                        svg_add_overlay(svg, svg_txt);
-                    } else {
-                        draw_out_box(svg, map_max_x, &out_count, cpf, "OUT", "#828062", "#F4EED7");
-                    }
+                    draw_out_box(svg, map_max_x, &out_count, cpf, "OUT", "#786721", "#F4EED7");
                     
                     habitante_remove_endereco(h);
                     hash_delete(hf_habitantes, cpf);
@@ -299,19 +380,11 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
                             cpf, habitante_get_nome(h), habitante_get_sobrenome(h));
                     if(habitante_is_morador(h)) {
                         fprintf(f_out, "  L Residia em: %s Face %c Num %.1f\n", habitante_get_cep(h), habitante_get_face(h), habitante_get_num(h));
-                        
-                        double dx = 0, dy = 0;
-                        void* qbuf = calloc(1, quadra_get_record_size());
-                        if(hash_search(hf_quadras, habitante_get_cep(h), qbuf)) quadra_get_anchor((Quadra)qbuf, &dx, &dy);
-                        free(qbuf);
-                        char svg_txt[256];
-                        sprintf(svg_txt, "<path d=\"M%.2f,%.2f L%.2f,%.2f M%.2f,%.2f L%.2f,%.2f\" stroke=\"red\" stroke-width=\"2\"/>",
-                                dx-5, dy, dx+5, dy, dx, dy-5, dx, dy+5);
-                        svg_add_overlay(svg, svg_txt);
                     }
                     hash_delete(hf_habitantes, cpf);
                 }
                 free(buffer);
+                draw_out_box(svg, map_max_x, &out_count, cpf, "R.I.P.", "black", "white");
             }
         }
         else if (strcmp(type, "h?") == 0) {
@@ -341,10 +414,10 @@ else if (strcmp(type, "rq") == 0) {
                 ctx.txt = f_out;
                 strncpy(ctx.target_cep, cep, 63);
                 
-                // 1. Itera cegamente e anota
+                // Primeiro identifica os moradores afetados sem alterar o arquivo durante a varredura.
                 hash_for_each(hf_habitantes, rq_callback, &ctx);
                 
-                // 2. Com a iteracao finalizada, modifica o disco em seguranca
+                // Depois aplica as remocoes logicas de endereco.
                 for(int i = 0; i < ctx.qtd_afetados; i++) {
                     void* buffer = calloc(1, habitante_get_record_size());
                     if(hash_search(hf_habitantes, ctx.cpfs_afetados[i], buffer)){
@@ -355,17 +428,12 @@ else if (strcmp(type, "rq") == 0) {
                     free(buffer);
                 }
                 
-                // 3. Marca no SVG e exclui a quadra
-                double qx = 0, qy = 0;
                 void* qbuf = calloc(1, quadra_get_record_size());
-                if(hash_search(hf_quadras, cep, qbuf)) quadra_get_anchor((Quadra)qbuf, &qx, &qy);
+                if(hash_search(hf_quadras, cep, qbuf)) {
+                    draw_removed_quadra(svg, (Quadra)qbuf);
+                }
                 free(qbuf);
-                
-                char svg_txt[256];
-                sprintf(svg_txt, "<text x=\"%.2f\" y=\"%.2f\" font-family=\"Arial\" font-size=\"14\" fill=\"red\" text-anchor=\"middle\">X</text>", qx, qy);
-                svg_add_overlay(svg, svg_txt);
-                
-                hash_delete(hf_quadras, cep);
+
                 fprintf(f_out, "Quadra removida do HashFile!\n");
             }
         }
@@ -378,32 +446,16 @@ else if (strcmp(type, "rq") == 0) {
                 // Itera para contar
                 hash_for_each(hf_habitantes, pq_callback, &ctx);
                 
-                double qx = 0, qy = 0, w = 0, h = 0;
                 void* qbuf = calloc(1, quadra_get_record_size());
                 if(hash_search(hf_quadras, cep, qbuf)) {
-                    quadra_get_anchor((Quadra)qbuf, &qx, &qy);
-                    w = quadra_get_w((Quadra)qbuf);
-                    h = quadra_get_h((Quadra)qbuf);
+                    draw_pq_markers(svg, (Quadra)qbuf);
                 }
                 free(qbuf);
                 
                 int total = ctx.moradores_N + ctx.moradores_S + ctx.moradores_L + ctx.moradores_O;
-                
-                // Injeta os textos no SVG (usando proporcoes relativas a ancora/tamanho da quadra)
-                char svg_txt[512];
-                sprintf(svg_txt, 
-                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"10\" fill=\"blue\" text-anchor=\"middle\">%d</text>"  // Total (centro)
-                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"8\" fill=\"black\" text-anchor=\"middle\">%d</text>" // N
-                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"8\" fill=\"black\" text-anchor=\"middle\">%d</text>" // S
-                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"8\" fill=\"black\" text-anchor=\"start\">%d</text>"  // L
-                    "<text x=\"%.2f\" y=\"%.2f\" font-size=\"8\" fill=\"black\" text-anchor=\"end\">%d</text>",   // O
-                    qx - w/2, qy - h/2, total,
-                    qx - w/2, qy - h + 10, ctx.moradores_N,
-                    qx - w/2, qy - 2, ctx.moradores_S,
-                    qx - w + 2, qy - h/2, ctx.moradores_L,
-                    qx - 2, qy - h/2, ctx.moradores_O
-                );
-                svg_add_overlay(svg, svg_txt);
+                fprintf(f_out, "PQ %s -> Total: %d | N: %d S: %d L: %d O: %d\n",
+                        cep, total, ctx.moradores_N, ctx.moradores_S,
+                        ctx.moradores_L, ctx.moradores_O);
             }
         }
         else if (strcmp(type, "censo") == 0) {
@@ -426,6 +478,7 @@ else if (strcmp(type, "rq") == 0) {
                 fprintf(f_out, "Sem-teto Mulheres: %d (%.2f%%)\n", ctx.st_f, ctx.st_totais ? ((double)ctx.st_f*100.0)/ctx.st_totais : 0.0);
             }
             fprintf(f_out, "--------------------------\n");
+            draw_out_box(svg, map_max_x, &out_count, ".", ".", "#ac9d93", "#7c9167");
         }
     }
 
