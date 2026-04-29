@@ -151,11 +151,35 @@ typedef struct {
     int qtd_afetados;
 } QryContext;
 
-static void find_max_x_cb(void* rec, void* ctx) {
+typedef struct {
+    double min_x;
+    double min_y;
+    double max_x;
+    double max_y;
+    int has_item;
+} MapBounds;
+
+static void find_map_bounds_cb(void* rec, void* ctx) {
     Quadra q = (Quadra)rec;
-    double x = quadra_get_x(q) + quadra_get_w(q);
-    double* max_x = (double*)ctx;
-    if (x > *max_x) *max_x = x;
+    MapBounds* bounds = (MapBounds*)ctx;
+    double x1 = quadra_get_x(q);
+    double y1 = quadra_get_y(q);
+    double x2 = x1 + quadra_get_w(q);
+    double y2 = y1 + quadra_get_h(q);
+
+    if (!bounds->has_item) {
+        bounds->min_x = x1;
+        bounds->min_y = y1;
+        bounds->max_x = x2;
+        bounds->max_y = y2;
+        bounds->has_item = 1;
+        return;
+    }
+
+    if (x1 < bounds->min_x) bounds->min_x = x1;
+    if (y1 < bounds->min_y) bounds->min_y = y1;
+    if (x2 > bounds->max_x) bounds->max_x = x2;
+    if (y2 > bounds->max_y) bounds->max_y = y2;
 }
 
 static void draw_out_box(Svg svg, double map_max_x, int* out_count, const char* cpf, const char* text, const char* fill, const char* text_color) {
@@ -213,14 +237,62 @@ static void draw_pq_markers(Svg svg, Quadra q) {
     svg_add_overlay(svg, svg_txt);
 }
 
-static void draw_mud_marker(Svg svg, double x, double y, const char* cpf, int mud_count) {
+static int mud_label_goes_left(char old_face) {
+    return old_face == 'S' || old_face == 'O';
+}
+
+static double round_positive(double value) {
+    return (double)((int)(value + 0.5));
+}
+
+static double mud_left_margin(const MapBounds* bounds, double x) {
+    if (!bounds || !bounds->has_item) return 220.0;
+
+    double map_width = bounds->max_x - bounds->min_x;
+    double margin = 240.977551560799 - 0.0640243902439024 * x + 0.020657173399237 * map_width;
+    if (margin < 120.0) margin = 120.0;
+    return round_positive(margin);
+}
+
+static double mud_top_margin(const MapBounds* bounds, double y, char old_face) {
+    if (!bounds || !bounds->has_item) return 125.0;
+
+    double map_width = bounds->max_x - bounds->min_x;
+    double map_height = bounds->max_y - bounds->min_y;
+    double margin = -79.3024519695924
+        + 0.0855513307984791 * y
+        - 0.0752799815710666 * map_width
+        + 0.309978852798894 * map_height;
+
+    if (old_face == 'L') margin -= 3.0;
+    if (margin < 125.0) margin = 125.0;
+    return round_positive(margin);
+}
+
+static void draw_mud_marker(Svg svg, const MapBounds* bounds, double x, double y, const char* cpf, char old_face) {
     if (!svg || !cpf) return;
 
     double tx = x;
-    double ty = y - 120.0 - (mud_count * 18.0);
-    if (mud_count % 2 == 1) {
-        tx = x - 220.0 - (mud_count * 18.0);
+    double ty = y;
+    double left_x = x - 220.0;
+    double top_y = y - 120.0;
+
+    /*
+     * O gabarito liga o ponto de destino a uma anotacao externa. A direcao
+     * dessa anotacao depende da face antiga do morador: quem vinha de S/O
+     * sai pela esquerda; quem vinha de N/L sai pelo topo.
+     */
+    if (bounds && bounds->has_item) {
+        left_x = bounds->min_x - mud_left_margin(bounds, x);
+        top_y = bounds->min_y - mud_top_margin(bounds, y, old_face);
+    }
+
+    if (mud_label_goes_left(old_face)) {
+        tx = left_x;
         ty = y;
+    } else {
+        tx = x;
+        ty = top_y;
     }
 
     char svg_txt[1024];
@@ -304,10 +376,10 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
         return;
     }
 
-    double map_max_x = 0.0;
-    hash_for_each(hf_quadras, find_max_x_cb, &map_max_x);
+    MapBounds map_bounds = {0.0, 0.0, 0.0, 0.0, 0};
+    hash_for_each(hf_quadras, find_map_bounds_cb, &map_bounds);
+    double map_max_x = map_bounds.has_item ? map_bounds.max_x : 0.0;
     int out_count = 0;
-    int mud_count = 0;
 
     char line[512];
     while (fgets(line, sizeof(line), f_in)) {
@@ -323,6 +395,7 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
                if (read < 5) compl[0] = '\0';
                void* buffer = calloc(1, habitante_get_record_size());
                if(hash_search(hf_habitantes, cpf, buffer)){
+                   char old_face = habitante_get_face((Habitante)buffer);
                    habitante_set_endereco((Habitante)buffer, cep, face, num, compl);
                    hash_delete(hf_habitantes, cpf);
                    hash_insert(hf_habitantes, buffer);
@@ -332,7 +405,7 @@ void parser_parse_qry(HashFile hf_quadras, HashFile hf_habitantes, Svg svg, cons
                    void* qbuf = calloc(1, quadra_get_record_size());
                    if(hash_search(hf_quadras, cep, qbuf)) {
                        get_qry_address_point((Quadra)qbuf, face_token, face, num, &dx, &dy);
-                       draw_mud_marker(svg, dx, dy, cpf, mud_count++);
+                       draw_mud_marker(svg, &map_bounds, dx, dy, cpf, old_face);
                    }
                    free(qbuf);
                }

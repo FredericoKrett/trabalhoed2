@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "quadra.h"
 
 // Lista simplesmente encadeada no C para Overlays dinâmicos
@@ -100,6 +101,87 @@ static void compute_bbox_cb(void* record, void* ctx) {
     }
 }
 
+static void bbox_include_point(struct bbox* b, double x, double y, double padding) {
+    if (!b->has_item) {
+        b->min_x = x - padding;
+        b->max_x = x + padding;
+        b->min_y = y - padding;
+        b->max_y = y + padding;
+        b->has_item = 1;
+        return;
+    }
+
+    if (x - padding < b->min_x) b->min_x = x - padding;
+    if (y - padding < b->min_y) b->min_y = y - padding;
+    if (x + padding > b->max_x) b->max_x = x + padding;
+    if (y + padding > b->max_y) b->max_y = y + padding;
+}
+
+static int svg_attr_value(const char* element, const char* attr, double* value) {
+    size_t attr_len = strlen(attr);
+    const char* cursor = element;
+
+    while ((cursor = strstr(cursor, attr)) != NULL) {
+        const char* next = cursor + attr_len;
+        int starts_attr = cursor == element || isspace((unsigned char)cursor[-1]) || cursor[-1] == '<';
+        if (starts_attr && next[0] == '=' && next[1] == '"') {
+            *value = strtod(next + 2, NULL);
+            return 1;
+        }
+        cursor = next;
+    }
+
+    return 0;
+}
+
+static void expand_bbox_from_overlay_element(struct bbox* b, const char* element) {
+    double x = 0.0, y = 0.0, w = 0.0, h = 0.0;
+    double x1 = 0.0, y1 = 0.0, x2 = 0.0, y2 = 0.0;
+    double cx = 0.0, cy = 0.0, r = 0.0;
+
+    if (strncmp(element, "<rect", 5) == 0 &&
+        svg_attr_value(element, "x", &x) &&
+        svg_attr_value(element, "y", &y) &&
+        svg_attr_value(element, "width", &w) &&
+        svg_attr_value(element, "height", &h)) {
+        bbox_include_point(b, x, y, 0.0);
+        bbox_include_point(b, x + w, y + h, 0.0);
+        return;
+    }
+
+    if (strncmp(element, "<line", 5) == 0 &&
+        svg_attr_value(element, "x1", &x1) &&
+        svg_attr_value(element, "y1", &y1) &&
+        svg_attr_value(element, "x2", &x2) &&
+        svg_attr_value(element, "y2", &y2)) {
+        bbox_include_point(b, x1, y1, 5.0);
+        bbox_include_point(b, x2, y2, 5.0);
+        return;
+    }
+
+    if (strncmp(element, "<circle", 7) == 0 &&
+        svg_attr_value(element, "cx", &cx) &&
+        svg_attr_value(element, "cy", &cy)) {
+        if (!svg_attr_value(element, "r", &r)) r = 0.0;
+        bbox_include_point(b, cx, cy, r + 2.0);
+        return;
+    }
+
+    if (strncmp(element, "<text", 5) == 0 &&
+        svg_attr_value(element, "x", &x) &&
+        svg_attr_value(element, "y", &y)) {
+        bbox_include_point(b, x, y, 5.0);
+    }
+}
+
+static void expand_bbox_from_overlay(struct bbox* b, const char* overlay) {
+    const char* cursor = overlay;
+    while ((cursor = strchr(cursor, '<')) != NULL) {
+        expand_bbox_from_overlay_element(b, cursor);
+        cursor++;
+    }
+}
+
 void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas, const char* filepath) {
     if (!svg_gen || !filepath) return;
     (void)hf_pessoas;
@@ -128,24 +210,10 @@ void svg_render_and_close(Svg svg_gen, HashFile hf_quadras, HashFile hf_pessoas,
         b.min_x = 0; b.min_y = 0; b.max_x = 1000; b.max_y = 1000;
     }
 
-    // Expand bounding box for overlays if any
+    // Expande a area visivel tambem para textos, linhas e marcadores dinamicos.
     struct overlay_node* curr_b = s->overlay_head;
     while (curr_b) {
-        double ox = 0, oy = 0, ow = 0, oh = 0;
-        char* rect_ptr = strstr(curr_b->data, "<rect");
-        if (rect_ptr) {
-            char* x_ptr = strstr(rect_ptr, "x=\"");
-            if (x_ptr) ox = atof(x_ptr + 3);
-            char* y_ptr = strstr(rect_ptr, "y=\"");
-            if (y_ptr) oy = atof(y_ptr + 3);
-            char* w_ptr = strstr(rect_ptr, "width=\"");
-            if (w_ptr) ow = atof(w_ptr + 7);
-            char* h_ptr = strstr(rect_ptr, "height=\"");
-            if (h_ptr) oh = atof(h_ptr + 8);
-            
-            if (ox + ow > b.max_x) b.max_x = ox + ow + 50.0;
-            if (oy + oh > b.max_y) b.max_y = oy + oh + 50.0;
-        }
+        expand_bbox_from_overlay(&b, curr_b->data);
         curr_b = curr_b->next;
     }
 
