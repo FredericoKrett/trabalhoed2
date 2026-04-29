@@ -30,19 +30,19 @@ void test_quadra_pontos_de_referencia(void) {
     TEST_ASSERT_EQUAL_INT(100, (int)y);
 
     quadra_get_address_point(q, 'N', 30.0, &x, &y);
-    TEST_ASSERT_EQUAL_INT(80, (int)x);
+    TEST_ASSERT_EQUAL_INT(40, (int)x);
     TEST_ASSERT_EQUAL_INT(100, (int)y);
 
     quadra_get_address_point(q, 'S', 30.0, &x, &y);
-    TEST_ASSERT_EQUAL_INT(80, (int)x);
+    TEST_ASSERT_EQUAL_INT(40, (int)x);
     TEST_ASSERT_EQUAL_INT(20, (int)y);
 
     quadra_get_address_point(q, 'L', 30.0, &x, &y);
-    TEST_ASSERT_EQUAL_INT(110, (int)x);
+    TEST_ASSERT_EQUAL_INT(10, (int)x);
     TEST_ASSERT_EQUAL_INT(50, (int)y);
 
     quadra_get_address_point(q, 'O', 30.0, &x, &y);
-    TEST_ASSERT_EQUAL_INT(10, (int)x);
+    TEST_ASSERT_EQUAL_INT(110, (int)x);
     TEST_ASSERT_EQUAL_INT(50, (int)y);
 
     quadra_free(q);

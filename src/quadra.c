@@ -76,24 +76,24 @@ void quadra_get_address_point(Quadra q, char face, double num, double* out_x, do
     struct quadra* _q = (struct quadra*)q;
     if (!_q) return;
 
-    double x = _q->x + _q->w;
-    double y = _q->y + _q->h;
+    double x = _q->x;
+    double y = _q->y;
 
     switch (face) {
         case 'N':
-            x = _q->x + _q->w - num;
+            x = _q->x + num;
             y = _q->y + _q->h;
             break;
         case 'S':
-            x = _q->x + _q->w - num;
+            x = _q->x + num;
             y = _q->y;
             break;
         case 'L':
-            x = _q->x + _q->w;
+            x = _q->x;
             y = _q->y + num;
             break;
         case 'O':
-            x = _q->x;
+            x = _q->x + _q->w;
             y = _q->y + num;
             break;
     }
