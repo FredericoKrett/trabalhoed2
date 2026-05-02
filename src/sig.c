@@ -1,7 +1,16 @@
 #include "sig.h"
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef _WIN32
+#include <direct.h>
+#define SIG_MKDIR(path) _mkdir(path)
+#else
+#include <sys/stat.h>
+#include <sys/types.h>
+#define SIG_MKDIR(path) mkdir(path, 0775)
+#endif
 
 #include "hashfile.h"
 #include "parser.h"
@@ -37,6 +46,43 @@ static void get_filename_no_ext(const char* path, char* out) {
     strcpy(out, base);
     char* ext = strrchr(out, '.');
     if (ext) *ext = '\0';
+}
+
+static int is_path_separator(char c) {
+    return c == '/' || c == '\\';
+}
+
+static void make_dir_if_needed(const char* path) {
+    if (!path || !*path) return;
+    if (SIG_MKDIR(path) != 0 && errno != EEXIST) {
+        fprintf(stderr, "Aviso: nao foi possivel criar diretorio: %s\n", path);
+    }
+}
+
+static void ensure_directory_exists(const char* path) {
+    if (!path || !*path) return;
+
+    char partial[1024];
+    snprintf(partial, sizeof(partial), "%s", path);
+
+    size_t len = strlen(partial);
+    while (len > 0 && is_path_separator(partial[len - 1])) {
+        partial[--len] = '\0';
+    }
+    if (len == 0) return;
+
+    for (char* p = partial + 1; *p; p++) {
+        if (is_path_separator(*p)) {
+            char old = *p;
+            *p = '\0';
+            if (!(strlen(partial) == 2 && partial[1] == ':')) {
+                make_dir_if_needed(partial);
+            }
+            *p = old;
+        }
+    }
+
+    make_dir_if_needed(partial);
 }
 
 SIG sig_create(void) {
@@ -89,6 +135,8 @@ void sig_init_files(SIG s_gen) {
     struct sig* s = (struct sig*) s_gen;
 
     printf("Inicializando o motor SIG e tabelas Hash...\n");
+
+    ensure_directory_exists(s->base_saida);
 
     s->hash_quadras = hash_create(s->base_saida, "quadras", 
                                   quadra_get_record_size(), 
